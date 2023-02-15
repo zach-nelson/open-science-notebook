@@ -22,69 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -128,7 +65,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="floating nav-fixed slimcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -146,15 +83,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">about open science</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -172,20 +104,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
-  <ul class="collapse">
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
-  <li><a href="#data-import-and-processing" id="toc-data-import-and-processing" class="nav-link" data-scroll-target="#data-import-and-processing">Data Import and Processing</a></li>
-  <li><a href="#summarise-to-transect-and-parcel" id="toc-summarise-to-transect-and-parcel" class="nav-link" data-scroll-target="#summarise-to-transect-and-parcel">summarise to transect and parcel</a></li>
-  </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
+  <li><a href="#data-and-2003-reveg-goals" id="toc-data-and-2003-reveg-goals" class="nav-link" data-scroll-target="#data-and-2003-reveg-goals">2022 Data and 2003 reveg goals</a>
   <ul class="collapse">
   <li><a href="#law090" id="toc-law090" class="nav-link" data-scroll-target="#law090">LAW090</a></li>
   <li><a href="#law095" id="toc-law095" class="nav-link" data-scroll-target="#law095">LAW095</a></li>
   <li><a href="#law094" id="toc-law094" class="nav-link" data-scroll-target="#law094">LAW094</a></li>
   <li><a href="#law118-and-law129" id="toc-law118-and-law129" class="nav-link" data-scroll-target="#law118-and-law129">LAW118 and LAW129</a></li>
+  </ul></li>
+  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations">Recommendations</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
+  <ul class="collapse">
+  <li><a href="#reference-parcel-cover-composition" id="toc-reference-parcel-cover-composition" class="nav-link" data-scroll-target="#reference-parcel-cover-composition">Reference Parcel Cover Composition</a>
+  <ul class="collapse">
+  <li><a href="#laws-90-94-95" id="toc-laws-90-94-95" class="nav-link" data-scroll-target="#laws-90-94-95">Laws 90, 94, 95</a></li>
+  <li><a href="#laws-129" id="toc-laws-129" class="nav-link" data-scroll-target="#laws-129">Laws 129</a></li>
+  </ul></li>
+  <li><a href="#reference-species" id="toc-reference-species" class="nav-link" data-scroll-target="#reference-species">Reference Species</a>
+  <ul class="collapse">
+  <li><a href="#laws-90-94-95-1" id="toc-laws-90-94-95-1" class="nav-link" data-scroll-target="#laws-90-94-95-1">Laws 90, 94, 95</a></li>
+  <li><a href="#laws-129-1" id="toc-laws-129-1" class="nav-link" data-scroll-target="#laws-129-1">Laws 129</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -232,170 +172,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="summary" class="level1">
-<h1>Summary</h1>
-<p>Inyo County Water Departmemnt (ICWD) received Los Angeles Department of Water and Power’s (LADWP) report entitled <a href="add link">“Revegetation Monitoring Report for Land Removed from Irrigation: Laws Parcels 090, 095,129, and Abandoned Land Parcel 094”</a> in November, 2022.</p>
-<p>Data supporting the report collected by LADWP in summer 2022 was received by ICWD staff in a digital excel file January 27th 2023. This data is evaluated here to verify data summaries in LADWP’s report and to provide feedback on the proposed timeline of the final two-year stage through 2024, when irrigation to the established plants is turned off to assess whether or not the stand can persist on valley-floor precipitation alone. The report informs that after irrigation support is removed for the 2023 and 2024 growing season, transects will be sampled again in 2024 to assess whether the 2003 revegetation plan goals are still satisfied.</p>
-<blockquote class="blockquote">
-<p>“If a parcel meets the goals after the two year rest, no further revegetation activities will be necessary and the parcel will be considered complete”.</p>
-</blockquote>
-<p>After examining the data provided to ICWD against the 2003 MND Revegetation Plan revegetation goals, LADWP’s reporting comports with ICWD’s independent data summaries in that cover goals and species richness was satisified in 2022. However, ICWD’s reading of the 2003 plan is that persistence without irrigation over two growing seasons is required before the project is considered complete.</p>
-<p>Questions: - If irrigation ceased after the 2022 growing season, two years would be after the 2024 growing season not during the 2024 growing season. The most stressful period will be in August when soil moisture is at a low. In the spirit of the 2003 plan ICWD believes two years of late summer water stress after goals were initially met should be considered rather than just one late summer period of stress. Given the above average valley floor precipitation in 2022-23 winter, the water stress caused by the first year of no irrigation will be alleviated to some degree by soil moisture recharge from infiltrating precipitation. Surviving two or three drought years in a row would be a more legitimate test of sustainability compared to one wet year and just the beginning of the growing season in 2024.</p>
-<p>Answers: LADWP indicated irrigation was possibly turnedd off July 1, 2022, which would give two years of no project activities by July 2024.</p>
-<p>Common rabbitbrush, which is the dominant cover in LAW129/118, and big saltbush, which makes up a few percentage points in each parcel, may not fair well on precipitation alone as these species are typically associated with a groundwater in Owens Valley.</p>
-</section>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
 <section id="background" class="level1">
 <h1>Background</h1>
-<p>https://www.inyowater.org/wp-content/uploads/2021/06/Laws_Neg_Dec_3-17-03.pdf <a href="https://www.inyowater.org/wp-content/uploads/2021/10/Laws-Neg-Dec-Reveg-plan-FINAL-3-17-03-copy.pdf">Revegetation Plans for Lands Removed from Irrigation Laws Parcels 90, 95, 129 and Abandoned Agricultural Land Parcel 94</a></p>
+<p>In November 2022, Inyo County Water Departmemnt (ICWD) received Los Angeles Department of Water and Power’s (LADWP) report entitled <a href="">“Revegetation Monitoring Report for Land Removed from Irrigation: Laws Parcels 090, 095,129, and Abandoned Land Parcel 094” (hereafter 2022 report)</a>.</p>
+<p>As part of the <a href="https://www.inyowater.org/wp-content/uploads/2021/06/Laws_Neg_Dec_3-17-03.pdf">“Irrigation Project in the Laws Area” negative declaration of environmental impact (herefter Laws MND)</a>, a plan to revegetate lands removed from irrigation was outlined in attachment 4 of the Laws MND titled. <a href="https://www.inyowater.org/wp-content/uploads/2021/10/Laws-Neg-Dec-Reveg-plan-FINAL-3-17-03-copy.pdf">“Revegetation Plans for Lands Removed from Irrigation Laws Parcels 90, 95, and 129 And Abandoned Agricultural Land Parcel 94” (hereafter 2003 Plan)</a>. This 2003 plan explains:</p>
 <blockquote class="blockquote">
-<p>There are three parcels in the Laws Ranch lease that were previously irrigated and will not be irrigated in the future under the plan for re-irrigation of the ranch. These parcels are Laws 90, 95 and 129. A portion of Laws 118 surrounds parcel 129. This area will be fenced and revegetation will be augmented, as needed, in conjunction with parcel 129. Laws parcel 94, which was mapped as abandoned agricultural land, will also be revegetated. These parcels are located northeast of the town of Laws and east of the Upper McNally Canal on the Laws 7.5’ USGS quad (Figure 1.) Under these plans, the parcels will be revegetated with the goal of restoring native vegetation that is similar in cover, and species composition to nearby sites. The prescribed conditions are to be established on each parcel by 2013, and must be present two years after established with no on-site revegetation activities. In preparing this plan, vegetation cover, composition, and species lists were determined by reviewing the LADWP 1984-87 vegetation inventory data for parcels in the vicinity (Appendix II) and located in the same ecological (range) site class in the Draft Benton-Owens Valley Soil Survey, hereafter referred to as the NRCS (Natural Resources Conservation Service 1994). In addition, species lists and other information from the NRCS descriptions were incorporated (Appendix I).</p>
+<p>There are three parcels in the Laws Ranch lease that were previously irrigated and will not be irrigated in the future under the plan for re-irrigation of the ranch.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>The revegetation goals for Laws parcels 90, 94, and 95 are the same. The goal is a native perennial vegetation cover of at least 10% by the year 2013 composed of at least ten different native species (including a native grass). Further, after two years with no on-site revegetation activities, monitoring must show that these goals have been sustained on each parcel. The overall cover value for these parcels is comparable to the cover measured during the LADWP vegetation inventory for adjacent undisturbed parcels inventoried in 1987, and is noted as the low-end cover value in the NRCS Soil Survey.-p2</p>
+<p>These parcels are Laws 90, 95 and 129. A portion of Laws 118 surrounds parcel 129. This area will be fenced and revegetation will be augmented, as needed, in conjunction with parcel 129. Laws parcel 94, which was mapped as abandoned agricultural land, will also be revegetated.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>For parcel 90, there should be at least three “hits” for at least six different native perennial species out of the total of all the readings of all the permanent transects in the parcel. The other four native perennial species should be observed as present on the parcel, but do not have to be “hit” on any transect. For parcels 94 and 95, there should be at least two “hits” for at least six different native perennial species out of the total of all the readings of all the permanent transects in the parcel. The other four native perennial species should be present on the parcel, but do not have to be “hit” on any transect. For parcel 129/118, there should be at least two “hits” for at least five different native perennial species out of the total of all the readings of all the permanent transects in the parcels. The other three native perennial species should be present on the parcel, but do not have to be “hit” on any transect.</p>
+<p>Under these plans, the parcels will be revegetated with the goal of restoring native vegetation that is similar in cover, and species composition to nearby sites. The prescribed conditions are to be established on each parcel by 2013, and must be present two years after established with no on-site revegetation activities.–2003 Plan</p>
 </blockquote>
+<p>The 2022 report explains that LADWP and consultants measured transects in Laws 90, 94, 95, and 129 in July of 2022; and analysis of those data allowed determining the 2003 revegetation goals have been met as of the last half of July 2022<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Irrigation was not supplied after June 2022; and because vegetation goals were met in July, the two-year period to test whether the established shrubs can persist without summer drip irrigation official began July 2022 - triggering re-measurement in July 2024 - at which point the 2024 data will determine whether goals have been sustained for two years or 730 days since first measurements<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. At this point, LADWP will consider the project complete:</p>
+<blockquote class="blockquote">
+<p>“If a parcel meets the goals after the two year rest, no further revegetation activities will be necessary and the parcel will be considered complete”. – LADWP 2022</p>
+</blockquote>
+<p>Data supporting the report collected by LADWP in summer 2022 was received by ICWD staff in a digital excel file January 27th 2023.</p>
 </section>
-<section id="methods" class="level1">
-<h1>Methods</h1>
-<section id="libraries" class="level2">
-<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
+<section id="tasks" class="level1">
+<h1>Tasks</h1>
+<p>The purpose of this report (hereafter 2023 data summary) is to:</p>
+<ol type="1">
+<li>Evaluate the data provided to ICWD (collected in July 2022 by LADWP staff and consultants) against the various cover and composition goals of the 2003 plan<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Specifically, compute average perennial cover at the transect and parcel scale, enumerate the number of species detected on the transects and parcel in total, determine whether or not 5-6 of those species were detected at the 0.05-0.075% cover level for the parcel (2-3 out of 4,000 possible hits), and whether or not each transect minimally had 2% cover (1 hit out of 200 possible).</li>
+</ol>
+<!-- -->
+<ol start="2" type="1">
+<li>Plot transect-level composition and species spatial distribution. Specifically, for each parcel, with discrete transect identity on the x-axis, stack perennial species cover in bar plots for all transects on the y-axis. Color the stacked species blocks by species code. Second, for each parcel, facet by species so each species has it’s own plot and map the transect locations and size the points proportional to the species-level transect % cover.</li>
+</ol>
 <div class="cell">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmlwidgets)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmaptools)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># library(here)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpmisc)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">tidyverse.quiet =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="data-import-and-processing" class="level2">
-<h2 class="anchored" data-anchor-id="data-import-and-processing">Data Import and Processing</h2>
-<p>The xy coordinates of the transects provided were joined to the field data consisting of parcel-transect-species-count row combinations allowing the spatial distribution of the plant species across the transect network to be plotted.</p>
-<div class="cell">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(species))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcels_shp))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># withr::with_dir(rprojroot::find_root('_targets.R'),tar_load(species))</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># grab the crs from another shapefile in NAD83 z11 to apply to the xy coordinates.</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>reveg_crs <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(parcels_shp)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>reveg_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'laws_reveg'</span>,<span class="st">'laws_reveg_data_2022a.csv'</span>))</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>reveg_xy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'laws_reveg'</span>,<span class="st">'laws_reveg_transects.csv'</span>))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>reveg_sp_count_xy <span class="ot">&lt;-</span> reveg_data <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(reveg_xy, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"parcel"</span>,<span class="st">"transect"</span>))</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> reveg_sp_count_xy <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(species, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"species"</span> <span class="ot">=</span> <span class="st">"Code"</span>))</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># with spatial points for projecting on lat long map</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>rscxy <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(reveg_sp_count_xy, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>), <span class="at">crs =</span>reveg_crs)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> rscxy <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(species, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"species"</span> <span class="ot">=</span> <span class="st">"Code"</span>)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">percent_cover =</span> cover<span class="sc">*</span>.<span class="dv">5</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>rlaw90<span class="ot">&lt;-</span> r1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parcel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"LAW090"</span>))</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>rlaw95<span class="ot">&lt;-</span> r1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parcel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"LAW095"</span>))</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>rlaw94<span class="ot">&lt;-</span> r1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parcel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"LAW094"</span>))</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>rlaw118_129<span class="ot">&lt;-</span> r1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parcel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"LAW118"</span>,<span class="st">"LAW129"</span>))</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>r_n <span class="ot">&lt;-</span> r1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(parcel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"LAW090"</span>,<span class="st">"LAW095"</span>,<span class="st">"LAW094"</span>))</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>r_s <span class="ot">&lt;-</span> r1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>parcel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"LAW090"</span>,<span class="st">"LAW095"</span>,<span class="st">"LAW094"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="summarise-to-transect-and-parcel" class="level2">
-<h2 class="anchored" data-anchor-id="summarise-to-transect-and-parcel">summarise to transect and parcel</h2>
-<div class="cell">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>summarise_reveg_to_transect <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  tran.sums <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(parcel,transect,Lifecycle,Lifeform)<span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">Cover=</span><span class="fu">sum</span>(cover)<span class="sc">*</span>.<span class="dv">5</span>)<span class="co"># summarise for each e.g. lifecycle/lifeform annual/perennial grass</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  tran.tlc <span class="ot">&lt;-</span> tran.sums <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(parcel,transect) <span class="sc">%&gt;%</span> <span class="co"># sum all cover across all lifecycle/lifeform</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">tot.live.cover =</span> <span class="fu">sum</span>(Cover))</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  pft.wide<span class="ot">&lt;-</span>tran.sums <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Lifecycle <span class="sc">==</span> <span class="st">'Perennial'</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Lifecycle) <span class="sc">%&gt;%</span>  <span class="fu">spread</span>(Lifeform,Cover) </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  pft.wide[<span class="fu">is.na</span>(pft.wide)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create total cover variable</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  pft.wide <span class="ot">&lt;-</span> pft.wide<span class="sc">%&gt;%</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Cover=</span> Grass <span class="sc">+</span> Herb <span class="sc">+</span> Shrub  <span class="sc">+</span> Tree)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  pft.wide.wtot.cov <span class="ot">&lt;-</span> pft.wide <span class="sc">%&gt;%</span> </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(tran.tlc, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"parcel"</span>,<span class="st">'transect'</span>))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a> full <span class="ot">&lt;-</span> pft.wide.wtot.cov <span class="sc">%&gt;%</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pShrubTran =</span> Shrub <span class="sc">/</span> Cover,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">pGrassTran =</span> Grass <span class="sc">/</span> Cover,</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">pHerbTran =</span> Herb <span class="sc">/</span> Cover) <span class="sc">%&gt;%</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_if</span>(is.numeric, <span class="sc">~</span><span class="fu">replace_na</span>(., <span class="dv">0</span>))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(full)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">summarise_reveg_to_transect</span>(r2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summarise_to_parcel <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(parcel)<span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">PerHits=</span><span class="fu">sum</span>(Cover),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ShrubHits=</span><span class="fu">sum</span>(Shrub),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">HerbHits=</span><span class="fu">sum</span>(Herb),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">GrassHits=</span><span class="fu">sum</span>(Grass),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cover=</span><span class="fu">mean</span>(Cover),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Shrub=</span><span class="fu">mean</span>(Shrub),</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Herb=</span><span class="fu">mean</span>(Herb),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Grass=</span><span class="fu">mean</span>(Grass),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">TLC=</span><span class="fu">mean</span>(tot.live.cover),</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">pShrub=</span><span class="fu">mean</span>(pShrubTran),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">pGrass=</span><span class="fu">mean</span>(pGrassTran),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pHerb=</span><span class="fu">mean</span>(pHerbTran),</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n.transects =</span> <span class="fu">n</span>())</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(p)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>parcel_sum <span class="ot">&lt;-</span> <span class="fu">summarise_to_parcel</span>(full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>parcel_sum <span class="sc">%&gt;%</span> <span class="fu">select</span>(parcel,Cover,Shrub,Herb,Grass,n.transects) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
 
-<div id="ekkbieoekd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="data-and-2003-reveg-goals" class="level1 page-columns page-full">
+<h1>2022 Data and 2003 reveg goals</h1>
+<p>After examining the data provided to ICWD against the 2003 MND Revegetation Plan revegetation goals, LADWP’s reporting comports with ICWD’s independent data summaries in that cover goals and species richness was satisified based on LADWP’s 2022 data collection. See <a href="#tbl-summary">Table&nbsp;1</a> for an overview of cover values for all parcels. Species level tables for each parcel, species composition charts for each transect and spatial maps of species transect cover are located in the following sections: Laws 90 (<a href="#tbl-law090-transect-species">Table&nbsp;2</a>, <a href="#fig-stacked-composition-law090">Figure&nbsp;1</a>, <a href="#fig-law090-transect-species-map">Figure&nbsp;2</a>), Laws 95 (<a href="#tbl-law095-transect-species">Table&nbsp;3</a>, <a href="#fig-stacked-composition-law095">Figure&nbsp;3</a>, <a href="#fig-law095-transect-species-map">Figure&nbsp;4</a>), Laws 94 (<a href="#tbl-law094-transect-species">Table&nbsp;4</a>, <a href="#fig-stacked-composition-law094">Figure&nbsp;5</a>, <a href="#fig-law094-transect-species-map">Figure&nbsp;6</a>), and Laws 129 (<a href="#tbl-law129-transect-species">Table&nbsp;5</a>, <a href="#fig-stacked-composition-law129">Figure&nbsp;7</a>, <a href="#fig-law118_129-transect-species-map">Figure&nbsp;8</a> ).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-summary" class="anchored">
+
+<div id="olflgebphd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#ekkbieoekd) .gt_table {
+:where(#olflgebphd) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -420,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_heading {
+:where(#olflgebphd) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -432,12 +293,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_caption {
+:where(#olflgebphd) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#ekkbieoekd) .gt_title {
+:where(#olflgebphd) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -449,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#ekkbieoekd) .gt_subtitle {
+:where(#olflgebphd) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -461,13 +322,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#ekkbieoekd) .gt_bottom_border {
+:where(#olflgebphd) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_col_headings {
+:where(#olflgebphd) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -482,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_col_heading {
+:where(#olflgebphd) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -502,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#ekkbieoekd) .gt_column_spanner_outer {
+:where(#olflgebphd) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -514,15 +375,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#ekkbieoekd) .gt_column_spanner_outer:first-child {
+:where(#olflgebphd) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#ekkbieoekd) .gt_column_spanner_outer:last-child {
+:where(#olflgebphd) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#ekkbieoekd) .gt_column_spanner {
+:where(#olflgebphd) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -534,7 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#ekkbieoekd) .gt_group_heading {
+:where(#olflgebphd) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -560,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#ekkbieoekd) .gt_empty_group_heading {
+:where(#olflgebphd) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -575,15 +436,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#ekkbieoekd) .gt_from_md > :first-child {
+:where(#olflgebphd) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#ekkbieoekd) .gt_from_md > :last-child {
+:where(#olflgebphd) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#ekkbieoekd) .gt_row {
+:where(#olflgebphd) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -602,7 +463,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#ekkbieoekd) .gt_stub {
+:where(#olflgebphd) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -615,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ekkbieoekd) .gt_stub_row_group {
+:where(#olflgebphd) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -629,11 +490,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#ekkbieoekd) .gt_row_group_first td {
+:where(#olflgebphd) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#ekkbieoekd) .gt_summary_row {
+:where(#olflgebphd) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -643,16 +504,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ekkbieoekd) .gt_first_summary_row {
+:where(#olflgebphd) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_first_summary_row.thick {
+:where(#olflgebphd) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#ekkbieoekd) .gt_last_summary_row {
+:where(#olflgebphd) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -662,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_grand_summary_row {
+:where(#olflgebphd) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -672,7 +533,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ekkbieoekd) .gt_first_grand_summary_row {
+:where(#olflgebphd) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -682,11 +543,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_striped {
+:where(#olflgebphd) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#ekkbieoekd) .gt_table_body {
+:where(#olflgebphd) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -695,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_footnotes {
+:where(#olflgebphd) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -709,7 +570,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_footnote {
+:where(#olflgebphd) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -718,7 +579,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ekkbieoekd) .gt_sourcenotes {
+:where(#olflgebphd) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -732,7 +593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ekkbieoekd) .gt_sourcenote {
+:where(#olflgebphd) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -740,104 +601,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ekkbieoekd) .gt_left {
+:where(#olflgebphd) .gt_left {
   text-align: left;
 }
 
-:where(#ekkbieoekd) .gt_center {
+:where(#olflgebphd) .gt_center {
   text-align: center;
 }
 
-:where(#ekkbieoekd) .gt_right {
+:where(#olflgebphd) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#ekkbieoekd) .gt_font_normal {
+:where(#olflgebphd) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#ekkbieoekd) .gt_font_bold {
+:where(#olflgebphd) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#ekkbieoekd) .gt_font_italic {
+:where(#olflgebphd) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#ekkbieoekd) .gt_super {
+:where(#olflgebphd) .gt_super {
   font-size: 65%;
 }
 
-:where(#ekkbieoekd) .gt_footnote_marks {
+:where(#olflgebphd) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#ekkbieoekd) .gt_asterisk {
+:where(#olflgebphd) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#ekkbieoekd) .gt_indent_1 {
+:where(#olflgebphd) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#ekkbieoekd) .gt_indent_2 {
+:where(#olflgebphd) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#ekkbieoekd) .gt_indent_3 {
+:where(#olflgebphd) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#ekkbieoekd) .gt_indent_4 {
+:where(#olflgebphd) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#ekkbieoekd) .gt_indent_5 {
+:where(#olflgebphd) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
+<table class="gt_table"><caption>Table&nbsp;1:  Summary of cover from 2022 data. TLC is total live cover including annual weed cover. Cover is total perennial cover with a revegetation goal of 10% cover. Shrub, Herb, and Grass are the functional type components of Cover. goal_above_below indicates the current cover difference from the goal (positive above goal and negative below goal.) </caption>
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="parcel">parcel</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="TLC">TLC</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Cover">Cover</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Shrub">Shrub</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Herb">Herb</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Grass">Grass</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n.transects">n.transects</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="goal_above_below">goal_above_below</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="parcel" class="gt_row gt_left">LAW090</td>
+<td headers="TLC" class="gt_row gt_right">19.900</td>
 <td headers="Cover" class="gt_row gt_right">15.725</td>
 <td headers="Shrub" class="gt_row gt_right">15.300</td>
 <td headers="Herb" class="gt_row gt_right">0.075</td>
 <td headers="Grass" class="gt_row gt_right">0.225</td>
-<td headers="n.transects" class="gt_row gt_right">20</td></tr>
+<td headers="n.transects" class="gt_row gt_right">20</td>
+<td headers="goal_above_below" class="gt_row gt_right">5.72</td></tr>
     <tr><td headers="parcel" class="gt_row gt_left">LAW094</td>
+<td headers="TLC" class="gt_row gt_right">16.775</td>
 <td headers="Cover" class="gt_row gt_right">10.650</td>
 <td headers="Shrub" class="gt_row gt_right">9.925</td>
 <td headers="Herb" class="gt_row gt_right">0.000</td>
 <td headers="Grass" class="gt_row gt_right">0.725</td>
-<td headers="n.transects" class="gt_row gt_right">20</td></tr>
+<td headers="n.transects" class="gt_row gt_right">20</td>
+<td headers="goal_above_below" class="gt_row gt_right">0.65</td></tr>
     <tr><td headers="parcel" class="gt_row gt_left">LAW095</td>
+<td headers="TLC" class="gt_row gt_right">15.025</td>
 <td headers="Cover" class="gt_row gt_right">12.200</td>
 <td headers="Shrub" class="gt_row gt_right">11.000</td>
 <td headers="Herb" class="gt_row gt_right">0.000</td>
 <td headers="Grass" class="gt_row gt_right">1.200</td>
-<td headers="n.transects" class="gt_row gt_right">20</td></tr>
+<td headers="n.transects" class="gt_row gt_right">20</td>
+<td headers="goal_above_below" class="gt_row gt_right">2.20</td></tr>
     <tr><td headers="parcel" class="gt_row gt_left">LAW129</td>
+<td headers="TLC" class="gt_row gt_right">19.075</td>
 <td headers="Cover" class="gt_row gt_right">16.625</td>
 <td headers="Shrub" class="gt_row gt_right">16.225</td>
 <td headers="Herb" class="gt_row gt_right">0.325</td>
 <td headers="Grass" class="gt_row gt_right">0.075</td>
-<td headers="n.transects" class="gt_row gt_right">20</td></tr>
+<td headers="n.transects" class="gt_row gt_right">20</td>
+<td headers="goal_above_below" class="gt_row gt_right">6.62</td></tr>
   </tbody>
   
   
@@ -845,38 +716,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="results" class="level1 page-columns page-full">
-<h1>Results</h1>
+</div>
 <section id="law090" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="law090">LAW090</h2>
-<div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="sc">%&gt;%</span>  </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(parcel <span class="sc">==</span> <span class="st">"LAW090"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Lifecycle,CommonName) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Percent_Cover =</span> <span class="fu">sum</span>(cover)<span class="sc">*</span>.<span class="dv">5</span><span class="sc">/</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Lifecycle"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary_rows</span>(</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">groups =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> Percent_Cover,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fns =</span> <span class="fu">list</span>(</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">total =</span> <span class="st">"sum"</span>),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="LAW090_61.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Transect photo taken July 25 2022.</figcaption><p></p>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>The goal is a native perennial vegetation cover of at least 10% by the year 2013 composed of at least ten different native species (including a native grass). For parcel 90, there should be at least three “hits” for at least six different native perennial species out of the total of all the readings of all the permanent transects in the parcel. The other four native perennial species should be observed as present on the parcel, but do not have to be “hit” on any transect.-2003 Plan</p>
+</blockquote>
+<ul>
+<li><em>2003 Cover Goal:</em> <code>10</code>% cover – Actual in 2022: - 16% cover</li>
+<li><em>2003 Species Goal:</em> <code>10</code> species – Actual on transect 2022: <code>13</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li><em>2003 Composition Goal:</em> <code>6</code> species with three hits – Actual in 2022: <code>10</code> species with three hits (0.075% cover each)</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-law090-transect-species" class="anchored">
 
-<div class="no-row-height column-margin column-container"><div class="cell-output-display">
-<div id="tbl-law090-transect-species-map" class="anchored">
-
-<div id="zhtgetqsfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="tvwgxkukdk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#zhtgetqsfi) .gt_table {
+:where(#tvwgxkukdk) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -901,7 +767,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_heading {
+:where(#tvwgxkukdk) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -913,12 +779,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_caption {
+:where(#tvwgxkukdk) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#zhtgetqsfi) .gt_title {
+:where(#tvwgxkukdk) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -930,7 +796,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#zhtgetqsfi) .gt_subtitle {
+:where(#tvwgxkukdk) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -942,13 +808,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#zhtgetqsfi) .gt_bottom_border {
+:where(#tvwgxkukdk) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_col_headings {
+:where(#tvwgxkukdk) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -963,7 +829,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_col_heading {
+:where(#tvwgxkukdk) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -983,7 +849,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#zhtgetqsfi) .gt_column_spanner_outer {
+:where(#tvwgxkukdk) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -995,15 +861,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#zhtgetqsfi) .gt_column_spanner_outer:first-child {
+:where(#tvwgxkukdk) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#zhtgetqsfi) .gt_column_spanner_outer:last-child {
+:where(#tvwgxkukdk) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#zhtgetqsfi) .gt_column_spanner {
+:where(#tvwgxkukdk) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1015,7 +881,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#zhtgetqsfi) .gt_group_heading {
+:where(#tvwgxkukdk) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1041,7 +907,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#zhtgetqsfi) .gt_empty_group_heading {
+:where(#tvwgxkukdk) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1056,15 +922,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#zhtgetqsfi) .gt_from_md > :first-child {
+:where(#tvwgxkukdk) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#zhtgetqsfi) .gt_from_md > :last-child {
+:where(#tvwgxkukdk) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#zhtgetqsfi) .gt_row {
+:where(#tvwgxkukdk) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1083,7 +949,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#zhtgetqsfi) .gt_stub {
+:where(#tvwgxkukdk) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1096,7 +962,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#zhtgetqsfi) .gt_stub_row_group {
+:where(#tvwgxkukdk) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1110,11 +976,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#zhtgetqsfi) .gt_row_group_first td {
+:where(#tvwgxkukdk) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#zhtgetqsfi) .gt_summary_row {
+:where(#tvwgxkukdk) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1124,16 +990,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#zhtgetqsfi) .gt_first_summary_row {
+:where(#tvwgxkukdk) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_first_summary_row.thick {
+:where(#tvwgxkukdk) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#zhtgetqsfi) .gt_last_summary_row {
+:where(#tvwgxkukdk) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1143,7 +1009,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_grand_summary_row {
+:where(#tvwgxkukdk) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1153,7 +1019,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#zhtgetqsfi) .gt_first_grand_summary_row {
+:where(#tvwgxkukdk) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1163,11 +1029,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_striped {
+:where(#tvwgxkukdk) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#zhtgetqsfi) .gt_table_body {
+:where(#tvwgxkukdk) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1176,7 +1042,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_footnotes {
+:where(#tvwgxkukdk) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1190,7 +1056,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_footnote {
+:where(#tvwgxkukdk) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1199,7 +1065,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#zhtgetqsfi) .gt_sourcenotes {
+:where(#tvwgxkukdk) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1213,7 +1079,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#zhtgetqsfi) .gt_sourcenote {
+:where(#tvwgxkukdk) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1221,159 +1087,259 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#zhtgetqsfi) .gt_left {
+:where(#tvwgxkukdk) .gt_left {
   text-align: left;
 }
 
-:where(#zhtgetqsfi) .gt_center {
+:where(#tvwgxkukdk) .gt_center {
   text-align: center;
 }
 
-:where(#zhtgetqsfi) .gt_right {
+:where(#tvwgxkukdk) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#zhtgetqsfi) .gt_font_normal {
+:where(#tvwgxkukdk) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#zhtgetqsfi) .gt_font_bold {
+:where(#tvwgxkukdk) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#zhtgetqsfi) .gt_font_italic {
+:where(#tvwgxkukdk) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#zhtgetqsfi) .gt_super {
+:where(#tvwgxkukdk) .gt_super {
   font-size: 65%;
 }
 
-:where(#zhtgetqsfi) .gt_footnote_marks {
+:where(#tvwgxkukdk) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#zhtgetqsfi) .gt_asterisk {
+:where(#tvwgxkukdk) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#zhtgetqsfi) .gt_indent_1 {
+:where(#tvwgxkukdk) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#zhtgetqsfi) .gt_indent_2 {
+:where(#tvwgxkukdk) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#zhtgetqsfi) .gt_indent_3 {
+:where(#tvwgxkukdk) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#zhtgetqsfi) .gt_indent_4 {
+:where(#tvwgxkukdk) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#zhtgetqsfi) .gt_indent_5 {
+:where(#tvwgxkukdk) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table"><caption>Table&nbsp;1:  Laws 90 species cover average grouped and totaled by lifeform (annual, perennial). </caption>
+<table class="gt_table"><caption>Table&nbsp;2:  Species detected on transects in Laws 90 -(common name and taxonomic name). The parcel average for each species (Percent_Cover) is summed to annual and perennial groups(total) and the number of species (n) in each group is computed. Percent cover values are color-coded if they are above the parcel goal of 0.075% cover - Ranges from Orange &gt;= 0.075% to Green at 10% cover. Values are rounded for brevity to focus on the dominant cover of the parcel.Gray indicates below the 3 hit threshold and these species are not counted toward the ‘6 species with three hits criteria’ but are counted toward the ‘10 species goal’. </caption>
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="CommonName">CommonName</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Species">Species</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent_Cover">Percent_Cover</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
     </tr>
     <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Annual stub_1_1 CommonName" class="gt_row gt_left">bassia, Fivehook</td>
-<td headers="Annual stub_1_1 Percent_Cover" class="gt_row gt_right">0.050</td></tr>
+<td headers="Perennial stub_1_1 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
+<td headers="Perennial stub_1_1 Species" class="gt_row gt_left">Atriplex polycarpa</td>
+<td headers="Perennial stub_1_1 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #00EE0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #00EE00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">6</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Annual stub_1_2 CommonName" class="gt_row gt_left">Tumbleweed /thistle, Russian</td>
-<td headers="Annual stub_1_2 Percent_Cover" class="gt_row gt_right">4.125</td></tr>
-    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">4.2</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
-    </tr>
-    <tr class="gt_row_group_first"><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_3 CommonName" class="gt_row gt_left">aster, Shrubby alkali</td>
-<td headers="Perennial stub_1_3 Percent_Cover" class="gt_row gt_right">0.025</td></tr>
+<td headers="Perennial stub_1_2 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
+<td headers="Perennial stub_1_2 Species" class="gt_row gt_left">Atriplex canescens</td>
+<td headers="Perennial stub_1_2 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #89EC0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #89EC00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">4</div>
+  </div>
+</div></td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Perennial stub_1_3 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
+<td headers="Perennial stub_1_3 Species" class="gt_row gt_left">Atriplex torreyi</td>
+<td headers="Perennial stub_1_3 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #C9CF0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #C9CF00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">2</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_4 CommonName" class="gt_row gt_left">cottonwood, Fremont's /Alamo</td>
-<td headers="Perennial stub_1_4 Percent_Cover" class="gt_row gt_right">0.125</td></tr>
+<td headers="Perennial stub_1_4 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
+<td headers="Perennial stub_1_4 Species" class="gt_row gt_left">Ericameria nauseosa</td>
+<td headers="Perennial stub_1_4 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #D0CB0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #D0CB00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">2</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_5 CommonName" class="gt_row gt_left">Greasewood</td>
-<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right">0.200</td></tr>
+<td headers="Perennial stub_1_5 CommonName" class="gt_row gt_left">Winterfat</td>
+<td headers="Perennial stub_1_5 Species" class="gt_row gt_left">Krascheninnikovia lanata</td>
+<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FBA90033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FBA900;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">heliotrope, Salt</td>
-<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right">0.075</td></tr>
+<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">Greasewood</td>
+<td headers="Perennial stub_1_6 Species" class="gt_row gt_left">Sarcobatus vermiculatus</td>
+<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FCA80033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FCA800;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_7 CommonName" class="gt_row gt_left">indigo bush, Northern Mojave</td>
-<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right">0.025</td></tr>
+<td headers="Perennial stub_1_7 CommonName" class="gt_row gt_left">sacaton, Alkali</td>
+<td headers="Perennial stub_1_7 Species" class="gt_row gt_left">Sporobolus airoides</td>
+<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FDA70033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FDA700;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
-<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right">2.075</td></tr>
+<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">cottonwood, Fremont's /Alamo</td>
+<td headers="Perennial stub_1_8 Species" class="gt_row gt_left">Populus fremontii</td>
+<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FEA60033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FEA600;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_9" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_9 CommonName" class="gt_row gt_left">ricegrass, Indian</td>
-<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right">0.050</td></tr>
+<td headers="Perennial stub_1_9 CommonName" class="gt_row gt_left">sagebrush, Big</td>
+<td headers="Perennial stub_1_9 Species" class="gt_row gt_left">Artemisia tridentata</td>
+<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FEA60033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FEA600;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_10 CommonName" class="gt_row gt_left">sacaton, Alkali</td>
-<td headers="Perennial stub_1_10 Percent_Cover" class="gt_row gt_right">0.175</td></tr>
+<td headers="Perennial stub_1_10 CommonName" class="gt_row gt_left">heliotrope, Salt</td>
+<td headers="Perennial stub_1_10 Species" class="gt_row gt_left">Heliotropium curassavicum</td>
+<td headers="Perennial stub_1_10 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FFA50033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FFA500;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_11" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_11 CommonName" class="gt_row gt_left">sagebrush, Big</td>
-<td headers="Perennial stub_1_11 Percent_Cover" class="gt_row gt_right">0.100</td></tr>
+<td headers="Perennial stub_1_11 CommonName" class="gt_row gt_left">ricegrass, Indian</td>
+<td headers="Perennial stub_1_11 Species" class="gt_row gt_left">Achnatherum hymenoides</td>
+<td headers="Perennial stub_1_11 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_12" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_12 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
-<td headers="Perennial stub_1_12 Percent_Cover" class="gt_row gt_right">6.150</td></tr>
+<td headers="Perennial stub_1_12 CommonName" class="gt_row gt_left">aster, Shrubby alkali</td>
+<td headers="Perennial stub_1_12 Species" class="gt_row gt_left">Machaeranthera carnosa</td>
+<td headers="Perennial stub_1_12 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_13" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_13 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
-<td headers="Perennial stub_1_13 Percent_Cover" class="gt_row gt_right">4.175</td></tr>
-    <tr><th id="stub_1_14" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_14 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
-<td headers="Perennial stub_1_14 Percent_Cover" class="gt_row gt_right">2.300</td></tr>
+<td headers="Perennial stub_1_13 CommonName" class="gt_row gt_left">indigo bush, Northern Mojave</td>
+<td headers="Perennial stub_1_13 Species" class="gt_row gt_left">Psorothamnus arborescens var. minutifolius</td>
+<td headers="Perennial stub_1_13 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">15.7</td></tr>
+    <tr><th id="summary_stub_Perennial_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Perennial summary_stub_Perennial_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">13.0</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_14" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Annual stub_1_14 CommonName" class="gt_row gt_left">Tumbleweed /thistle, Russian</td>
+<td headers="Annual stub_1_14 Species" class="gt_row gt_left">Salsola tragus</td>
+<td headers="Annual stub_1_14 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #8BEB0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #8BEB00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">4</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_15" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_15 CommonName" class="gt_row gt_left">Winterfat</td>
-<td headers="Perennial stub_1_15 Percent_Cover" class="gt_row gt_right">0.250</td></tr>
-    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">15.7</td></tr>
+<td headers="Annual stub_1_15 CommonName" class="gt_row gt_left">bassia, Fivehook</td>
+<td headers="Annual stub_1_15 Species" class="gt_row gt_left">Bassia hyssopifolia</td>
+<td headers="Annual stub_1_15 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">4.2</td></tr>
+    <tr><th id="summary_stub_Annual_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Annual summary_stub_Annual_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">2.0</td></tr>
   </tbody>
   
   
 </table>
 </div>
 </div>
-</div></div><details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select(Lifecycle,Lifeform, transect,Species, CommonName,cover) %&gt;% gt(groupname_col = c("Lifecycle","Lifeform"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stacked-composition-law090" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-stacked-composition-law090-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: LAW090 species composition by transect</figcaption><p></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>rlaw90, <span class="fu">aes</span>(<span class="at">size=</span>percent_cover,<span class="at">colour =</span> <span class="st">'red'</span>))<span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coord_sf()+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(Provenance<span class="sc">~</span>Veg_Type<span class="sc">+</span>CommonName<span class="sc">+</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display column-body-outset-left">
+<div class="cell-output-display column-body">
 <div id="fig-law090-transect-species-map" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="index_files/figure-html/fig-law090-transect-species-map-1.png" class="img-fluid figure-img" width="1152"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Laws 90 transect locations, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Laws 90 transect locations, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -1381,28 +1347,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="law095" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="law095">LAW095</h2>
-<div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(parcel <span class="sc">==</span> <span class="st">"LAW095"</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Lifecycle,CommonName) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Percent_Cover =</span> <span class="fu">sum</span>(cover)<span class="sc">*</span>.<span class="dv">5</span><span class="sc">/</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Lifecycle"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary_rows</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">groups =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> Percent_Cover,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fns =</span> <span class="fu">list</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">total =</span> <span class="st">"sum"</span>),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="LAW095_21.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Transect photo taken July 20 2022.</figcaption><p></p>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>The goal is a native perennial vegetation cover of at least 10% by the year 2013 composed of at least ten different native species (including a native grass). For parcels 94 and 95, there should be at least two “hits” for at least six different native perennial species out of the total of all the readings of all the permanent transects in the parcel. The other four native perennial species should be present on the parcel, but do not have to be “hit” on any transect.-2003 Plan</p>
+</blockquote>
+<ul>
+<li><em>2003 Cover Goal:</em> <code>10</code>% cover – Actual in 2022: - 12% cover</li>
+<li><em>2003 Species Goal:</em> <code>10</code> species – Actual on transect 2022: <code>10</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li><em>2003 Composition Goal:</em> <code>6</code> species with two hits – Actual in 2022: <code>8</code> species &gt; two hits (0.05% cover each)</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-law095-transect-species" class="anchored">
 
-<div class="no-row-height column-margin column-container"><div class="cell-output-display">
-<div id="tbl-law095-transect-species-map" class="anchored">
-
-<div id="tskglrwwlb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rrherodgby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#tskglrwwlb) .gt_table {
+:where(#rrherodgby) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1427,7 +1395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_heading {
+:where(#rrherodgby) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1439,12 +1407,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_caption {
+:where(#rrherodgby) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#tskglrwwlb) .gt_title {
+:where(#rrherodgby) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1456,7 +1424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#tskglrwwlb) .gt_subtitle {
+:where(#rrherodgby) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1468,13 +1436,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#tskglrwwlb) .gt_bottom_border {
+:where(#rrherodgby) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_col_headings {
+:where(#rrherodgby) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1489,7 +1457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_col_heading {
+:where(#rrherodgby) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1509,7 +1477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#tskglrwwlb) .gt_column_spanner_outer {
+:where(#rrherodgby) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1521,15 +1489,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#tskglrwwlb) .gt_column_spanner_outer:first-child {
+:where(#rrherodgby) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#tskglrwwlb) .gt_column_spanner_outer:last-child {
+:where(#rrherodgby) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#tskglrwwlb) .gt_column_spanner {
+:where(#rrherodgby) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1541,7 +1509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#tskglrwwlb) .gt_group_heading {
+:where(#rrherodgby) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1567,7 +1535,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#tskglrwwlb) .gt_empty_group_heading {
+:where(#rrherodgby) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1582,15 +1550,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#tskglrwwlb) .gt_from_md > :first-child {
+:where(#rrherodgby) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#tskglrwwlb) .gt_from_md > :last-child {
+:where(#rrherodgby) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#tskglrwwlb) .gt_row {
+:where(#rrherodgby) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1609,7 +1577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#tskglrwwlb) .gt_stub {
+:where(#rrherodgby) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1622,7 +1590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#tskglrwwlb) .gt_stub_row_group {
+:where(#rrherodgby) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1636,11 +1604,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#tskglrwwlb) .gt_row_group_first td {
+:where(#rrherodgby) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#tskglrwwlb) .gt_summary_row {
+:where(#rrherodgby) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1650,16 +1618,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#tskglrwwlb) .gt_first_summary_row {
+:where(#rrherodgby) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_first_summary_row.thick {
+:where(#rrherodgby) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#tskglrwwlb) .gt_last_summary_row {
+:where(#rrherodgby) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1669,7 +1637,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_grand_summary_row {
+:where(#rrherodgby) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1679,7 +1647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#tskglrwwlb) .gt_first_grand_summary_row {
+:where(#rrherodgby) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1689,11 +1657,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_striped {
+:where(#rrherodgby) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#tskglrwwlb) .gt_table_body {
+:where(#rrherodgby) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1702,7 +1670,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_footnotes {
+:where(#rrherodgby) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1716,7 +1684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_footnote {
+:where(#rrherodgby) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1725,7 +1693,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#tskglrwwlb) .gt_sourcenotes {
+:where(#rrherodgby) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1739,7 +1707,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#tskglrwwlb) .gt_sourcenote {
+:where(#rrherodgby) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1747,181 +1715,274 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#tskglrwwlb) .gt_left {
+:where(#rrherodgby) .gt_left {
   text-align: left;
 }
 
-:where(#tskglrwwlb) .gt_center {
+:where(#rrherodgby) .gt_center {
   text-align: center;
 }
 
-:where(#tskglrwwlb) .gt_right {
+:where(#rrherodgby) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#tskglrwwlb) .gt_font_normal {
+:where(#rrherodgby) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#tskglrwwlb) .gt_font_bold {
+:where(#rrherodgby) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#tskglrwwlb) .gt_font_italic {
+:where(#rrherodgby) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#tskglrwwlb) .gt_super {
+:where(#rrherodgby) .gt_super {
   font-size: 65%;
 }
 
-:where(#tskglrwwlb) .gt_footnote_marks {
+:where(#rrherodgby) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#tskglrwwlb) .gt_asterisk {
+:where(#rrherodgby) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#tskglrwwlb) .gt_indent_1 {
+:where(#rrherodgby) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#tskglrwwlb) .gt_indent_2 {
+:where(#rrherodgby) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#tskglrwwlb) .gt_indent_3 {
+:where(#rrherodgby) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#tskglrwwlb) .gt_indent_4 {
+:where(#rrherodgby) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#tskglrwwlb) .gt_indent_5 {
+:where(#rrherodgby) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table"><caption>Table&nbsp;2:  Laws 95 species cover average grouped and totaled by lifeform (annual, perennial). </caption>
+<table class="gt_table"><caption>Table&nbsp;3:  Laws 95 species cover average totaled by lifeform (annual, perennial) and color coded from orange &lt;1% cover but above 0.05% cover to green above 10%. Gray indicates below the 2 hit threshold. </caption>
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="CommonName">CommonName</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Species">Species</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent_Cover">Percent_Cover</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
     </tr>
     <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Annual stub_1_1 CommonName" class="gt_row gt_left">Tumbleweed /thistle, Russian</td>
-<td headers="Annual stub_1_1 Percent_Cover" class="gt_row gt_right">2.800</td></tr>
-    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">2.8</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
-    </tr>
-    <tr class="gt_row_group_first"><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_2 CommonName" class="gt_row gt_left">alyssum, Desert</td>
-<td headers="Perennial stub_1_2 Percent_Cover" class="gt_row gt_right">0.025</td></tr>
+<td headers="Perennial stub_1_1 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
+<td headers="Perennial stub_1_1 Species" class="gt_row gt_left">Atriplex polycarpa</td>
+<td headers="Perennial stub_1_1 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #8EEA0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #8EEA00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">4</div>
+  </div>
+</div></td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Perennial stub_1_2 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
+<td headers="Perennial stub_1_2 Species" class="gt_row gt_left">Atriplex canescens</td>
+<td headers="Perennial stub_1_2 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #A5E10033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #A5E100;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">3</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_3 CommonName" class="gt_row gt_left">Burrow-bush</td>
-<td headers="Perennial stub_1_3 Percent_Cover" class="gt_row gt_right">0.125</td></tr>
+<td headers="Perennial stub_1_3 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
+<td headers="Perennial stub_1_3 Species" class="gt_row gt_left">Ericameria nauseosa</td>
+<td headers="Perennial stub_1_3 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #CFCB0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #CFCB00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">2</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_4 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
-<td headers="Perennial stub_1_4 Percent_Cover" class="gt_row gt_right">2.075</td></tr>
+<td headers="Perennial stub_1_4 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
+<td headers="Perennial stub_1_4 Species" class="gt_row gt_left">Atriplex torreyi</td>
+<td headers="Perennial stub_1_4 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #E3BE0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #E3BE00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">1</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub"></th>
 <td headers="Perennial stub_1_5 CommonName" class="gt_row gt_left">sacaton, Alkali</td>
-<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right">0.625</td></tr>
+<td headers="Perennial stub_1_5 Species" class="gt_row gt_left">Sporobolus airoides</td>
+<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #F2B10033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #F2B100;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">1</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
-<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right">4.025</td></tr>
+<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">Saltgrass</td>
+<td headers="Perennial stub_1_6 Species" class="gt_row gt_left">Distichlis spicata</td>
+<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #F7AD0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #F7AD00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_7 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
-<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right">3.450</td></tr>
+<td headers="Perennial stub_1_7 CommonName" class="gt_row gt_left">Burrow-bush</td>
+<td headers="Perennial stub_1_7 Species" class="gt_row gt_left">Ambrosia dumosa</td>
+<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FDA70033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FDA700;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
-<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right">1.300</td></tr>
+<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">wildrye, Beardless/Creeping</td>
+<td headers="Perennial stub_1_8 Species" class="gt_row gt_left">Leymus triticoides</td>
+<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FDA70033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FDA700;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_9" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_9 CommonName" class="gt_row gt_left">Saltgrass</td>
-<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right">0.425</td></tr>
+<td headers="Perennial stub_1_9 CommonName" class="gt_row gt_left">alyssum, Desert</td>
+<td headers="Perennial stub_1_9 Species" class="gt_row gt_left">Lepidium fremontii</td>
+<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_10 CommonName" class="gt_row gt_left">wildrye, Beardless/Creeping</td>
-<td headers="Perennial stub_1_10 Percent_Cover" class="gt_row gt_right">0.125</td></tr>
-    <tr><th id="stub_1_11" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_11 CommonName" class="gt_row gt_left">wildrye, Great Basin</td>
-<td headers="Perennial stub_1_11 Percent_Cover" class="gt_row gt_right">0.025</td></tr>
-    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">12.2</td></tr>
+<td headers="Perennial stub_1_10 CommonName" class="gt_row gt_left">wildrye, Great Basin</td>
+<td headers="Perennial stub_1_10 Species" class="gt_row gt_left">Leymus cinereus</td>
+<td headers="Perennial stub_1_10 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">12.2</td></tr>
+    <tr><th id="summary_stub_Perennial_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Perennial summary_stub_Perennial_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">10.0</td></tr>
     <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="NA">NA</th>
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_11" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Annual stub_1_11 CommonName" class="gt_row gt_left">Tumbleweed /thistle, Russian</td>
+<td headers="Annual stub_1_11 Species" class="gt_row gt_left">Salsola tragus</td>
+<td headers="Annual stub_1_11 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #BAD70033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #BAD700;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">3</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">2.8</td></tr>
+    <tr><th id="summary_stub_Annual_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Annual summary_stub_Annual_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">1.0</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="NA">NA</th>
     </tr>
     <tr class="gt_row_group_first"><th id="stub_1_12" scope="row" class="gt_row gt_left gt_stub"></th>
 <td headers="NA stub_1_12 CommonName" class="gt_row gt_left">NA</td>
-<td headers="NA stub_1_12 Percent_Cover" class="gt_row gt_right">0.025</td></tr>
-    <tr><th id="summary_stub_NA_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="NA summary_stub_NA_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="NA summary_stub_NA_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">0.0</td></tr>
+<td headers="NA stub_1_12 Species" class="gt_row gt_left">NA</td>
+<td headers="NA stub_1_12 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_NA_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="NA summary_stub_NA_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="NA summary_stub_NA_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="NA summary_stub_NA_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">0.0</td></tr>
+    <tr><th id="summary_stub_NA_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="NA summary_stub_NA_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="NA summary_stub_NA_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="NA summary_stub_NA_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">1.0</td></tr>
   </tbody>
   
   
 </table>
 </div>
 </div>
-</div></div></div>
-<div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>rlaw95, <span class="fu">aes</span>(<span class="at">size=</span>percent_cover,<span class="at">colour =</span> <span class="st">'red'</span>))<span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>()<span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(Provenance<span class="sc">~</span>Veg_Type<span class="sc">+</span>CommonName<span class="sc">+</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display column-body">
-<div id="fig-law095-transect-species-map" class="quarto-figure quarto-figure-center anchored">
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stacked-composition-law095" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="index_files/figure-html/fig-law095-transect-species-map-1.png" class="img-fluid figure-img" width="1152"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Laws 95 transect locations, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
+<p><img src="index_files/figure-html/fig-stacked-composition-law095-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: LAW095 species composition by transect</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Atriplex polycarpa, canescans, torreyi and Ericameria make up primary canopy cover. Two transects recorded Alkali Sacaton and one recorded Indian Ricegrass. The six species having at least 3 hits out of 4000 possible hits are satisfied. from 2022, perennial cover averaged 15.7.</p>
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-body">
+<div id="fig-law095-transect-species-map" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-law095-transect-species-map-1.png" class="img-fluid figure-img" width="1152"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Laws 95 transect locations, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="law094" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="law094">LAW094</h2>
-<div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(parcel <span class="sc">==</span> <span class="st">"LAW094"</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Lifecycle,CommonName) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Percent_Cover =</span> <span class="fu">sum</span>(cover)<span class="sc">*</span>.<span class="dv">5</span><span class="sc">/</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Lifecycle"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary_rows</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">groups =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> Percent_Cover,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fns =</span> <span class="fu">list</span>(</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">total =</span> <span class="st">"sum"</span>),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="LAW094_41.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Transect photo taken July 26 2022.</figcaption><p></p>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>The goal is a native perennial vegetation cover of at least 10% by the year 2013 composed of at least ten different native species (including a native grass). For parcels 94 and 95, there should be at least two “hits” for at least six different native perennial species out of the total of all the readings of all the permanent transects in the parcel. The other four native perennial species should be present on the parcel, but do not have to be “hit” on any transect.-2003 Plan</p>
+</blockquote>
+<ul>
+<li><em>2003 Cover Goal:</em> <code>10</code>% cover – Actual in 2022: - 11% cover</li>
+<li><em>2003 Species Goal:</em> <code>10</code> species – Actual on transect 2022: <code>9</code><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li><em>2003 Composition Goal:</em> <code>6</code> species with two hits – Actual in 2022: <code>9</code> species &gt; two hits (0.05% cover each)</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-law094-transect-species" class="anchored">
 
-<div class="no-row-height column-margin column-container"><div class="cell-output-display">
-<div id="tbl-law094-transect-species-map" class="anchored">
-
-<div id="ngudsklycz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="fxnvezhgoj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#ngudsklycz) .gt_table {
+:where(#fxnvezhgoj) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1946,7 +2007,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_heading {
+:where(#fxnvezhgoj) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1958,12 +2019,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_caption {
+:where(#fxnvezhgoj) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#ngudsklycz) .gt_title {
+:where(#fxnvezhgoj) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1975,7 +2036,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#ngudsklycz) .gt_subtitle {
+:where(#fxnvezhgoj) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1987,13 +2048,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#ngudsklycz) .gt_bottom_border {
+:where(#fxnvezhgoj) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_col_headings {
+:where(#fxnvezhgoj) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2008,7 +2069,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_col_heading {
+:where(#fxnvezhgoj) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2028,7 +2089,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#ngudsklycz) .gt_column_spanner_outer {
+:where(#fxnvezhgoj) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2040,15 +2101,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#ngudsklycz) .gt_column_spanner_outer:first-child {
+:where(#fxnvezhgoj) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#ngudsklycz) .gt_column_spanner_outer:last-child {
+:where(#fxnvezhgoj) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#ngudsklycz) .gt_column_spanner {
+:where(#fxnvezhgoj) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2060,7 +2121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#ngudsklycz) .gt_group_heading {
+:where(#fxnvezhgoj) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2086,7 +2147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#ngudsklycz) .gt_empty_group_heading {
+:where(#fxnvezhgoj) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2101,15 +2162,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#ngudsklycz) .gt_from_md > :first-child {
+:where(#fxnvezhgoj) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#ngudsklycz) .gt_from_md > :last-child {
+:where(#fxnvezhgoj) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#ngudsklycz) .gt_row {
+:where(#fxnvezhgoj) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2128,7 +2189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#ngudsklycz) .gt_stub {
+:where(#fxnvezhgoj) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2141,7 +2202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ngudsklycz) .gt_stub_row_group {
+:where(#fxnvezhgoj) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2155,11 +2216,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#ngudsklycz) .gt_row_group_first td {
+:where(#fxnvezhgoj) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#ngudsklycz) .gt_summary_row {
+:where(#fxnvezhgoj) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2169,16 +2230,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ngudsklycz) .gt_first_summary_row {
+:where(#fxnvezhgoj) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_first_summary_row.thick {
+:where(#fxnvezhgoj) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#ngudsklycz) .gt_last_summary_row {
+:where(#fxnvezhgoj) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2188,7 +2249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_grand_summary_row {
+:where(#fxnvezhgoj) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2198,7 +2259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ngudsklycz) .gt_first_grand_summary_row {
+:where(#fxnvezhgoj) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2208,11 +2269,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_striped {
+:where(#fxnvezhgoj) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#ngudsklycz) .gt_table_body {
+:where(#fxnvezhgoj) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2221,7 +2282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_footnotes {
+:where(#fxnvezhgoj) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2235,7 +2296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_footnote {
+:where(#fxnvezhgoj) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2244,7 +2305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ngudsklycz) .gt_sourcenotes {
+:where(#fxnvezhgoj) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2258,7 +2319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#ngudsklycz) .gt_sourcenote {
+:where(#fxnvezhgoj) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2266,148 +2327,234 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#ngudsklycz) .gt_left {
+:where(#fxnvezhgoj) .gt_left {
   text-align: left;
 }
 
-:where(#ngudsklycz) .gt_center {
+:where(#fxnvezhgoj) .gt_center {
   text-align: center;
 }
 
-:where(#ngudsklycz) .gt_right {
+:where(#fxnvezhgoj) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#ngudsklycz) .gt_font_normal {
+:where(#fxnvezhgoj) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#ngudsklycz) .gt_font_bold {
+:where(#fxnvezhgoj) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#ngudsklycz) .gt_font_italic {
+:where(#fxnvezhgoj) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#ngudsklycz) .gt_super {
+:where(#fxnvezhgoj) .gt_super {
   font-size: 65%;
 }
 
-:where(#ngudsklycz) .gt_footnote_marks {
+:where(#fxnvezhgoj) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#ngudsklycz) .gt_asterisk {
+:where(#fxnvezhgoj) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#ngudsklycz) .gt_indent_1 {
+:where(#fxnvezhgoj) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#ngudsklycz) .gt_indent_2 {
+:where(#fxnvezhgoj) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#ngudsklycz) .gt_indent_3 {
+:where(#fxnvezhgoj) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#ngudsklycz) .gt_indent_4 {
+:where(#fxnvezhgoj) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#ngudsklycz) .gt_indent_5 {
+:where(#fxnvezhgoj) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table"><caption>Table&nbsp;3:  Laws 94 species cover average grouped and totaled by lifeform (annual, perennial). </caption>
+<table class="gt_table"><caption>Table&nbsp;4:  Laws 94 species cover average totaled by lifeform (annual, perennial) and color coded from orange &lt;1% cover but above 0.05% cover to green above 10%. Gray indicates below the 2 hit threshold. </caption>
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="CommonName">CommonName</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Species">Species</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent_Cover">Percent_Cover</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
     </tr>
     <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub"></th>
 <td headers="Annual stub_1_1 CommonName" class="gt_row gt_left">Tumbleweed /thistle, Russian</td>
-<td headers="Annual stub_1_1 Percent_Cover" class="gt_row gt_right">5.950</td></tr>
-    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">6.0</td></tr>
+<td headers="Annual stub_1_1 Species" class="gt_row gt_left">Salsola tragus</td>
+<td headers="Annual stub_1_1 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #00F30033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #00F300;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">6</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">6.0</td></tr>
+    <tr><th id="summary_stub_Annual_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Annual summary_stub_Annual_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">1.0</td></tr>
     <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
     </tr>
     <tr class="gt_row_group_first"><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_2 CommonName" class="gt_row gt_left">indigo bush, Northern Mojave</td>
-<td headers="Perennial stub_1_2 Percent_Cover" class="gt_row gt_right">0.250</td></tr>
+<td headers="Perennial stub_1_2 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
+<td headers="Perennial stub_1_2 Species" class="gt_row gt_left">Atriplex canescens</td>
+<td headers="Perennial stub_1_2 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #76F10033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #76F100;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">5</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_3 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
-<td headers="Perennial stub_1_3 Percent_Cover" class="gt_row gt_right">1.600</td></tr>
+<td headers="Perennial stub_1_3 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
+<td headers="Perennial stub_1_3 Species" class="gt_row gt_left">Atriplex polycarpa</td>
+<td headers="Perennial stub_1_3 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #BFD40033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #BFD400;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">3</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_4 CommonName" class="gt_row gt_left">sacaton, Alkali</td>
-<td headers="Perennial stub_1_4 Percent_Cover" class="gt_row gt_right">0.600</td></tr>
+<td headers="Perennial stub_1_4 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
+<td headers="Perennial stub_1_4 Species" class="gt_row gt_left">Ericameria nauseosa</td>
+<td headers="Perennial stub_1_4 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #DBC30033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #DBC300;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">2</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_5 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
-<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right">2.625</td></tr>
+<td headers="Perennial stub_1_5 CommonName" class="gt_row gt_left">sacaton, Alkali</td>
+<td headers="Perennial stub_1_5 Species" class="gt_row gt_left">Sporobolus airoides</td>
+<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #F3B00033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #F3B000;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">1</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
-<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right">4.525</td></tr>
+<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
+<td headers="Perennial stub_1_6 Species" class="gt_row gt_left">Atriplex torreyi</td>
+<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #F5AF0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #F5AF00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">1</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_7 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
-<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right">0.525</td></tr>
+<td headers="Perennial stub_1_7 CommonName" class="gt_row gt_left">Winterfat</td>
+<td headers="Perennial stub_1_7 Species" class="gt_row gt_left">Krascheninnikovia lanata</td>
+<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #F7AC0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #F7AC00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">Saltgrass</td>
-<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right">0.050</td></tr>
+<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">indigo bush, Northern Mojave</td>
+<td headers="Perennial stub_1_8 Species" class="gt_row gt_left">Psorothamnus arborescens var. minutifolius</td>
+<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FBA90033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FBA900;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_9" scope="row" class="gt_row gt_left gt_stub"></th>
 <td headers="Perennial stub_1_9 CommonName" class="gt_row gt_left">wildrye, Beardless/Creeping</td>
-<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right">0.075</td></tr>
+<td headers="Perennial stub_1_9 Species" class="gt_row gt_left">Leymus triticoides</td>
+<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FEA60033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FEA600;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_10 CommonName" class="gt_row gt_left">Winterfat</td>
-<td headers="Perennial stub_1_10 Percent_Cover" class="gt_row gt_right">0.400</td></tr>
-    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">10.7</td></tr>
+<td headers="Perennial stub_1_10 CommonName" class="gt_row gt_left">Saltgrass</td>
+<td headers="Perennial stub_1_10 Species" class="gt_row gt_left">Distichlis spicata</td>
+<td headers="Perennial stub_1_10 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FFA50033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FFA500;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">10.7</td></tr>
+    <tr><th id="summary_stub_Perennial_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Perennial summary_stub_Perennial_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">9.0</td></tr>
     <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="NA">NA</th>
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="NA">NA</th>
     </tr>
     <tr class="gt_row_group_first"><th id="stub_1_11" scope="row" class="gt_row gt_left gt_stub"></th>
 <td headers="NA stub_1_11 CommonName" class="gt_row gt_left">NA</td>
-<td headers="NA stub_1_11 Percent_Cover" class="gt_row gt_right">0.175</td></tr>
-    <tr><th id="summary_stub_NA_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="NA summary_stub_NA_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="NA summary_stub_NA_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">0.2</td></tr>
+<td headers="NA stub_1_11 Species" class="gt_row gt_left">NA</td>
+<td headers="NA stub_1_11 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FCA80033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FCA800;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_NA_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="NA summary_stub_NA_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="NA summary_stub_NA_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="NA summary_stub_NA_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">0.2</td></tr>
+    <tr><th id="summary_stub_NA_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="NA summary_stub_NA_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="NA summary_stub_NA_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="NA summary_stub_NA_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">1.0</td></tr>
   </tbody>
   
   
 </table>
 </div>
 </div>
-</div></div></div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stacked-composition-law094" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-stacked-composition-law094-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: LAW094 species composition by transect</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>rlaw94, <span class="fu">aes</span>(<span class="at">size=</span>percent_cover,<span class="at">colour =</span> <span class="st">'red'</span>))<span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>()<span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(Provenance<span class="sc">~</span>Veg_Type<span class="sc">+</span>CommonName<span class="sc">+</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display column-body">
 <div id="fig-law094-transect-species-map" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="index_files/figure-html/fig-law094-transect-species-map-1.png" class="img-fluid figure-img" width="1152"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Laws 94 transect locations, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Laws 94 transect locations, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -2415,28 +2562,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="law118-and-law129" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="law118-and-law129">LAW118 and LAW129</h2>
-<div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(parcel <span class="sc">==</span> <span class="st">"LAW129"</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Lifecycle,CommonName) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Percent_Cover =</span> <span class="fu">sum</span>(cover)<span class="sc">*</span>.<span class="dv">5</span><span class="sc">/</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Lifecycle"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary_rows</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">groups =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> Percent_Cover,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fns =</span> <span class="fu">list</span>(</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">total =</span> <span class="st">"sum"</span>),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="LAW129_01.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Transect Photo taken July 20th 2022</figcaption><p></p>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>For parcel 129/118, there should be at least two “hits” for at least five different native perennial species out of the total of all the readings of all the permanent transects in the parcels. The other three native perennial species should be present on the parcel, but do not have to be “hit” on any transect. – 2003 Plan</p>
+</blockquote>
+<ul>
+<li><em>2003 Cover Goal:</em> <code>10</code>% cover – Actual in 2022: - 17% cover</li>
+<li><em>2003 Species Goal:</em> <code>8</code> species – Actual on transect 2022: <code>9</code><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+<li><em>2003 Composition Goal:</em> <code>5</code> species with two hits – Actual in 2022: <code>8</code> species &gt; two hits (0.05% cover each)</li>
+</ul>
+<div style="page-break-after: always;"></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-law129-transect-species" class="anchored">
 
-<div class="no-row-height column-margin column-container"><div class="cell-output-display">
-<div id="tbl-law129-transect-species-map" class="anchored">
-
-<div id="idzysvzdob" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jdwsxhgfmu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#idzysvzdob) .gt_table {
+:where(#jdwsxhgfmu) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2461,7 +2611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_heading {
+:where(#jdwsxhgfmu) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2473,12 +2623,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_caption {
+:where(#jdwsxhgfmu) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#idzysvzdob) .gt_title {
+:where(#jdwsxhgfmu) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2490,7 +2640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-:where(#idzysvzdob) .gt_subtitle {
+:where(#jdwsxhgfmu) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2502,13 +2652,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-:where(#idzysvzdob) .gt_bottom_border {
+:where(#jdwsxhgfmu) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_col_headings {
+:where(#jdwsxhgfmu) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2523,7 +2673,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_col_heading {
+:where(#jdwsxhgfmu) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2543,7 +2693,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#idzysvzdob) .gt_column_spanner_outer {
+:where(#jdwsxhgfmu) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2555,15 +2705,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-:where(#idzysvzdob) .gt_column_spanner_outer:first-child {
+:where(#jdwsxhgfmu) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#idzysvzdob) .gt_column_spanner_outer:last-child {
+:where(#jdwsxhgfmu) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#idzysvzdob) .gt_column_spanner {
+:where(#jdwsxhgfmu) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2575,7 +2725,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-:where(#idzysvzdob) .gt_group_heading {
+:where(#jdwsxhgfmu) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2601,7 +2751,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-:where(#idzysvzdob) .gt_empty_group_heading {
+:where(#jdwsxhgfmu) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2616,15 +2766,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-:where(#idzysvzdob) .gt_from_md > :first-child {
+:where(#jdwsxhgfmu) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#idzysvzdob) .gt_from_md > :last-child {
+:where(#jdwsxhgfmu) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#idzysvzdob) .gt_row {
+:where(#jdwsxhgfmu) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2643,7 +2793,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-:where(#idzysvzdob) .gt_stub {
+:where(#jdwsxhgfmu) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2656,7 +2806,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#idzysvzdob) .gt_stub_row_group {
+:where(#jdwsxhgfmu) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2670,11 +2820,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-:where(#idzysvzdob) .gt_row_group_first td {
+:where(#jdwsxhgfmu) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#idzysvzdob) .gt_summary_row {
+:where(#jdwsxhgfmu) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2684,16 +2834,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#idzysvzdob) .gt_first_summary_row {
+:where(#jdwsxhgfmu) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_first_summary_row.thick {
+:where(#jdwsxhgfmu) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#idzysvzdob) .gt_last_summary_row {
+:where(#jdwsxhgfmu) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2703,7 +2853,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_grand_summary_row {
+:where(#jdwsxhgfmu) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2713,7 +2863,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#idzysvzdob) .gt_first_grand_summary_row {
+:where(#jdwsxhgfmu) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2723,11 +2873,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_striped {
+:where(#jdwsxhgfmu) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#idzysvzdob) .gt_table_body {
+:where(#jdwsxhgfmu) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2736,7 +2886,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_footnotes {
+:where(#jdwsxhgfmu) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2750,7 +2900,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_footnote {
+:where(#jdwsxhgfmu) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2759,7 +2909,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#idzysvzdob) .gt_sourcenotes {
+:where(#jdwsxhgfmu) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2773,7 +2923,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-:where(#idzysvzdob) .gt_sourcenote {
+:where(#jdwsxhgfmu) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2781,164 +2931,316 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-:where(#idzysvzdob) .gt_left {
+:where(#jdwsxhgfmu) .gt_left {
   text-align: left;
 }
 
-:where(#idzysvzdob) .gt_center {
+:where(#jdwsxhgfmu) .gt_center {
   text-align: center;
 }
 
-:where(#idzysvzdob) .gt_right {
+:where(#jdwsxhgfmu) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#idzysvzdob) .gt_font_normal {
+:where(#jdwsxhgfmu) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#idzysvzdob) .gt_font_bold {
+:where(#jdwsxhgfmu) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#idzysvzdob) .gt_font_italic {
+:where(#jdwsxhgfmu) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#idzysvzdob) .gt_super {
+:where(#jdwsxhgfmu) .gt_super {
   font-size: 65%;
 }
 
-:where(#idzysvzdob) .gt_footnote_marks {
+:where(#jdwsxhgfmu) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#idzysvzdob) .gt_asterisk {
+:where(#jdwsxhgfmu) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#idzysvzdob) .gt_indent_1 {
+:where(#jdwsxhgfmu) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#idzysvzdob) .gt_indent_2 {
+:where(#jdwsxhgfmu) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#idzysvzdob) .gt_indent_3 {
+:where(#jdwsxhgfmu) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#idzysvzdob) .gt_indent_4 {
+:where(#jdwsxhgfmu) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#idzysvzdob) .gt_indent_5 {
+:where(#jdwsxhgfmu) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table"><caption>Table&nbsp;4:  Laws 129 species cover average grouped and totaled by lifeform (annual, perennial). </caption>
+<table class="gt_table"><caption>Table&nbsp;5:  Laws 129 species species cover average totaled by lifeform (annual, perennial) and color coded from orange &lt;1% cover but above 0.05% cover to green above 10%. Gray indicates below the 2 hit threshold. </caption>
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="CommonName">CommonName</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Species">Species</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Percent_Cover">Percent_Cover</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
     </tr>
     <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Annual stub_1_1 CommonName" class="gt_row gt_left">bee plant, Yellow</td>
-<td headers="Annual stub_1_1 Percent_Cover" class="gt_row gt_right">0.050</td></tr>
+<td headers="Perennial stub_1_1 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
+<td headers="Perennial stub_1_1 Species" class="gt_row gt_left">Ericameria nauseosa</td>
+<td headers="Perennial stub_1_1 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">11</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Annual stub_1_2 CommonName" class="gt_row gt_left">horseweed, Canada</td>
-<td headers="Annual stub_1_2 Percent_Cover" class="gt_row gt_right">0.150</td></tr>
+<td headers="Perennial stub_1_2 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
+<td headers="Perennial stub_1_2 Species" class="gt_row gt_left">Atriplex canescens</td>
+<td headers="Perennial stub_1_2 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #BAD70033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #BAD700;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">3</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Annual stub_1_3 CommonName" class="gt_row gt_left">Tumbleweed /thistle, Russian</td>
-<td headers="Annual stub_1_3 Percent_Cover" class="gt_row gt_right">2.225</td></tr>
-    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">2.4</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Annual/Biennial">Annual/Biennial</th>
-    </tr>
-    <tr class="gt_row_group_first"><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Annual/Biennial stub_1_4 CommonName" class="gt_row gt_left">sweetclover, Yellow</td>
-<td headers="Annual/Biennial stub_1_4 Percent_Cover" class="gt_row gt_right">0.025</td></tr>
-    <tr><th id="summary_stub_Annual/Biennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Annual/Biennial summary_stub_Annual/Biennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Annual/Biennial summary_stub_Annual/Biennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">0.0</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Perennial">Perennial</th>
-    </tr>
-    <tr class="gt_row_group_first"><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_5 CommonName" class="gt_row gt_left">bindweed, Field</td>
-<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right">0.250</td></tr>
+<td headers="Perennial stub_1_3 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
+<td headers="Perennial stub_1_3 Species" class="gt_row gt_left">Atriplex polycarpa</td>
+<td headers="Perennial stub_1_3 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #D0CA0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #D0CA00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">2</div>
+  </div>
+</div></td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Perennial stub_1_4 CommonName" class="gt_row gt_left">bindweed, Field</td>
+<td headers="Perennial stub_1_4 Species" class="gt_row gt_left">Convolvulus arvensis</td>
+<td headers="Perennial stub_1_4 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FBA90033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FBA900;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Perennial stub_1_5 CommonName" class="gt_row gt_left">Winterfat</td>
+<td headers="Perennial stub_1_5 Species" class="gt_row gt_left">Krascheninnikovia lanata</td>
+<td headers="Perennial stub_1_5 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FEA60033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FEA600;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">rabbitbrush, Common</td>
-<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right">11.250</td></tr>
+<td headers="Perennial stub_1_6 CommonName" class="gt_row gt_left">weed, Poverty</td>
+<td headers="Perennial stub_1_6 Species" class="gt_row gt_left">Iva axillaris</td>
+<td headers="Perennial stub_1_6 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FEA60033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FEA600;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub"></th>
 <td headers="Perennial stub_1_7 CommonName" class="gt_row gt_left">sacaton, Alkali</td>
-<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right">0.050</td></tr>
+<td headers="Perennial stub_1_7 Species" class="gt_row gt_left">Sporobolus airoides</td>
+<td headers="Perennial stub_1_7 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FFA50033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FFA500;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">saltbush, Allscale</td>
-<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right">2.025</td></tr>
+<td headers="Perennial stub_1_8 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
+<td headers="Perennial stub_1_8 Species" class="gt_row gt_left">Atriplex torreyi</td>
+<td headers="Perennial stub_1_8 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FFA50033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FFA500;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_9" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_9 CommonName" class="gt_row gt_left">saltbush, Fourwing</td>
-<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right">2.800</td></tr>
-    <tr><th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_10 CommonName" class="gt_row gt_left">saltbush, Nevada/Torrey's</td>
-<td headers="Perennial stub_1_10 Percent_Cover" class="gt_row gt_right">0.050</td></tr>
+<td headers="Perennial stub_1_9 CommonName" class="gt_row gt_left">Saltgrass</td>
+<td headers="Perennial stub_1_9 Species" class="gt_row gt_left">Distichlis spicata</td>
+<td headers="Perennial stub_1_9 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">16.6</td></tr>
+    <tr><th id="summary_stub_Perennial_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Perennial summary_stub_Perennial_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Perennial summary_stub_Perennial_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">9.0</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Annual">Annual</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Annual stub_1_10 CommonName" class="gt_row gt_left">Tumbleweed /thistle, Russian</td>
+<td headers="Annual stub_1_10 Species" class="gt_row gt_left">Salsola tragus</td>
+<td headers="Annual stub_1_10 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #CBCE0033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #CBCE00;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">2</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_11" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_11 CommonName" class="gt_row gt_left">Saltgrass</td>
-<td headers="Perennial stub_1_11 Percent_Cover" class="gt_row gt_right">0.025</td></tr>
+<td headers="Annual stub_1_11 CommonName" class="gt_row gt_left">horseweed, Canada</td>
+<td headers="Annual stub_1_11 Species" class="gt_row gt_left">Conyza canadensis</td>
+<td headers="Annual stub_1_11 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FDA70033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FDA700;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
     <tr><th id="stub_1_12" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_12 CommonName" class="gt_row gt_left">weed, Poverty</td>
-<td headers="Perennial stub_1_12 Percent_Cover" class="gt_row gt_right">0.075</td></tr>
-    <tr><th id="stub_1_13" scope="row" class="gt_row gt_left gt_stub"></th>
-<td headers="Perennial stub_1_13 CommonName" class="gt_row gt_left">Winterfat</td>
-<td headers="Perennial stub_1_13 Percent_Cover" class="gt_row gt_right">0.100</td></tr>
-    <tr><th id="summary_stub_Perennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick gt_last_summary_row">total</th>
-<td headers="Perennial summary_stub_Perennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick gt_last_summary_row">—</td>
-<td headers="Perennial summary_stub_Perennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick gt_last_summary_row">16.6</td></tr>
+<td headers="Annual stub_1_12 CommonName" class="gt_row gt_left">bee plant, Yellow</td>
+<td headers="Annual stub_1_12 Species" class="gt_row gt_left">Cleome lutea</td>
+<td headers="Annual stub_1_12 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #FFA50033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #FFA500;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Annual_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Annual summary_stub_Annual_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual summary_stub_Annual_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">2.4</td></tr>
+    <tr><th id="summary_stub_Annual_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Annual summary_stub_Annual_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual summary_stub_Annual_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">3.0</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="4" class="gt_group_heading" scope="colgroup" id="Annual/Biennial">Annual/Biennial</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_13" scope="row" class="gt_row gt_left gt_stub"></th>
+<td headers="Annual/Biennial stub_1_13 CommonName" class="gt_row gt_left">sweetclover, Yellow</td>
+<td headers="Annual/Biennial stub_1_13 Species" class="gt_row gt_left">Melilotus officinalis</td>
+<td headers="Annual/Biennial stub_1_13 Percent_Cover" class="gt_row gt_right"><div>
+  <div style="height: 20px;width:70px; background-color: #80808033;border-radius:5px;)">
+    <div style="height: 13px;width: 13px;background-color: #808080;display: inline-block;border-radius:4px;float:left;position:relative;top:17%;left:6%;"></div>
+    <div style="display: inline-block;float:right;line-height:20px; font-weight: bold;padding: 0px 2.5px;">0</div>
+  </div>
+</div></td></tr>
+    <tr><th id="summary_stub_Annual/Biennial_1" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick">total</th>
+<td headers="Annual/Biennial summary_stub_Annual/Biennial_1 CommonName" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual/Biennial summary_stub_Annual/Biennial_1 Species" class="gt_row gt_left gt_summary_row gt_first_summary_row thick">—</td>
+<td headers="Annual/Biennial summary_stub_Annual/Biennial_1 Percent_Cover" class="gt_row gt_right gt_summary_row gt_first_summary_row thick">0.0</td></tr>
+    <tr><th id="summary_stub_Annual/Biennial_2" scope="row" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row">n</th>
+<td headers="Annual/Biennial summary_stub_Annual/Biennial_2 CommonName" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual/Biennial summary_stub_Annual/Biennial_2 Species" class="gt_row gt_left gt_summary_row gt_last_summary_row">—</td>
+<td headers="Annual/Biennial summary_stub_Annual/Biennial_2 Percent_Cover" class="gt_row gt_right gt_summary_row gt_last_summary_row">1.0</td></tr>
   </tbody>
   
   
 </table>
 </div>
 </div>
-</div></div></div>
-<div class="cell page-columns page-full">
-<details>
-<summary>code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>rlaw118_129, <span class="fu">aes</span>(<span class="at">size=</span>percent_cover,<span class="at">colour =</span> <span class="st">'red'</span>))<span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>()<span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(Provenance<span class="sc">~</span>Veg_Type<span class="sc">+</span>CommonName<span class="sc">+</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display column-body">
-<div id="fig-law118_129-transect-species-map" class="quarto-figure quarto-figure-center anchored">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stacked-composition-law129" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="index_files/figure-html/fig-law118_129-transect-species-map-1.png" class="img-fluid figure-img" width="1152"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: Laws 129 and one transect from 118, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
+<p><img src="index_files/figure-html/fig-stacked-composition-law129-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: LAW129 species composition by transect</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
+<div style="page-break-after: always;"></div>
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-body">
+<div id="fig-law118_129-transect-species-map" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-law118_129-transect-species-map-1.png" class="img-fluid figure-img" width="1152"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Laws 129 and one transect from 118, symbol size is scaled to species % cover and the overall map is faceted by species to view the spatial distribution of each species detected in the revegetation project.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="recommendations" class="level1">
+<h1>Recommendations</h1>
+<p>ICWD would like to observe and assist in field sampling in 2024. In addition to this, ICWD will acquire annual UAV-aerial imagery to document vegetation changes in 2023, 2024 and 2025. In the scenario that re-measurement in 2024 leads LADWP to the conclusion that the projects are complete. ICWD should repeat the transect measurements in 2025, which would represent measurements in the year following two full late-summer periods when soil moisture is maximally depleted.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<p>In reference to the 2003 plan:</p>
+<blockquote class="blockquote">
+<p>In preparing this plan, vegetation cover, composition, and species lists were determined by reviewing the LADWP 1984-87 vegetation inventory data for parcels in the vicinity (Appendix II) and located in the same ecological (range) site class in the Draft Benton-Owens Valley Soil Survey, hereafter referred to as the NRCS (Natural Resources Conservation Service 1994). – 2003 Plan</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>In addition, species lists and other information from the NRCS descriptions were incorporated (Appendix I). –2003 Plan</p>
+</blockquote>
+<section id="reference-parcel-cover-composition" class="level2">
+<h2 class="anchored" data-anchor-id="reference-parcel-cover-composition">Reference Parcel Cover Composition</h2>
+<p>Live cover, number of species hit and detected (trace), number of species in parcel, plant community classification and distance from revegetation site.</p>
+<section id="laws-90-94-95" class="level3">
+<h3 class="anchored" data-anchor-id="laws-90-94-95">Laws 90, 94, 95</h3>
+<p><img src="lw90splist.png" class="img-fluid"></p>
+</section>
+<section id="laws-129" class="level3">
+<h3 class="anchored" data-anchor-id="laws-129">Laws 129</h3>
+<p><img src="lw129splist.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="reference-species" class="level2">
+<h2 class="anchored" data-anchor-id="reference-species">Reference Species</h2>
+<p>Taxonomic, common name, life form, vegetation parcel containing species, soil compatibility.</p>
+<section id="laws-90-94-95-1" class="level3">
+<h3 class="anchored" data-anchor-id="laws-90-94-95-1">Laws 90, 94, 95</h3>
+<p><img src="lw90_species.png" class="img-fluid"></p>
+<p><img src="lw90_species_end.png" class="img-fluid"></p>
+</section>
+<section id="laws-129-1" class="level3">
+<h3 class="anchored" data-anchor-id="laws-129-1">Laws 129</h3>
+<p><img src="lw129_species.png" class="img-fluid"></p>
 
 
 </section>
 </section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>LADWP indicated that no irrigation occurred after approximately June 2022 owing to the summer rains in 2022 augmenting soil moisture<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The timing of this materializes as a test of the full 2023 growing season without irrigation and most of 2024 through July, but not August 2024 - which would be the second full complete growing season.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This report is intended to provide technical analysis within the narrow scope of the 2022 data and the specific 2003 plan success metrics.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Additional trace species may be recorded on paper datasheets that have been scanned but those species are not included here.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Additional trace species may be recorded on paper datasheets that have been scanned but those species are not included here.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>additional LYCO or ENFA not matched to species list adds another species to the list detected on transects. add this to todo update species list. Additional trace species may be recorded on paper datasheets that have been scanned but those species are not included here.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>additional LYCO or ENFA not matched to species list adds another species to the list detected on transects. add this to todo update species list. Additional trace species may be recorded on paper datasheets that have been scanned but those species are not included here.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>In the 2003 plan, two years of no irrigation activities before reassessment could be interpreted as two full growing seasons without irrigation, in this case 2023 and 2024. To then evaluate the effects of two full growing seasons, measurements would occur during peak growing season the following year - in this case 2025.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

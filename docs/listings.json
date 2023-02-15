@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/ndvi-stats/index.html",
       "/posts/laws-reveg/index.html",
       "/posts/lpt-stats/index.html"
     ]

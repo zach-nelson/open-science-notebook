@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>open-science-notebook - About</title>
+<title>open-science-notebook - about open science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,15 +80,10 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">about open science</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -105,30 +100,43 @@ ul.task-list li input[type="checkbox"] {
     
 <!-- main -->
 <div class="quarto-about-jolla">
-  <img src="profile.jpg" class="about-image
+  <img src="open-science.png" class="about-image
   round " style="height: 15em; width: 15em;">
  <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">about open science</h1>
 </div>
 <div class="quarto-title-meta">
   </div>
 </header><main class="content" id="quarto-document-content">
-<p>About this blog</p>
+<p>this github repository was set up to share quick results of projects involving code that come across my desk and I primarily set this up for myself and coworkers, secondarily for inter-agency sharing potential. I typically work in the Rstudio IDE, and publishing code to github and results in html format from Rstudio to the same github pages folder is a convenient way to quickly get analytical results distributed. Using the Rstudio projects setup with a quarto blog tempate allows a clean way to chronologically document short posts, tag them by category, and build on posts later using the starting post.</p>
+<ul>
+<li>posts might range from tutorials on annual reporting steps, to descriptions of datasets we provide (e.g.&nbsp;monthly flow and depth to water measurements), evaluations of data relating to mitigation projects, greenbook programs, remote sensing, land management, wildlife habitat and other topics.</li>
+</ul>
+<p>a note on targets pipelines - and how it ‘nudges’ users toward a functional programming way of data engineering</p>
+<blockquote class="blockquote">
+<p>Unlike most pipeline tools, which are language agnostic or Python-focused, the targets package allows data scientists and researchers to work entirely within R. targets implicitly nudges users toward a clean, function-oriented programming style that fits the intent of the R language and helps practitioners maintain their data analysis projects. -https://books.ropensci.org/targets/</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Data analysis can be slow. A round of scientific computation can take several minutes, hours, or even days to complete. After it finishes, if you update your code or data, your hard-earned results may no longer be valid. Unchecked, this invalidation creates chronic Sisyphean loop:</p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Launch the code.</li>
+<li>Wait while it runs.</li>
+<li>Discover an issue.</li>
+<li>Restart from scratch.</li>
+</ol>
+</blockquote>
+<blockquote class="blockquote">
+<p>Pipeline tools like GNU Make break the cycle. They watch the dependency graph of the whole workflow and skip steps, or “targets”, whose code, data, and upstream dependencies have not changed since the last run of the pipeline. When all targets are up to date, this is evidence that the results match the underlying code and data, which helps us trust the results and confirm the computation is reproducible.</p>
+</blockquote>
 
 
 </main> 
   <hr class="about-sep">
    <div class="about-links">
-  <a href="https://twitter.com" class="about-link" rel="" target="">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text">Twitter</span>
-  </a>
-  <a href="https://linkedin.com" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com" class="about-link" rel="" target="">
+  <a href="https://github.com/zach-nelson/open-science-notebook" class="about-link" rel="" target="">
     <i class="bi bi-github"></i>
      <span class="about-link-text">Github</span>
   </a>
