@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.49">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Zach Nelson">
+<meta name="dcterms.date" content="2023-02-14">
+<title>open-science-notebook - Historical range of variability in NDVI seasonally averaged time series 1985-2022 across groundwater-dependent ecosystems in Owens Valley CA, USA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">open-science-notebook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">about</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages"><span class="toc-section-number">1</span>  Packages</a>
+  <ul class="collapse">
+<li><a href="#function-for-outputting-set-of-figures" id="toc-function-for-outputting-set-of-figures" class="nav-link" data-scroll-target="#function-for-outputting-set-of-figures"><span class="toc-section-number">1.1</span>  Function for outputting set of figures</a></li>
+  <li><a href="#bgp088" id="toc-bgp088" class="nav-link" data-scroll-target="#bgp088"><span class="toc-section-number">1.2</span>  BGP088</a></li>
+  <li><a href="#bgp154" id="toc-bgp154" class="nav-link" data-scroll-target="#bgp154"><span class="toc-section-number">1.3</span>  BGP154</a></li>
+  <li><a href="#bgp162" id="toc-bgp162" class="nav-link" data-scroll-target="#bgp162"><span class="toc-section-number">1.4</span>  BGP162</a></li>
+  <li><a href="#blk006" id="toc-blk006" class="nav-link" data-scroll-target="#blk006"><span class="toc-section-number">1.5</span>  BLK006</a></li>
+  <li><a href="#blk008" id="toc-blk008" class="nav-link" data-scroll-target="#blk008"><span class="toc-section-number">1.6</span>  BLK008</a></li>
+  <li><a href="#blk009" id="toc-blk009" class="nav-link" data-scroll-target="#blk009"><span class="toc-section-number">1.7</span>  BLK009</a></li>
+  <li><a href="#blk021" id="toc-blk021" class="nav-link" data-scroll-target="#blk021"><span class="toc-section-number">1.8</span>  BLK021</a></li>
+  <li><a href="#blk033" id="toc-blk033" class="nav-link" data-scroll-target="#blk033"><span class="toc-section-number">1.9</span>  BLK033</a></li>
+  <li><a href="#blk039" id="toc-blk039" class="nav-link" data-scroll-target="#blk039"><span class="toc-section-number">1.10</span>  BLK039</a></li>
+  <li><a href="#blk044" id="toc-blk044" class="nav-link" data-scroll-target="#blk044"><span class="toc-section-number">1.11</span>  BLK044</a></li>
+  <li><a href="#blk069" id="toc-blk069" class="nav-link" data-scroll-target="#blk069"><span class="toc-section-number">1.12</span>  BLK069</a></li>
+  <li><a href="#blk074" id="toc-blk074" class="nav-link" data-scroll-target="#blk074"><span class="toc-section-number">1.13</span>  BLK074</a></li>
+  <li><a href="#blk075" id="toc-blk075" class="nav-link" data-scroll-target="#blk075"><span class="toc-section-number">1.14</span>  BLK075</a></li>
+  <li><a href="#blk094" id="toc-blk094" class="nav-link" data-scroll-target="#blk094"><span class="toc-section-number">1.15</span>  BLK094</a></li>
+  <li><a href="#blk095" id="toc-blk095" class="nav-link" data-scroll-target="#blk095"><span class="toc-section-number">1.16</span>  BLK095</a></li>
+  <li><a href="#blk096" id="toc-blk096" class="nav-link" data-scroll-target="#blk096"><span class="toc-section-number">1.17</span>  BLK096</a></li>
+  <li><a href="#blk099" id="toc-blk099" class="nav-link" data-scroll-target="#blk099"><span class="toc-section-number">1.18</span>  BLK099</a></li>
+  <li><a href="#blk142" id="toc-blk142" class="nav-link" data-scroll-target="#blk142"><span class="toc-section-number">1.19</span>  BLK142</a></li>
+  <li><a href="#fsl044" id="toc-fsl044" class="nav-link" data-scroll-target="#fsl044"><span class="toc-section-number">1.20</span>  FSL044</a></li>
+  <li><a href="#fsl051" id="toc-fsl051" class="nav-link" data-scroll-target="#fsl051"><span class="toc-section-number">1.21</span>  FSL051</a></li>
+  <li><a href="#fsl053" id="toc-fsl053" class="nav-link" data-scroll-target="#fsl053"><span class="toc-section-number">1.22</span>  FSL053</a></li>
+  <li><a href="#fsl054" id="toc-fsl054" class="nav-link" data-scroll-target="#fsl054"><span class="toc-section-number">1.23</span>  FSL054</a></li>
+  <li><a href="#fsl064" id="toc-fsl064" class="nav-link" data-scroll-target="#fsl064"><span class="toc-section-number">1.24</span>  FSL064</a></li>
+  <li><a href="#fsl116" id="toc-fsl116" class="nav-link" data-scroll-target="#fsl116"><span class="toc-section-number">1.25</span>  FSL116</a></li>
+  <li><a href="#fsl120" id="toc-fsl120" class="nav-link" data-scroll-target="#fsl120"><span class="toc-section-number">1.26</span>  FSL120</a></li>
+  <li><a href="#fsl123" id="toc-fsl123" class="nav-link" data-scroll-target="#fsl123"><span class="toc-section-number">1.27</span>  FSL123</a></li>
+  <li><a href="#fsl124" id="toc-fsl124" class="nav-link" data-scroll-target="#fsl124"><span class="toc-section-number">1.28</span>  FSL124</a></li>
+  <li><a href="#fsl130" id="toc-fsl130" class="nav-link" data-scroll-target="#fsl130"><span class="toc-section-number">1.29</span>  FSL130</a></li>
+  <li><a href="#fsp006" id="toc-fsp006" class="nav-link" data-scroll-target="#fsp006"><span class="toc-section-number">1.30</span>  FSP006</a></li>
+  <li><a href="#fsp015" id="toc-fsp015" class="nav-link" data-scroll-target="#fsp015"><span class="toc-section-number">1.31</span>  FSP015</a></li>
+  <li><a href="#fsp020" id="toc-fsp020" class="nav-link" data-scroll-target="#fsp020"><span class="toc-section-number">1.32</span>  FSP020</a></li>
+  <li><a href="#ind011" id="toc-ind011" class="nav-link" data-scroll-target="#ind011"><span class="toc-section-number">1.33</span>  IND011</a></li>
+  <li><a href="#ind019" id="toc-ind019" class="nav-link" data-scroll-target="#ind019"><span class="toc-section-number">1.34</span>  IND019</a></li>
+  <li><a href="#ind021" id="toc-ind021" class="nav-link" data-scroll-target="#ind021"><span class="toc-section-number">1.35</span>  IND021</a></li>
+  <li><a href="#ind026" id="toc-ind026" class="nav-link" data-scroll-target="#ind026"><span class="toc-section-number">1.36</span>  IND026</a></li>
+  <li><a href="#ind029" id="toc-ind029" class="nav-link" data-scroll-target="#ind029"><span class="toc-section-number">1.37</span>  IND029</a></li>
+  <li><a href="#ind035" id="toc-ind035" class="nav-link" data-scroll-target="#ind035"><span class="toc-section-number">1.38</span>  IND035</a></li>
+  <li><a href="#ind111" id="toc-ind111" class="nav-link" data-scroll-target="#ind111"><span class="toc-section-number">1.39</span>  IND111</a></li>
+  <li><a href="#ind124" id="toc-ind124" class="nav-link" data-scroll-target="#ind124"><span class="toc-section-number">1.40</span>  IND124</a></li>
+  <li><a href="#ind132" id="toc-ind132" class="nav-link" data-scroll-target="#ind132"><span class="toc-section-number">1.41</span>  IND132</a></li>
+  <li><a href="#ind133" id="toc-ind133" class="nav-link" data-scroll-target="#ind133"><span class="toc-section-number">1.42</span>  IND133</a></li>
+  <li><a href="#ind139" id="toc-ind139" class="nav-link" data-scroll-target="#ind139"><span class="toc-section-number">1.43</span>  IND139</a></li>
+  <li><a href="#law035" id="toc-law035" class="nav-link" data-scroll-target="#law035"><span class="toc-section-number">1.44</span>  LAW035</a></li>
+  <li><a href="#law043" id="toc-law043" class="nav-link" data-scroll-target="#law043"><span class="toc-section-number">1.45</span>  LAW043</a></li>
+  <li><a href="#law052" id="toc-law052" class="nav-link" data-scroll-target="#law052"><span class="toc-section-number">1.46</span>  LAW052</a></li>
+  <li><a href="#law062" id="toc-law062" class="nav-link" data-scroll-target="#law062"><span class="toc-section-number">1.47</span>  LAW062</a></li>
+  <li><a href="#law065" id="toc-law065" class="nav-link" data-scroll-target="#law065"><span class="toc-section-number">1.48</span>  LAW065</a></li>
+  <li><a href="#law070" id="toc-law070" class="nav-link" data-scroll-target="#law070"><span class="toc-section-number">1.49</span>  LAW070</a></li>
+  <li><a href="#law072" id="toc-law072" class="nav-link" data-scroll-target="#law072"><span class="toc-section-number">1.50</span>  LAW072</a></li>
+  <li><a href="#law078" id="toc-law078" class="nav-link" data-scroll-target="#law078"><span class="toc-section-number">1.51</span>  LAW078</a></li>
+  <li><a href="#law082" id="toc-law082" class="nav-link" data-scroll-target="#law082"><span class="toc-section-number">1.52</span>  LAW082</a></li>
+  <li><a href="#law085" id="toc-law085" class="nav-link" data-scroll-target="#law085"><span class="toc-section-number">1.53</span>  LAW085</a></li>
+  <li><a href="#law105" id="toc-law105" class="nav-link" data-scroll-target="#law105"><span class="toc-section-number">1.54</span>  LAW105</a></li>
+  <li><a href="#law108" id="toc-law108" class="nav-link" data-scroll-target="#law108"><span class="toc-section-number">1.55</span>  LAW108</a></li>
+  <li><a href="#law122" id="toc-law122" class="nav-link" data-scroll-target="#law122"><span class="toc-section-number">1.56</span>  LAW122</a></li>
+  <li><a href="#law137" id="toc-law137" class="nav-link" data-scroll-target="#law137"><span class="toc-section-number">1.57</span>  LAW137</a></li>
+  <li><a href="#lnp045" id="toc-lnp045" class="nav-link" data-scroll-target="#lnp045"><span class="toc-section-number">1.58</span>  LNP045</a></li>
+  <li><a href="#man006" id="toc-man006" class="nav-link" data-scroll-target="#man006"><span class="toc-section-number">1.59</span>  MAN006</a></li>
+  <li><a href="#man007" id="toc-man007" class="nav-link" data-scroll-target="#man007"><span class="toc-section-number">1.60</span>  MAN007</a></li>
+  <li><a href="#man034" id="toc-man034" class="nav-link" data-scroll-target="#man034"><span class="toc-section-number">1.61</span>  MAN034</a></li>
+  <li><a href="#man037" id="toc-man037" class="nav-link" data-scroll-target="#man037"><span class="toc-section-number">1.62</span>  MAN037</a></li>
+  <li><a href="#man038" id="toc-man038" class="nav-link" data-scroll-target="#man038"><span class="toc-section-number">1.63</span>  MAN038</a></li>
+  <li><a href="#man042" id="toc-man042" class="nav-link" data-scroll-target="#man042"><span class="toc-section-number">1.64</span>  MAN042</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Historical range of variability in NDVI seasonally averaged time series 1985-2022 across groundwater-dependent ecosystems in Owens Valley CA, USA</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">remote sensing</div>
+    <div class="quarto-category">GDE</div>
+    <div class="quarto-category">NDVI</div>
+    <div class="quarto-category">percentiles</div>
+    <div class="quarto-category">time series</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zach Nelson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 14, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header><section id="packages" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Packages</h1>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"code"</span>,<span class="st">"R"</span>,<span class="st">"functions.R"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># ("https://services.arcgis.com/0jRlQ17Qmni5zEMr/arcgis/rest/services/lpt2022-public-view/FeatureServer/2/1678/attachments/1685")</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(species))</span>
+<span id="cb1-5"><a href="#cb1-5"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(n_parcels_sampled))</span>
+<span id="cb1-6"><a href="#cb1-6"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(cYear))</span>
+<span id="cb1-7"><a href="#cb1-7"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(n_transects_sampled))</span>
+<span id="cb1-8"><a href="#cb1-8"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(n_parcels_all_years))</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># tar_load(parcel_test_sums))</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># tar_load(parcel_datatable)</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># parcel_datatable %&gt;% filt</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># tar_load(deltas_ttest_att)</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_test_sums))</span>
+<span id="cb1-15"><a href="#cb1-15"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(monsites_shp))</span>
+<span id="cb1-16"><a href="#cb1-16"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(icwd_ladwp_bind))</span>
+<span id="cb1-17"><a href="#cb1-17"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(lpt_updated_master))</span>
+<span id="cb1-18"><a href="#cb1-18"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(transects))</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcels_shp))</span>
+<span id="cb1-21"><a href="#cb1-21"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcels_deltas))<span class="co">#parc)l-year-deltas</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcels_shp_ttest))</span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="co"># tar_load(parcel_year_meta_2samp_results)</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># tar_load(parcel_year_meta_1samp_results)</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_year_meta_combined_results))</span>
+<span id="cb1-27"><a href="#cb1-27"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(deltas_ttest_att))</span>
+<span id="cb1-28"><a href="#cb1-28"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(wellcont_means))</span>
+<span id="cb1-29"><a href="#cb1-29"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(wellcont_means_rarefied))</span>
+<span id="cb1-30"><a href="#cb1-30"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(plot_wellcontrol))</span>
+<span id="cb1-31"><a href="#cb1-31"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(boxplot.w.c))</span>
+<span id="cb1-32"><a href="#cb1-32"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(trends.w.c))</span>
+<span id="cb1-33"><a href="#cb1-33"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(plot_1sample_timeseries))</span>
+<span id="cb1-34"><a href="#cb1-34"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(plot_2sample_timeseries))</span>
+<span id="cb1-35"><a href="#cb1-35"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_datatable))</span>
+<span id="cb1-36"><a href="#cb1-36"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_datatable_chronic))</span>
+<span id="cb1-37"><a href="#cb1-37"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_datatable_significant))</span>
+<span id="cb1-38"><a href="#cb1-38"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(attributes_reinv))</span>
+<span id="cb1-39"><a href="#cb1-39"></a></span>
+<span id="cb1-40"><a href="#cb1-40"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcels))</span>
+<span id="cb1-41"><a href="#cb1-41"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(attributes_pfix))</span>
+<span id="cb1-42"><a href="#cb1-42"></a>a <span class="ot">&lt;-</span> attributes_pfix <span class="sc">%&gt;%</span> <span class="fu">select</span>(Parcel,Type,wellfield,wellfield_area, GB_TYPE, Holland)</span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
+<span id="cb1-44"><a href="#cb1-44"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(panel_map_lw))</span>
+<span id="cb1-45"><a href="#cb1-45"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(panel_map_bp))</span>
+<span id="cb1-46"><a href="#cb1-46"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(panel_map_ta))</span>
+<span id="cb1-47"><a href="#cb1-47"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(panel_map_ts))</span>
+<span id="cb1-48"><a href="#cb1-48"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(panel_map_io))</span>
+<span id="cb1-49"><a href="#cb1-49"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(panel_map_ss))</span>
+<span id="cb1-50"><a href="#cb1-50"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(panel_map_bg))</span>
+<span id="cb1-51"><a href="#cb1-51"></a><span class="co"># tar_load(panel_map_lp)</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="co"># tar_load(monsites_shp)</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a></span>
+<span id="cb1-54"><a href="#cb1-54"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_year_meta_2samp_results_grass))</span>
+<span id="cb1-55"><a href="#cb1-55"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_year_meta_1samp_results_grass))</span>
+<span id="cb1-56"><a href="#cb1-56"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_year_meta_2samp_results))</span>
+<span id="cb1-57"><a href="#cb1-57"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcel_year_meta_1samp_results))</span>
+<span id="cb1-58"><a href="#cb1-58"></a></span>
+<span id="cb1-59"><a href="#cb1-59"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(parcels_shp))</span>
+<span id="cb1-60"><a href="#cb1-60"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(canals_shp))</span>
+<span id="cb1-61"><a href="#cb1-61"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(monsites_shp))</span>
+<span id="cb1-62"><a href="#cb1-62"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(or_shp))</span>
+<span id="cb1-63"><a href="#cb1-63"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(laa_shp))</span>
+<span id="cb1-64"><a href="#cb1-64"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(lakes_shp))</span>
+<span id="cb1-65"><a href="#cb1-65"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(streams_shp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>read the attributes from the shapefile of dwp parcel polygons (2119 polygons) and the full landsat time series since 1984 (1.88 million records as of Sept 2022)</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># landsat %&gt;% write_csv('data/landsat.csv')</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>parcel.attributes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"LA_parcels_attributes.csv"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># read in processed landsat from above</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>landsat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'landsat.csv'</span>),</span>
+<span id="cb2-5"><a href="#cb2-5"></a>                    <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">OUTLIER_SCORE =</span> <span class="fu">col_double</span>()</span>
+<span id="cb2-6"><a href="#cb2-6"></a>                    ))</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># 1.88 milliion records through september 2022</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>join the parcel attributes to the landsat scene row</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># landsat &lt;- spec('output/landsat.csv')</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># spec(landsat)</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>l <span class="ot">&lt;-</span> landsat <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(parcel.attributes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'ZONE_NAME'</span> <span class="ot">=</span> <span class="st">'PCL'</span>))</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># l &lt;- landsat_create %&gt;% left_join(parcel.attributes, by = c('ZONE_NAME' = 'PCL'))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>filter the remote sensing by cloudiness score and erroneous NDVI readings also filter the scenes in between July 15 and Sept 15 (DOY 196-258).</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># filter by QA, cloud score and faulty ndvi if negative</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># filter by day of year 196 = july 15, 258 = sep 15.</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>rs <span class="ot">&lt;-</span> l <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">filter</span>(QA <span class="sc">==</span> <span class="dv">0</span>, CLOUD_SCORE <span class="sc">&lt;</span> <span class="dv">70</span>, NDVI_SUR <span class="sc">&gt;</span> <span class="dv">0</span>, NDVI_TOA <span class="sc">&gt;</span> <span class="dv">0</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(DOY, <span class="dv">196</span>, <span class="dv">258</span>))</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co"># 395,375 records</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># 298,553 records - 2023 checked</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>now we group all these individual day rows to the parcel and year and produce the seasonal Jul 15-Sep 15 NDVI average for each parcel.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># group by parcel, year, and bring green book type and holland type along</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># seasonally average the parcel zonal averages across the time period created above.</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>r <span class="ot">&lt;-</span> rs <span class="sc">%&gt;%</span>  <span class="fu">group_by</span>(ZONE_NAME, YEAR, GB_TYPE, COMM_NAME) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="at">mean.ndvi =</span> <span class="fu">mean</span>(NDVI_SUR),</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="at">sd.ndvi =</span> <span class="fu">sd</span>(NDVI_SUR),</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 40,545 records or parcel-year datapoints</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#-----</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># 30,534 records - 2023 check</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>compute empirical cumulative distribution function from the data. use this function to provide the percentile of each year</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># function that computes the empirical cumulative distribution function</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># from the data. we then use this function to provide the percentile</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># of the current year within the context of the entire 37 year time series.</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>ecdf_custom <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb6-6"><a href="#cb6-6"></a>  ecdf_f <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(df<span class="sc">$</span>mean.ndvi)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>  perdf <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">percentile =</span> <span class="fu">ecdf_f</span>(mean.ndvi))</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="co"># perdf %&gt;% write_csv("output/perdf.csv")</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">return</span>(perdf)</span>
+<span id="cb6-10"><a href="#cb6-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>group by parcel and then apply the ecdf custom function that computes the ecdf on each parcel’s time series and returns current year percentiles</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># group by parcel and then apply the ecdf custom function that</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># computes the ecdf on each parcel's time series and returns</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># current year percentiles</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>rpp <span class="ot">&lt;-</span> r <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">group_by</span>(ZONE_NAME) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span><span class="fu">ecdf_custom</span>(<span class="at">df =</span> .))</span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a>rpp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30,534 × 8
+# Groups:   ZONE_NAME [792]
+   ZONE_NAME  YEAR GB_TYPE COMM_NAME         mean.ndvi sd.ndvi     n percentile
+   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;      &lt;dbl&gt;
+ 1 ABD009     1984 B       Rabbitbrush Scrub    0.104  0.0110      2     0.513 
+ 2 ABD009     1985 B       Rabbitbrush Scrub    0.100  0.00673     6     0.462 
+ 3 ABD009     1986 B       Rabbitbrush Scrub    0.139  0.00612     7     0.795 
+ 4 ABD009     1987 B       Rabbitbrush Scrub    0.0800 0.00347     7     0.179 
+ 5 ABD009     1988 B       Rabbitbrush Scrub    0.0734 0.0139      6     0.0256
+ 6 ABD009     1989 B       Rabbitbrush Scrub    0.0749 0.00889     7     0.0769
+ 7 ABD009     1990 B       Rabbitbrush Scrub    0.0743 0.00201     4     0.0513
+ 8 ABD009     1991 B       Rabbitbrush Scrub    0.120  0.00680     6     0.615 
+ 9 ABD009     1992 B       Rabbitbrush Scrub    0.0890 0.00614     6     0.282 
+10 ABD009     1993 B       Rabbitbrush Scrub    0.142  0.00564     6     0.872 
+# … with 30,524 more rows</code></pre>
+</div>
+</div>
+<p>create columns for each parcel’s quantile ndvi since 1985, 10% to 90% by 10s.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># create columns for each parcel's quantile ndvi since 1985, 10% to 90% by 10s.</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># so that quantiles can be plotted</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>try.q <span class="ot">&lt;-</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  rpp <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">group_by</span>(ZONE_NAME) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">summarise</span>(<span class="at">quants =</span> <span class="fu">list</span>(<span class="fu">quantile</span>(mean.ndvi, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">01</span>, .<span class="dv">1</span>, .<span class="dv">20</span>, .<span class="dv">30</span>, .<span class="dv">40</span>, .<span class="dv">50</span>, .<span class="dv">60</span>, .<span class="dv">70</span>, .<span class="dv">80</span>, .<span class="dv">90</span>,.<span class="dv">99</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">unnest_wider</span>(quants)</span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a>try.q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 792 × 12
+   ZONE_NAME   `1%`  `10%`  `20%`  `30%`  `40%` `50%` `60%` `70%` `80%` `90%`
+   &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 ABD009    0.0737 0.0777 0.0821 0.0963 0.0982 0.104 0.119 0.130 0.139 0.147
+ 2 BEE012    0.106  0.126  0.152  0.167  0.186  0.195 0.203 0.219 0.229 0.297
+ 3 BEE014    0.193  0.274  0.291  0.303  0.315  0.333 0.354 0.383 0.399 0.418
+ 4 BEE018    0.114  0.121  0.125  0.131  0.136  0.139 0.147 0.154 0.158 0.169
+ 5 BEE019    0.106  0.112  0.115  0.120  0.124  0.128 0.135 0.145 0.149 0.166
+ 6 BEE020    0.151  0.158  0.166  0.171  0.181  0.190 0.193 0.206 0.216 0.269
+ 7 BEE022    0.240  0.379  0.407  0.431  0.443  0.467 0.493 0.512 0.531 0.562
+ 8 BGP011    0.368  0.376  0.417  0.430  0.436  0.442 0.455 0.471 0.491 0.520
+ 9 BGP015    0.380  0.402  0.420  0.428  0.439  0.459 0.463 0.484 0.502 0.537
+10 BGP016    0.473  0.509  0.538  0.548  0.562  0.574 0.588 0.615 0.628 0.665
+# … with 782 more rows, and 1 more variable: `99%` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>join the quantile columns (parcel level) to the parcel-year level. also clean names</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># join the quantile columns (parcel level) to the parcel-year level</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co"># also clean names</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>rqc <span class="ot">&lt;-</span> rpp <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(try.q, <span class="at">by =</span> <span class="st">'ZONE_NAME'</span>)<span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>rqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30,534 × 19
+# Groups:   zone_name [792]
+   zone_name  year gb_type comm_…¹ mean_…² sd_ndvi     n perce…³ x1_pe…⁴ x10_p…⁵
+   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 ABD009     1984 B       Rabbit…  0.104  0.0110      2  0.513   0.0737  0.0777
+ 2 ABD009     1985 B       Rabbit…  0.100  0.00673     6  0.462   0.0737  0.0777
+ 3 ABD009     1986 B       Rabbit…  0.139  0.00612     7  0.795   0.0737  0.0777
+ 4 ABD009     1987 B       Rabbit…  0.0800 0.00347     7  0.179   0.0737  0.0777
+ 5 ABD009     1988 B       Rabbit…  0.0734 0.0139      6  0.0256  0.0737  0.0777
+ 6 ABD009     1989 B       Rabbit…  0.0749 0.00889     7  0.0769  0.0737  0.0777
+ 7 ABD009     1990 B       Rabbit…  0.0743 0.00201     4  0.0513  0.0737  0.0777
+ 8 ABD009     1991 B       Rabbit…  0.120  0.00680     6  0.615   0.0737  0.0777
+ 9 ABD009     1992 B       Rabbit…  0.0890 0.00614     6  0.282   0.0737  0.0777
+10 ABD009     1993 B       Rabbit…  0.142  0.00564     6  0.872   0.0737  0.0777
+# … with 30,524 more rows, 9 more variables: x20_percent &lt;dbl&gt;,
+#   x30_percent &lt;dbl&gt;, x40_percent &lt;dbl&gt;, x50_percent &lt;dbl&gt;, x60_percent &lt;dbl&gt;,
+#   x70_percent &lt;dbl&gt;, x80_percent &lt;dbl&gt;, x90_percent &lt;dbl&gt;, x99_percent &lt;dbl&gt;,
+#   and abbreviated variable names ¹​comm_name, ²​mean_ndvi, ³​percentile,
+#   ⁴​x1_percent, ⁵​x10_percent</code></pre>
+</div>
+</div>
+<p>calculate a standard error for the seasonal ndvi average from the standard deviation of the ndvi for each scene and number of scenes in the period.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># calculate a standard error for plots</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>rqc2 <span class="ot">&lt;-</span> rqc <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">se =</span> sd_ndvi<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb13-3"><a href="#cb13-3"></a>rqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30,534 × 19
+# Groups:   zone_name [792]
+   zone_name  year gb_type comm_…¹ mean_…² sd_ndvi     n perce…³ x1_pe…⁴ x10_p…⁵
+   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 ABD009     1984 B       Rabbit…  0.104  0.0110      2  0.513   0.0737  0.0777
+ 2 ABD009     1985 B       Rabbit…  0.100  0.00673     6  0.462   0.0737  0.0777
+ 3 ABD009     1986 B       Rabbit…  0.139  0.00612     7  0.795   0.0737  0.0777
+ 4 ABD009     1987 B       Rabbit…  0.0800 0.00347     7  0.179   0.0737  0.0777
+ 5 ABD009     1988 B       Rabbit…  0.0734 0.0139      6  0.0256  0.0737  0.0777
+ 6 ABD009     1989 B       Rabbit…  0.0749 0.00889     7  0.0769  0.0737  0.0777
+ 7 ABD009     1990 B       Rabbit…  0.0743 0.00201     4  0.0513  0.0737  0.0777
+ 8 ABD009     1991 B       Rabbit…  0.120  0.00680     6  0.615   0.0737  0.0777
+ 9 ABD009     1992 B       Rabbit…  0.0890 0.00614     6  0.282   0.0737  0.0777
+10 ABD009     1993 B       Rabbit…  0.142  0.00564     6  0.872   0.0737  0.0777
+# … with 30,524 more rows, 9 more variables: x20_percent &lt;dbl&gt;,
+#   x30_percent &lt;dbl&gt;, x40_percent &lt;dbl&gt;, x50_percent &lt;dbl&gt;, x60_percent &lt;dbl&gt;,
+#   x70_percent &lt;dbl&gt;, x80_percent &lt;dbl&gt;, x90_percent &lt;dbl&gt;, x99_percent &lt;dbl&gt;,
+#   and abbreviated variable names ¹​comm_name, ²​mean_ndvi, ³​percentile,
+#   ⁴​x1_percent, ⁵​x10_percent</code></pre>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># rqc2r &lt;- rqc2 %&gt;% str_replace(comm_name, "/", "_")</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt; [1] "-ne apple"     "tw- pears"     "thr-e bananas"</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co"># set &lt;- rqc2 %&gt;% filter(zone_name == "BGP162")</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co"># c &lt;- set %&gt;% select(zone_name,gb_type,comm_name)</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co"># d &lt;- c %&gt;% distinct()</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co"># d$gb_type[[1]]</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co"># d$comm_name[[1]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>allvp <span class="ot">&lt;-</span>  <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"gisdata"</span>,<span class="st">"allvegparcels_NAD83.shp"</span>)) <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `allvegparcels_NAD83' from data source 
+  `/Users/zac/Documents/projects/open-science-notebook/data/gisdata/allvegparcels_NAD83.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 2087 features and 41 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 367095 ymin: 4039775 xmax: 419718.5 ymax: 4151285
+Projected CRS: NAD83 / UTM zone 11N</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>rat <span class="ot">&lt;-</span> rqc2 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(allvp, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"zone_name"</span> <span class="ot">=</span> <span class="st">"pcl"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># ggdist</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># ,</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>rat <span class="sc">%&gt;%</span>   <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"2022"</span>,<span class="st">"2021"</span>,<span class="st">"2015"</span>,<span class="st">"1987"</span>), comm_name <span class="sc">==</span> <span class="st">"Alkali Meadow"</span>, wellfield <span class="sc">==</span> <span class="st">"I"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>   <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>   <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">as.factor</span>(year),<span class="at">x=</span>mean_ndvi)<span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>usgs_quad, <span class="at">ncol=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>   <span class="fu">stat_halfeye</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="function-for-outputting-set-of-figures" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="function-for-outputting-set-of-figures">
+<span class="header-section-number">1.1</span> Function for outputting set of figures</h2>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># This function outputs through iteration pngs images of time series</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>plot_ndvi_ts_with_percentiles <span class="ot">&lt;-</span> <span class="cf">function</span>(data, parcel_name){</span>
+<span id="cb20-3"><a href="#cb20-3"></a>  </span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">cat</span>(<span class="st">"## "</span>, parcel_name, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  set <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(zone_name <span class="sc">==</span> parcel_name)</span>
+<span id="cb20-7"><a href="#cb20-7"></a>c <span class="ot">&lt;-</span> set <span class="sc">%&gt;%</span> <span class="fu">select</span>(zone_name,gb_type,comm_name)</span>
+<span id="cb20-8"><a href="#cb20-8"></a>  d <span class="ot">&lt;-</span> c <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb20-9"><a href="#cb20-9"></a>f <span class="ot">&lt;-</span> set <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_ndvi, <span class="at">ymin =</span> mean_ndvi <span class="sc">-</span> se, <span class="at">ymax =</span> mean_ndvi <span class="sc">+</span> se, <span class="at">color =</span> percentile, <span class="at">label =</span> <span class="fu">round</span>(percentile<span class="sc">*</span><span class="dv">100</span>,<span class="dv">0</span>)))<span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>  <span class="co"># mid&lt;-round(max(filtered$`%50`),2)</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a>  <span class="fu">geom_errorbar</span>(<span class="at">colour =</span> <span class="st">"gray"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a>  <span class="co"># geom_boxplot(colour = "black", stat = "identity", width = 0.65, fill = "#ff5555") +</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x10_percent),<span class="at">color =</span> <span class="st">'red'</span>)<span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x20_percent),<span class="at">color =</span> <span class="st">'orange'</span>)<span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x30_percent),<span class="at">color =</span> <span class="st">'yellow'</span>)<span class="sc">+</span></span>
+<span id="cb20-16"><a href="#cb20-16"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x40_percent),<span class="at">color =</span> <span class="st">'gray'</span>)<span class="sc">+</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x50_percent),<span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb20-18"><a href="#cb20-18"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x60_percent),<span class="at">color =</span> <span class="st">'gray'</span>)<span class="sc">+</span></span>
+<span id="cb20-19"><a href="#cb20-19"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x70_percent),<span class="at">color =</span> <span class="st">'lightgreen'</span>)<span class="sc">+</span></span>
+<span id="cb20-20"><a href="#cb20-20"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x80_percent),<span class="at">color =</span> <span class="st">'green'</span>)<span class="sc">+</span></span>
+<span id="cb20-21"><a href="#cb20-21"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x90_percent),<span class="at">color =</span> <span class="st">'darkgreen'</span>)<span class="sc">+</span></span>
+<span id="cb20-22"><a href="#cb20-22"></a>  <span class="fu">geom_text_repel</span>()<span class="sc">+</span></span>
+<span id="cb20-23"><a href="#cb20-23"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(),<span class="at">color =</span> <span class="st">'gray'</span>)<span class="sc">+</span></span>
+<span id="cb20-24"><a href="#cb20-24"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colours =</span> <span class="fu">rainbow</span>(<span class="dv">5</span>))<span class="sc">+</span></span>
+<span id="cb20-25"><a href="#cb20-25"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb20-26"><a href="#cb20-26"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(parcel_name,<span class="st">"_"</span>,d<span class="sc">$</span>gb_type[[<span class="dv">1</span>]]))<span class="sc">+</span></span>
+<span id="cb20-27"><a href="#cb20-27"></a>  <span class="fu">ylab</span>(<span class="st">'Mean NDVI (Jul 15 - Sep 15)'</span>)<span class="sc">+</span></span>
+<span id="cb20-28"><a href="#cb20-28"></a>  <span class="fu">xlab</span>(<span class="st">'Year'</span>)</span>
+<span id="cb20-29"><a href="#cb20-29"></a></span>
+<span id="cb20-30"><a href="#cb20-30"></a>p <span class="ot">&lt;-</span> f <span class="sc">%&gt;%</span> <span class="fu">ggMarginal</span>(<span class="at">type =</span> <span class="st">"densigram"</span>, <span class="at">margins =</span> <span class="st">"y"</span>)</span>
+<span id="cb20-31"><a href="#cb20-31"></a><span class="co"># p &lt;- f %&gt;% ggMarginal(type = "densigram", margins = "y")</span></span>
+<span id="cb20-32"><a href="#cb20-32"></a><span class="co"># p &lt;-</span></span>
+<span id="cb20-33"><a href="#cb20-33"></a><span class="co">#   ggplot(mtcars, aes(mpg, wt)) +</span></span>
+<span id="cb20-34"><a href="#cb20-34"></a><span class="co">#   geom_point()</span></span>
+<span id="cb20-35"><a href="#cb20-35"></a><span class="co"># file.name &lt;- paste0("output/percentile_plots2/",parcel_name,"_",d$gb_type[[1]],"_",d$comm_name[[1]],".png")</span></span>
+<span id="cb20-36"><a href="#cb20-36"></a></span>
+<span id="cb20-37"><a href="#cb20-37"></a><span class="co"># png(paste0("output/percentile_plots2/",parcel_name,"_",d$gb_type[[1]],".png"))</span></span>
+<span id="cb20-38"><a href="#cb20-38"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb20-39"><a href="#cb20-39"></a><span class="fu">print</span>(p)</span>
+<span id="cb20-40"><a href="#cb20-40"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb20-41"><a href="#cb20-41"></a><span class="co"># print(p)</span></span>
+<span id="cb20-42"><a href="#cb20-42"></a><span class="co"># p</span></span>
+<span id="cb20-43"><a href="#cb20-43"></a><span class="co"># dev.off()</span></span>
+<span id="cb20-44"><a href="#cb20-44"></a></span>
+<span id="cb20-45"><a href="#cb20-45"></a><span class="co"># print(p)</span></span>
+<span id="cb20-46"><a href="#cb20-46"></a><span class="co"># ggsave(paste0("output/percentile_plots/",parcel_name,".png")</span></span>
+<span id="cb20-47"><a href="#cb20-47"></a><span class="co"># )</span></span>
+<span id="cb20-48"><a href="#cb20-48"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>PIDs <span class="ot">&lt;-</span> deltas_ttest_att <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(Cover_sig.counter <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span> Grass_sig.counter <span class="sc">&gt;</span> <span class="dv">0</span>,  Type <span class="sc">==</span> <span class="st">'W'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="co"># filter(wellfield == 'Laws') %&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>      <span class="fu">select</span>(Parcel,wellfield,GB_TYPE, Holland,Cover.Delta, Grass.Delta,Cover_sig.counter,Grass_sig.counter, n, </span>
+<span id="cb21-4"><a href="#cb21-4"></a>             Cover,Grass,Shrub) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(Parcel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># define the list over which iteration is based</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># here just all the unique parcel names</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co"># PIDs &lt;- unique(rqc2$zone_name)</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>list <span class="ot">&lt;-</span> PIDs<span class="sc">$</span>Parcel</span>
+<span id="cb22-5"><a href="#cb22-5"></a>data <span class="ot">&lt;-</span> rqc2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(zone_name <span class="sc">%in%</span> list)</span>
+<span id="cb22-6"><a href="#cb22-6"></a>rp <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(zone_name)</span>
+<span id="cb22-7"><a href="#cb22-7"></a>rlist <span class="ot">&lt;-</span> rp<span class="sc">$</span>zone_name</span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co"># start a for loop and watch the output folder populate with hundreds of plots</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="co"># for (PID in rlist) {</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="co"># plot_ndvi_ts_with_percentiles(data = rqc2, parcel_name = PID)</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>  </span>
+<span id="cb22-12"><a href="#cb22-12"></a><span class="co"># }</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># if (!require(devtools)) install.packages("devtools")</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="co"># library(devtools)</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># install_github("GegznaV/knitrContainer")</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="co"># lapply(1:length(List), function(i) {</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="co"># lapply(rlist, function(PID){</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="cf">for</span> (PID <span class="cf">in</span> rlist) {</span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="fu">cat</span>(<span class="st">"## "</span>, PID, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9"></a></span>
+<span id="cb23-10"><a href="#cb23-10"></a>  set <span class="ot">&lt;-</span> rqc2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(zone_name <span class="sc">==</span> PID)</span>
+<span id="cb23-11"><a href="#cb23-11"></a>c <span class="ot">&lt;-</span> set <span class="sc">%&gt;%</span> <span class="fu">select</span>(zone_name,gb_type,comm_name)</span>
+<span id="cb23-12"><a href="#cb23-12"></a>  d <span class="ot">&lt;-</span> c <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb23-13"><a href="#cb23-13"></a>f <span class="ot">&lt;-</span> set <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_ndvi, <span class="at">ymin =</span> mean_ndvi <span class="sc">-</span> se, <span class="at">ymax =</span> mean_ndvi <span class="sc">+</span> se, <span class="at">color =</span> percentile, <span class="at">label =</span> <span class="fu">round</span>(percentile<span class="sc">*</span><span class="dv">100</span>,<span class="dv">0</span>)))<span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>  <span class="co"># mid&lt;-round(max(filtered$`%50`),2)</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>  <span class="fu">geom_errorbar</span>(<span class="at">colour =</span> <span class="st">"gray"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>  <span class="co"># geom_boxplot(colour = "black", stat = "identity", width = 0.65, fill = "#ff5555") +</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x10_percent),<span class="at">color =</span> <span class="st">'red'</span>)<span class="sc">+</span></span>
+<span id="cb23-18"><a href="#cb23-18"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x20_percent),<span class="at">color =</span> <span class="st">'orange'</span>)<span class="sc">+</span></span>
+<span id="cb23-19"><a href="#cb23-19"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x30_percent),<span class="at">color =</span> <span class="st">'yellow'</span>)<span class="sc">+</span></span>
+<span id="cb23-20"><a href="#cb23-20"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x40_percent),<span class="at">color =</span> <span class="st">'gray'</span>)<span class="sc">+</span></span>
+<span id="cb23-21"><a href="#cb23-21"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x50_percent),<span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb23-22"><a href="#cb23-22"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x60_percent),<span class="at">color =</span> <span class="st">'gray'</span>)<span class="sc">+</span></span>
+<span id="cb23-23"><a href="#cb23-23"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x70_percent),<span class="at">color =</span> <span class="st">'lightgreen'</span>)<span class="sc">+</span></span>
+<span id="cb23-24"><a href="#cb23-24"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x80_percent),<span class="at">color =</span> <span class="st">'green'</span>)<span class="sc">+</span></span>
+<span id="cb23-25"><a href="#cb23-25"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> set, <span class="fu">aes</span>(<span class="at">x =</span> set<span class="sc">$</span>year, <span class="at">y =</span> set<span class="sc">$</span>x90_percent),<span class="at">color =</span> <span class="st">'darkgreen'</span>)<span class="sc">+</span></span>
+<span id="cb23-26"><a href="#cb23-26"></a>  <span class="fu">geom_text_repel</span>()<span class="sc">+</span></span>
+<span id="cb23-27"><a href="#cb23-27"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(),<span class="at">color =</span> <span class="st">'gray'</span>)<span class="sc">+</span></span>
+<span id="cb23-28"><a href="#cb23-28"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colours =</span> <span class="fu">rainbow</span>(<span class="dv">5</span>))<span class="sc">+</span></span>
+<span id="cb23-29"><a href="#cb23-29"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb23-30"><a href="#cb23-30"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(PID,<span class="st">"_"</span>,d<span class="sc">$</span>gb_type[[<span class="dv">1</span>]]))<span class="sc">+</span></span>
+<span id="cb23-31"><a href="#cb23-31"></a>  <span class="fu">ylab</span>(<span class="st">'Mean NDVI (Jul 15 - Sep 15)'</span>)<span class="sc">+</span></span>
+<span id="cb23-32"><a href="#cb23-32"></a>  <span class="fu">xlab</span>(<span class="st">'Year'</span>)</span>
+<span id="cb23-33"><a href="#cb23-33"></a></span>
+<span id="cb23-34"><a href="#cb23-34"></a>p <span class="ot">&lt;-</span> f <span class="sc">%&gt;%</span> <span class="fu">ggMarginal</span>(<span class="at">type =</span> <span class="st">"densigram"</span>, <span class="at">margins =</span> <span class="st">"y"</span>)</span>
+<span id="cb23-35"><a href="#cb23-35"></a></span>
+<span id="cb23-36"><a href="#cb23-36"></a></span>
+<span id="cb23-37"><a href="#cb23-37"></a><span class="co"># add_as_is()</span></span>
+<span id="cb23-38"><a href="#cb23-38"></a><span class="co"># Create</span></span>
+<span id="cb23-39"><a href="#cb23-39"></a>container <span class="ot">&lt;-</span> <span class="fu">knitrContainer</span>()</span>
+<span id="cb23-40"><a href="#cb23-40"></a><span class="co"># Collect</span></span>
+<span id="cb23-41"><a href="#cb23-41"></a>container <span class="ot">&lt;-</span> <span class="fu">add_as_is</span>(container, p)</span>
+<span id="cb23-42"><a href="#cb23-42"></a><span class="co"># Print</span></span>
+<span id="cb23-43"><a href="#cb23-43"></a></span>
+<span id="cb23-44"><a href="#cb23-44"></a><span class="co"># file.name &lt;- paste0("output/percentile_plots2/",parcel_name,"_",d$gb_type[[1]],"_",d$comm_name[[1]],".png")</span></span>
+<span id="cb23-45"><a href="#cb23-45"></a></span>
+<span id="cb23-46"><a href="#cb23-46"></a><span class="co"># png(paste0("output/percentile_plots2/",parcel_name,"_",d$gb_type[[1]],".png"))</span></span>
+<span id="cb23-47"><a href="#cb23-47"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-48"><a href="#cb23-48"></a><span class="fu">print_all</span>(container)</span>
+<span id="cb23-49"><a href="#cb23-49"></a><span class="co"># print(p)</span></span>
+<span id="cb23-50"><a href="#cb23-50"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-51"><a href="#cb23-51"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details></section><section id="bgp088" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="bgp088">
+<span class="header-section-number">1.2</span> BGP088</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="bgp154" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="bgp154">
+<span class="header-section-number">1.3</span> BGP154</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="bgp162" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="bgp162">
+<span class="header-section-number">1.4</span> BGP162</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-3.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk006" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="blk006">
+<span class="header-section-number">1.5</span> BLK006</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-4.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk008" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="blk008">
+<span class="header-section-number">1.6</span> BLK008</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-5.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk009" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="blk009">
+<span class="header-section-number">1.7</span> BLK009</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-6.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk021" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="blk021">
+<span class="header-section-number">1.8</span> BLK021</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-7.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk033" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="blk033">
+<span class="header-section-number">1.9</span> BLK033</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-8.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk039" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="blk039">
+<span class="header-section-number">1.10</span> BLK039</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-9.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk044" class="level2" data-number="1.11"><h2 data-number="1.11" class="anchored" data-anchor-id="blk044">
+<span class="header-section-number">1.11</span> BLK044</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-10.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk069" class="level2" data-number="1.12"><h2 data-number="1.12" class="anchored" data-anchor-id="blk069">
+<span class="header-section-number">1.12</span> BLK069</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-11.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk074" class="level2" data-number="1.13"><h2 data-number="1.13" class="anchored" data-anchor-id="blk074">
+<span class="header-section-number">1.13</span> BLK074</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-12.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk075" class="level2" data-number="1.14"><h2 data-number="1.14" class="anchored" data-anchor-id="blk075">
+<span class="header-section-number">1.14</span> BLK075</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-13.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk094" class="level2" data-number="1.15"><h2 data-number="1.15" class="anchored" data-anchor-id="blk094">
+<span class="header-section-number">1.15</span> BLK094</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-14.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk095" class="level2" data-number="1.16"><h2 data-number="1.16" class="anchored" data-anchor-id="blk095">
+<span class="header-section-number">1.16</span> BLK095</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-15.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk096" class="level2" data-number="1.17"><h2 data-number="1.17" class="anchored" data-anchor-id="blk096">
+<span class="header-section-number">1.17</span> BLK096</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-16.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk099" class="level2" data-number="1.18"><h2 data-number="1.18" class="anchored" data-anchor-id="blk099">
+<span class="header-section-number">1.18</span> BLK099</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-17.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="blk142" class="level2" data-number="1.19"><h2 data-number="1.19" class="anchored" data-anchor-id="blk142">
+<span class="header-section-number">1.19</span> BLK142</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-18.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl044" class="level2" data-number="1.20"><h2 data-number="1.20" class="anchored" data-anchor-id="fsl044">
+<span class="header-section-number">1.20</span> FSL044</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-19.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl051" class="level2" data-number="1.21"><h2 data-number="1.21" class="anchored" data-anchor-id="fsl051">
+<span class="header-section-number">1.21</span> FSL051</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-20.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl053" class="level2" data-number="1.22"><h2 data-number="1.22" class="anchored" data-anchor-id="fsl053">
+<span class="header-section-number">1.22</span> FSL053</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-21.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl054" class="level2" data-number="1.23"><h2 data-number="1.23" class="anchored" data-anchor-id="fsl054">
+<span class="header-section-number">1.23</span> FSL054</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-22.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl064" class="level2" data-number="1.24"><h2 data-number="1.24" class="anchored" data-anchor-id="fsl064">
+<span class="header-section-number">1.24</span> FSL064</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-23.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl116" class="level2" data-number="1.25"><h2 data-number="1.25" class="anchored" data-anchor-id="fsl116">
+<span class="header-section-number">1.25</span> FSL116</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-24.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl120" class="level2" data-number="1.26"><h2 data-number="1.26" class="anchored" data-anchor-id="fsl120">
+<span class="header-section-number">1.26</span> FSL120</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-25.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl123" class="level2" data-number="1.27"><h2 data-number="1.27" class="anchored" data-anchor-id="fsl123">
+<span class="header-section-number">1.27</span> FSL123</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-26.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl124" class="level2" data-number="1.28"><h2 data-number="1.28" class="anchored" data-anchor-id="fsl124">
+<span class="header-section-number">1.28</span> FSL124</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-27.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsl130" class="level2" data-number="1.29"><h2 data-number="1.29" class="anchored" data-anchor-id="fsl130">
+<span class="header-section-number">1.29</span> FSL130</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-28.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsp006" class="level2" data-number="1.30"><h2 data-number="1.30" class="anchored" data-anchor-id="fsp006">
+<span class="header-section-number">1.30</span> FSP006</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-29.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsp015" class="level2" data-number="1.31"><h2 data-number="1.31" class="anchored" data-anchor-id="fsp015">
+<span class="header-section-number">1.31</span> FSP015</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-30.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="fsp020" class="level2" data-number="1.32"><h2 data-number="1.32" class="anchored" data-anchor-id="fsp020">
+<span class="header-section-number">1.32</span> FSP020</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-31.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind011" class="level2" data-number="1.33"><h2 data-number="1.33" class="anchored" data-anchor-id="ind011">
+<span class="header-section-number">1.33</span> IND011</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-32.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind019" class="level2" data-number="1.34"><h2 data-number="1.34" class="anchored" data-anchor-id="ind019">
+<span class="header-section-number">1.34</span> IND019</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-33.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind021" class="level2" data-number="1.35"><h2 data-number="1.35" class="anchored" data-anchor-id="ind021">
+<span class="header-section-number">1.35</span> IND021</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-34.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind026" class="level2" data-number="1.36"><h2 data-number="1.36" class="anchored" data-anchor-id="ind026">
+<span class="header-section-number">1.36</span> IND026</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-35.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind029" class="level2" data-number="1.37"><h2 data-number="1.37" class="anchored" data-anchor-id="ind029">
+<span class="header-section-number">1.37</span> IND029</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-36.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind035" class="level2" data-number="1.38"><h2 data-number="1.38" class="anchored" data-anchor-id="ind035">
+<span class="header-section-number">1.38</span> IND035</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-37.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind111" class="level2" data-number="1.39"><h2 data-number="1.39" class="anchored" data-anchor-id="ind111">
+<span class="header-section-number">1.39</span> IND111</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-38.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind124" class="level2" data-number="1.40"><h2 data-number="1.40" class="anchored" data-anchor-id="ind124">
+<span class="header-section-number">1.40</span> IND124</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-39.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind132" class="level2" data-number="1.41"><h2 data-number="1.41" class="anchored" data-anchor-id="ind132">
+<span class="header-section-number">1.41</span> IND132</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-40.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind133" class="level2" data-number="1.42"><h2 data-number="1.42" class="anchored" data-anchor-id="ind133">
+<span class="header-section-number">1.42</span> IND133</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-41.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="ind139" class="level2" data-number="1.43"><h2 data-number="1.43" class="anchored" data-anchor-id="ind139">
+<span class="header-section-number">1.43</span> IND139</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-42.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law035" class="level2" data-number="1.44"><h2 data-number="1.44" class="anchored" data-anchor-id="law035">
+<span class="header-section-number">1.44</span> LAW035</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-43.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law043" class="level2" data-number="1.45"><h2 data-number="1.45" class="anchored" data-anchor-id="law043">
+<span class="header-section-number">1.45</span> LAW043</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-44.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law052" class="level2" data-number="1.46"><h2 data-number="1.46" class="anchored" data-anchor-id="law052">
+<span class="header-section-number">1.46</span> LAW052</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-45.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law062" class="level2" data-number="1.47"><h2 data-number="1.47" class="anchored" data-anchor-id="law062">
+<span class="header-section-number">1.47</span> LAW062</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-46.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law065" class="level2" data-number="1.48"><h2 data-number="1.48" class="anchored" data-anchor-id="law065">
+<span class="header-section-number">1.48</span> LAW065</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-47.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law070" class="level2" data-number="1.49"><h2 data-number="1.49" class="anchored" data-anchor-id="law070">
+<span class="header-section-number">1.49</span> LAW070</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-48.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law072" class="level2" data-number="1.50"><h2 data-number="1.50" class="anchored" data-anchor-id="law072">
+<span class="header-section-number">1.50</span> LAW072</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-49.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law078" class="level2" data-number="1.51"><h2 data-number="1.51" class="anchored" data-anchor-id="law078">
+<span class="header-section-number">1.51</span> LAW078</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-50.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law082" class="level2" data-number="1.52"><h2 data-number="1.52" class="anchored" data-anchor-id="law082">
+<span class="header-section-number">1.52</span> LAW082</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-51.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law085" class="level2" data-number="1.53"><h2 data-number="1.53" class="anchored" data-anchor-id="law085">
+<span class="header-section-number">1.53</span> LAW085</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-52.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law105" class="level2" data-number="1.54"><h2 data-number="1.54" class="anchored" data-anchor-id="law105">
+<span class="header-section-number">1.54</span> LAW105</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-53.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law108" class="level2" data-number="1.55"><h2 data-number="1.55" class="anchored" data-anchor-id="law108">
+<span class="header-section-number">1.55</span> LAW108</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-54.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law122" class="level2" data-number="1.56"><h2 data-number="1.56" class="anchored" data-anchor-id="law122">
+<span class="header-section-number">1.56</span> LAW122</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-55.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="law137" class="level2" data-number="1.57"><h2 data-number="1.57" class="anchored" data-anchor-id="law137">
+<span class="header-section-number">1.57</span> LAW137</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-56.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="lnp045" class="level2" data-number="1.58"><h2 data-number="1.58" class="anchored" data-anchor-id="lnp045">
+<span class="header-section-number">1.58</span> LNP045</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-57.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="man006" class="level2" data-number="1.59"><h2 data-number="1.59" class="anchored" data-anchor-id="man006">
+<span class="header-section-number">1.59</span> MAN006</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-58.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="man007" class="level2" data-number="1.60"><h2 data-number="1.60" class="anchored" data-anchor-id="man007">
+<span class="header-section-number">1.60</span> MAN007</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-59.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="man034" class="level2" data-number="1.61"><h2 data-number="1.61" class="anchored" data-anchor-id="man034">
+<span class="header-section-number">1.61</span> MAN034</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-60.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="man037" class="level2" data-number="1.62"><h2 data-number="1.62" class="anchored" data-anchor-id="man037">
+<span class="header-section-number">1.62</span> MAN037</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-61.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="man038" class="level2" data-number="1.63"><h2 data-number="1.63" class="anchored" data-anchor-id="man038">
+<span class="header-section-number">1.63</span> MAN038</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-62.png" class="img-fluid" width="672"></p>
+</div>
+</section><section id="man042" class="level2" data-number="1.64"><h2 data-number="1.64" class="anchored" data-anchor-id="man042">
+<span class="header-section-number">1.64</span> MAN042</h2>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-17-63.png" class="img-fluid" width="672"></p>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># ) -&gt; suppress</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
