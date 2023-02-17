@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Zach Nelson">
 <meta name="dcterms.date" content="2023-02-14">
-<title>open-science-notebook - Historical range of variability in NDVI seasonally averaged time series 1985-2022 across groundwater-dependent ecosystems in Owens Valley CA, USA</title>
+<meta name="description" content="Apply empirical cumulative distribution function to the 37-year NDVI time series and label years with annual percentile relative the historical range of variability.">
+<title>open-science-notebook - NDVI time series (1985-2022) in groundwater-dependent parcels</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,6 +120,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../styles.css">
+<meta name="citation_title" content="NDVI time series (1985-2022) in groundwater-dependent parcels">
+<meta name="citation_author" content="Zach Nelson">
+<meta name="citation_publication_date" content="2023-02-14">
+<meta name="citation_cover_date" content="2023-02-14">
+<meta name="citation_year" content="2023">
+<meta name="citation_online_date" content="2023-02-14">
+<meta name="citation_fulltext_html_url" content="https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/">
+<meta name="citation_volume" content="1">
+<meta name="citation_language" content="en">
+<meta name="citation_technical_report_institution" content="Inyo County Water Department">
 </head>
 <body class="nav-fixed">
 
@@ -140,6 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml" rel="" target=""><i class="bi bi-rss" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -227,16 +243,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Historical range of variability in NDVI seasonally averaged time series 1985-2022 across groundwater-dependent ecosystems in Owens Valley CA, USA</h1>
+<h1 class="title">NDVI time series (1985-2022) in groundwater-dependent parcels</h1>
   <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">python</div>
     <div class="quarto-category">remote sensing</div>
+    <div class="quarto-category">Earth Engine</div>
     <div class="quarto-category">GDE</div>
     <div class="quarto-category">NDVI</div>
-    <div class="quarto-category">percentiles</div>
+    <div class="quarto-category">ECDF</div>
     <div class="quarto-category">time series</div>
+    <div class="quarto-category">ArcGIS Online</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Apply empirical cumulative distribution function to the 37-year NDVI time series and label years with annual percentile relative the historical range of variability.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -259,7 +284,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><section id="packages" class="level1" data-number="1"><h1 data-number="1">
+</header><p>note: this post documents the empirical cumulative density function for a time series, one row per year, seasonally averaged, allowing each year labeled by it’s percentile within the context of the 37-year time series (1985-2022).</p>
+<p>To demonstrate the function, I’ve pulled in the list of parcels sampled by the Inyo/LA vegetation monitoring program that were statistically below baseline in 2022, based on simple comparison of baseline (1984-1987) parcel means to 2022 parcel means. If either the mean perennial grass cover or the total perennial cover were below baseline, the parcel was flagged and pulled in here. In that report, there are also parcels that were flagged as being below baseline for an extended period of time - for example they didn’t recover to baseline levels in 2017-2019 above-average runoff years<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Those will be looked at in more detail but the entire list is broght in for now.</p>
+<p>Though not part of the Green Book measurability analysis, the NDVI time series allows for comparisons of the line point data to an independent proxy of vegetation cover - conveniently spanning the baseline period to the present when including all Landsat satellites 5, 7, 8 and now 9.</p>
+<p>I’ve output these figures to google drive, used the <code>googledrive</code> R package to create a url for the figures, joined to parcel id and then joined to the hosted feature class parcel layer on ArcGIS Online in a publically accessible webmap.</p>
+<p>insert link</p>
+<p>todo: bin out multiple seasonal aggregations - late summer for reduction in early summer annual near-infrared reflectance, mid-summer for peak growth etc.</p>
+<ul>
+<li>may 15-jun 15</li>
+<li>jun 15-jul 15</li>
+<li>jul 15-aug 15</li>
+<li>aug 15-sep 15</li>
+<li>sep 15-oct 15</li>
+</ul>
+<p>Another idea - determine the relationship between May NDVI and line point sampling June-July. Is the may NDVi magnitude correlated to a degree to which predictive accuracy for the following month’s cover is within the bounds of the error in the repeatability of the line point method itself?</p>
+<section id="packages" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> Packages</h1>
 <div class="cell">
 <details><summary>code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"code"</span>,<span class="st">"R"</span>,<span class="st">"functions.R"</span>))</span>
@@ -979,7 +1018,24 @@ Projected CRS: NAD83 / UTM zone 11N</code></pre>
 <details><summary>code</summary><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># ) -&gt; suppress</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>which along with 2017 saw recovery of many parcels to baseline that were previously below baseline through the entire 2013, 2014, 2015, 2016 drought<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@report{nelson2023,
+  author = {Zach Nelson},
+  publisher = {Inyo County Water Department},
+  title = {NDVI Time Series (1985-2022) in Groundwater-Dependent
+    Parcels},
+  volume = {1},
+  date = {},
+  url = {https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-nelson2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Zach Nelson. n.d. <span>“NDVI Time Series (1985-2022) in
+Groundwater-Dependent Parcels.”</span> <em>ICWD Open Science
+Notebook</em>. Vol. 1. Inyo County Water Department. <a href="https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/">https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/</a>.
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

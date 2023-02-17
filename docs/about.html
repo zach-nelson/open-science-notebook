@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>open-science-notebook - about open science</title>
+<title>open-science-notebook - about</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,10 +80,15 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
- <span class="menu-text">about open science</span></a>
+ <span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="./index.xml" rel="" target=""><i class="bi bi-rss" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -99,48 +104,40 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="open-science.png" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-about-solana column-body">
+  <div class="about-entity">
+    <div class="entity-contents">
+      <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">about open science</h1>
+<h1 class="title">about</h1>
 </div>
 <div class="quarto-title-meta">
   </div>
-</header><main class="content" id="quarto-document-content">
-<p>this github repository was set up to share quick results of projects involving code that come across my desk and I primarily set this up for myself and coworkers, secondarily for inter-agency sharing potential. I typically work in the Rstudio IDE, and publishing code to github and results in html format from Rstudio to the same github pages folder is a convenient way to quickly get analytical results distributed. Using the Rstudio projects setup with a quarto blog tempate allows a clean way to chronologically document short posts, tag them by category, and build on posts later using the starting post.</p>
-<ul>
-<li>posts might range from tutorials on annual reporting steps, to descriptions of datasets we provide (e.g.&nbsp;monthly flow and depth to water measurements), evaluations of data relating to mitigation projects, greenbook programs, remote sensing, land management, wildlife habitat and other topics.</li>
-</ul>
-<p>a note on targets pipelines - and how it ‘nudges’ users toward a functional programming way of data engineering</p>
-<blockquote class="blockquote">
-<p>Unlike most pipeline tools, which are language agnostic or Python-focused, the targets package allows data scientists and researchers to work entirely within R. targets implicitly nudges users toward a clean, function-oriented programming style that fits the intent of the R language and helps practitioners maintain their data analysis projects. -https://books.ropensci.org/targets/</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Data analysis can be slow. A round of scientific computation can take several minutes, hours, or even days to complete. After it finishes, if you update your code or data, your hard-earned results may no longer be valid. Unchecked, this invalidation creates chronic Sisyphean loop:</p>
-</blockquote>
-<blockquote class="blockquote">
-<ol type="1">
-<li>Launch the code.</li>
-<li>Wait while it runs.</li>
-<li>Discover an issue.</li>
-<li>Restart from scratch.</li>
-</ol>
-</blockquote>
-<blockquote class="blockquote">
-<p>Pipeline tools like GNU Make break the cycle. They watch the dependency graph of the whole workflow and skip steps, or “targets”, whose code, data, and upstream dependencies have not changed since the last run of the pipeline. When all targets are up to date, this is evidence that the results match the underlying code and data, which helps us trust the results and confirm the computation is reproducible.</p>
-</blockquote>
-
-
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
+</header> <div class="about-links">
   <a href="https://github.com/zach-nelson/open-science-notebook" class="about-link" rel="" target="">
     <i class="bi bi-github"></i>
      <span class="about-link-text">Github</span>
   </a>
 </div>
+      <div class="about-contents"><main class="content" id="quarto-document-content">
+<p>I created this repository to make it easy and fast to share data analyses with coworkers at the Inyo County Water Department, to make it easy on my future self to remember what I’ve done, and in general to promote some key practices leading to reproducible research, and open science. those include - an Interactive development environment <a href="https://posit.co/products/open-source/rstudio/">Rstudio IDE</a> - reproducible analysis <a href="https://books.ropensci.org/targets/">targets R package</a> - reproducible and parameterized reports <a href="https://quarto.org/">quarto</a> - quick and easy sharing of results through <a href="">github pages</a> and collaboration through the github <a href="https://happygitwithr.com/index.html">version control</a> system.</p>
+<p>This is public github repository which allows the free hosting of this website on the github pages web hosting platform - associated with every github repository<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. These posts should be pretty ‘vanilla’ in the sense that they’re limited to data, functions and output. And through iteration, improvements are made to the analysis workflow with a version controlled history of the past workflows.</p>
+<p>Inyo County Water Department’s official reporting is hosted at <a href="https://www.inyowater.org">inyowater.org</a> in pdf report format. These posts in html format will be mostly intermediate data products and analytics output in the form of a short communication. In other words, most posts will likely be analogous to an entry into an open lab notebook<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Posts, or notebook entries will be limited to just code, analytics, visualizations, summaries and models, informational ‘metadata’ on new data set updates, tutorials on commonly asked questions relating to data queries, GIS, statistical and process-based models. Most of these posts will be derived from a targets pipeline and a quarto document. One hope is that they may be generally useful in the future as the frequently asked questions (FAQs) type of posts build in number.</p>
+<p>The html format opens up the realm of interactive tables and figures and maps, and dispenses with the necessity of worrying about typesetting (i.e.&nbsp;figures floating to the wrong sections, tables cut in half etc). Most importantly, the code and data live with this html output, as in -<em>if the data changes the html document is dynamically updated-</em> but only if specified to do so. This github pages website from the ‘open-science-notebook’ github repository has a blog structure, allowing the dates from the posts/analyses to be aggregated into the listings page, where keywords from individual posts can be used to filter the posts according to topic (project name, search term) to help navigate to a filtered set of posts in leiu of scrolling chronologically.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Private repositories are somewhere on the order of $1,000/year per user<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>increasingly being adopted across many scientific disciplines<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main></div>
+    </div>
+    <img src="S2L2A-2017-23-timelapse-bwma.gif" class="about-image
+  rounded " style="width: 15em;">
+  </div>
 </div>
  <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
