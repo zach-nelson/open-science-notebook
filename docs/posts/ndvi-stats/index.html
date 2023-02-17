@@ -7,7 +7,7 @@
 <meta name="author" content="Zach Nelson">
 <meta name="dcterms.date" content="2023-02-14">
 <meta name="description" content="Apply empirical cumulative distribution function to the 37-year NDVI time series and label years with annual percentile relative the historical range of variability.">
-<title>open-science-notebook - NDVI time series (1985-2022) in groundwater-dependent parcels</title>
+<title>Open Science Notebook - NDVI time series (1985-2022) in groundwater-dependent parcels</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">open-science-notebook</span>
+    <span class="navbar-title">Open Science Notebook</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">about</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/zach-nelson/open-science-notebook" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -291,9 +291,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
 
 </header><p>note: this post documents the empirical cumulative density function for a time series, one row per year, seasonally averaged, allowing each year labeled by it’s percentile within the context of the 37-year time series (1985-2022).</p>
-<p>To demonstrate the function, I’ve pulled in the list of parcels sampled by the Inyo/LA vegetation monitoring program that were statistically below baseline in 2022, based on simple comparison of baseline (1984-1987) parcel means to 2022 parcel means. If either the mean perennial grass cover or the total perennial cover were below baseline, the parcel was flagged and pulled in here. In that report, there are also parcels that were flagged as being below baseline for an extended period of time - for example they didn’t recover to baseline levels in 2017-2019 above-average runoff years<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Those will be looked at in more detail but the entire list is broght in for now.</p>
+<p>To demonstrate the function, I’ve pulled in the list of parcels sampled by the Inyo/LA vegetation monitoring program that were statistically below baseline in 2022, based on simple comparison of baseline (1984-1987) parcel means to 2022 parcel means. If either the mean perennial grass cover or the total perennial cover were below baseline, the parcel was flagged and pulled in here. In that report, there are also parcels that were flagged as being below baseline for an extended period of time - for example they didn’t recover to baseline levels in 2017-2019 above-average runoff years<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Those will be looked at in more detail but the entire list is brought in for now.</p>
 <p>Though not part of the Green Book measurability analysis, the NDVI time series allows for comparisons of the line point data to an independent proxy of vegetation cover - conveniently spanning the baseline period to the present when including all Landsat satellites 5, 7, 8 and now 9.</p>
-<p>I’ve output these figures to google drive, used the <code>googledrive</code> R package to create a url for the figures, joined to parcel id and then joined to the hosted feature class parcel layer on ArcGIS Online in a publically accessible webmap.</p>
+<p>I’ve output these figures to google drive, used the <code>googledrive</code> R package to create a url for the figures, joined to parcel id and then joined to the hosted feature class parcel layer on ArcGIS Online in a publicly accessible webmap.</p>
 <p>insert link</p>
 <p>todo: bin out multiple seasonal aggregations - late summer for reduction in early summer annual near-infrared reflectance, mid-summer for peak growth etc.</p>
 <ul>
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>aug 15-sep 15</li>
 <li>sep 15-oct 15</li>
 </ul>
-<p>Another idea - determine the relationship between May NDVI and line point sampling June-July. Is the may NDVi magnitude correlated to a degree to which predictive accuracy for the following month’s cover is within the bounds of the error in the repeatability of the line point method itself?</p>
+<p>Another idea - determine the relationship between May NDVI and line point sampling June-July. Is the may NDVI magnitude correlated to a degree to which predictive accuracy for the following month’s cover is within the bounds of the error in the repeatability of the line point method itself?</p>
 <section id="packages" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> Packages</h1>
 <div class="cell">
@@ -374,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-65"><a href="#cb1-65"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(streams_shp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>read the attributes from the shapefile of dwp parcel polygons (2119 polygons) and the full landsat time series since 1984 (1.88 million records as of Sept 2022)</p>
+<p>read the attributes from the shapefile of DWP parcel polygons (2119 polygons) and the full Landsat time series since 1984 (1.88 million records as of Sept 2022)</p>
 <div class="cell">
 <details><summary>code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># landsat %&gt;% write_csv('data/landsat.csv')</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>parcel.attributes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"LA_parcels_attributes.csv"</span>))</span>
@@ -385,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co"># 1.88 milliion records through september 2022</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>join the parcel attributes to the landsat scene row</p>
+<p>join the parcel attributes to the Landsat scene row</p>
 <div class="cell">
 <details><summary>code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># landsat &lt;- spec('output/landsat.csv')</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co"># spec(landsat)</span></span>
@@ -1033,14 +1033,14 @@ Projected CRS: NAD83 / UTM zone 11N</code></pre>
   title = {NDVI Time Series (1985-2022) in Groundwater-Dependent
     Parcels},
   volume = {1},
-  date = {},
+  date = {2023-02-14},
   url = {https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-nelson2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Zach Nelson. n.d. <span>“NDVI Time Series (1985-2022) in
-Groundwater-Dependent Parcels.”</span> <em>ICWD Open Science
-Notebook</em>. Vol. 1. Inyo County Water Department. <a href="https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/">https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/</a>.
+Zach Nelson. 2023. <span>“NDVI Time Series (1985-2022) in
+Groundwater-Dependent Parcels.”</span> <em>Open Science Notebook</em>.
+Vol. 1. Inyo County Water Department. <a href="https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/">https://zach-nelson.github.io/open-science-notebook/posts/ndvi-stats/</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
