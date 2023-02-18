@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.49">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Zach Nelson">
+<meta name="dcterms.date" content="2022-12-05">
+<meta name="description" content="Procedure in R to process monitoring well data provided by LADWP to ICWD each January. Manual reads by ICWD are also incorporated into the master database. Output options include formatting required for OVGA monitoring well data imports">
+<title>Open Science Notebook - Steps to update ICWD’s monitoring well database from LADWP Water Year Data Transfer</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="../../styles.css">
+<meta name="citation_title" content="Steps to update ICWD&amp;amp;#039;s monitoring well database from LADWP Water Year Data Transfer">
+<meta name="citation_author" content="Zach Nelson">
+<meta name="citation_publication_date" content="2022-12-05">
+<meta name="citation_cover_date" content="2022-12-05">
+<meta name="citation_year" content="2022">
+<meta name="citation_online_date" content="2022-12-05">
+<meta name="citation_fulltext_html_url" content="https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/">
+<meta name="citation_volume" content="1">
+<meta name="citation_language" content="en">
+<meta name="citation_technical_report_institution" content="Inyo County Water Department">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Open Science Notebook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">about</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/zach-nelson/open-science-notebook" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml" rel="" target=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#annual-data-transfer" id="toc-annual-data-transfer" class="nav-link active" data-scroll-target="#annual-data-transfer"><span class="toc-section-number">1</span>  Annual Data Transfer</a></li>
+  <li><a href="#tidy-data-in-excel" id="toc-tidy-data-in-excel" class="nav-link" data-scroll-target="#tidy-data-in-excel"><span class="toc-section-number">2</span>  Tidy data in Excel</a></li>
+  <li>
+<a href="#r-steps" id="toc-r-steps" class="nav-link" data-scroll-target="#r-steps"><span class="toc-section-number">3</span>  R steps</a>
+  <ul class="collapse">
+<li><a href="#read-data-into-r" id="toc-read-data-into-r" class="nav-link" data-scroll-target="#read-data-into-r"><span class="toc-section-number">3.1</span>  Read data into R</a></li>
+  </ul>
+</li>
+  <li><a href="#parse-dates" id="toc-parse-dates" class="nav-link" data-scroll-target="#parse-dates"><span class="toc-section-number">4</span>  Parse dates</a></li>
+  <li><a href="#append-updates-to-master-database" id="toc-append-updates-to-master-database" class="nav-link" data-scroll-target="#append-updates-to-master-database"><span class="toc-section-number">5</span>  Append updates to master database</a></li>
+  <li><a href="#end-adventure-for-internal-processing" id="toc-end-adventure-for-internal-processing" class="nav-link" data-scroll-target="#end-adventure-for-internal-processing"><span class="toc-section-number">6</span>  End Adventure for internal processing</a></li>
+  <li>
+<a href="#summary-and-qa-qc-checks" id="toc-summary-and-qa-qc-checks" class="nav-link" data-scroll-target="#summary-and-qa-qc-checks"><span class="toc-section-number">7</span>  Summary and QA QC checks</a>
+  <ul class="collapse">
+<li><a href="#laws" id="toc-laws" class="nav-link" data-scroll-target="#laws"><span class="toc-section-number">7.1</span>  Laws</a></li>
+  <li><a href="#bishop" id="toc-bishop" class="nav-link" data-scroll-target="#bishop"><span class="toc-section-number">7.2</span>  Bishop</a></li>
+  <li><a href="#big-pine" id="toc-big-pine" class="nav-link" data-scroll-target="#big-pine"><span class="toc-section-number">7.3</span>  Big Pine</a></li>
+  <li><a href="#taboose-aberdeen" id="toc-taboose-aberdeen" class="nav-link" data-scroll-target="#taboose-aberdeen"><span class="toc-section-number">7.4</span>  Taboose Aberdeen</a></li>
+  <li><a href="#thibaut-sawmill" id="toc-thibaut-sawmill" class="nav-link" data-scroll-target="#thibaut-sawmill"><span class="toc-section-number">7.5</span>  Thibaut Sawmill</a></li>
+  <li><a href="#independence-oak" id="toc-independence-oak" class="nav-link" data-scroll-target="#independence-oak"><span class="toc-section-number">7.6</span>  Independence Oak</a></li>
+  <li><a href="#symmes-shepherd" id="toc-symmes-shepherd" class="nav-link" data-scroll-target="#symmes-shepherd"><span class="toc-section-number">7.7</span>  Symmes Shepherd</a></li>
+  <li><a href="#bairs-george" id="toc-bairs-george" class="nav-link" data-scroll-target="#bairs-george"><span class="toc-section-number">7.8</span>  Bairs George</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#ovga-steps" id="toc-ovga-steps" class="nav-link" data-scroll-target="#ovga-steps"><span class="toc-section-number">8</span>  OVGA Steps</a>
+  <ul class="collapse">
+<li><a href="#rp-elevations" id="toc-rp-elevations" class="nav-link" data-scroll-target="#rp-elevations"><span class="toc-section-number">8.1</span>  RP elevations</a></li>
+  </ul>
+</li>
+  <li><a href="#gla-data-depth-to-water-import-procedures" id="toc-gla-data-depth-to-water-import-procedures" class="nav-link" data-scroll-target="#gla-data-depth-to-water-import-procedures"><span class="toc-section-number">9</span>  GLA Data Depth to Water Import Procedures</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Steps to update ICWD’s monitoring well database from LADWP Water Year Data Transfer</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">hydrology</div>
+    <div class="quarto-category">monitoring wells</div>
+    <div class="quarto-category">LADWP data</div>
+    <div class="quarto-category">OVGA</div>
+    <div class="quarto-category">time series</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Procedure in R to process monitoring well data provided by LADWP to ICWD each January. Manual reads by ICWD are also incorporated into the master database. Output options include formatting required for OVGA monitoring well data imports
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zach Nelson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 5, 2022</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 17, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header><section id="annual-data-transfer" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Annual Data Transfer</h1>
+<p>Data from LADWP monitoring well reads, surface water gauging station reads, precipitation reads and aggregated totals and means of these data are typically provided to ICWD in January of each year. This document describes how to process the monitoring wells data and append it to the master database used internally by ICWD and also distributed to other agencies upon request (e.g.&nbsp;Cal Fish and Widlife, Big Pine Environmental Dept, US Fish and Widlife Service, Cal Dept. Water Resources to name a few). The data is also uploaded to the Owens Valley Groundwater Authority (OVGA) data management system and <a href="http://owens.gladata.com/">webmap</a>.</p>
+<p>Data is provided to ICWD in the ZRXP format - an ASCII data exchange file format of WISKI. I’ve investigated if tools exist to convert ZRXP format into something resembling human readable long format (aka tidy data), but I have not found anything as of 2022. Therefore I use some clunky yet clever excel tricks to tidy this data in a few minutes using the steps described below. After excel processing, I read this tidied data into R for minimal processing which is then appended to the master database with records from 1924 to present and then the special requirements for the OVGA upload is tackled.</p>
+<p>The land surface corrected depth to water reads measured from the reference point (RP) and corrected for RP above ground elevation are included in the file labeled with <code>DepthGE</code>. The measurement from the RP are named <code>DepthRP</code> and water surface elevation included in the <code>DepthWSE</code>.</p>
+</section><section id="tidy-data-in-excel" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Tidy data in Excel</h1>
+<ol type="1">
+<li><p>Open <code>.dat</code> file in excel, in import text wizard, use forward slash ‘/’ as the delimeter.</p></li>
+<li><p>Label the unnamed column containing staids as ‘staid’.</p></li>
+<li><p>Select the ‘staid’ column, Edit&gt;Go To&gt;Special, Check the Blanks option and press Okay. Under the first row below the first staid, Type (=) key, Up arrow (to select the cell above), holding down the Ctrl key, push Enter and this populates the staid id down the entire staid column.</p></li>
+<li><p>select entire sheet, under data&gt;Filter, click the filter dropdown on the data column containing both date and read and use <code>text filter</code> with <code>begins with</code> = ‘20’<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. This will exclude the header information leaving only the dtw reads. Name this column <code>dateread</code>.</p></li>
+<li><p>Save the staid and data columns into csv and read into R for further processing.</p></li>
+</ol>
+<p>The tidied data update is saved to the data/hydro subdirectory e.g <code>'data/hydro/DepthGE_2020_2021.csv'</code>.</p>
+<p>There is an excel spreadsheet with sequential worksheets demonstrating this process and an accompanying word doc explaining the steps with screen shots (note: add these here). Since this process need only be done once a year, these references should be helpful in the future if the ZRXP output continues to be the sole format provided by LADWP.</p>
+</section><section id="r-steps" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> R steps</h1>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="read-data-into-r" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="read-data-into-r">
+<span class="header-section-number">3.1</span> Read data into R</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># read historical db that was updated the previous year</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>hist <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'hydro'</span>,<span class="st">'Monitoring_Wells_Master_2021.csv'</span>))</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># convert date column to date format</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>hist<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(hist<span class="sc">$</span>date)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>depthGE <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'hydro'</span>,<span class="st">'DepthGE_2021_2022.csv'</span>))</span>
+<span id="cb2-7"><a href="#cb2-7"></a>depthRP <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'hydro'</span>,<span class="st">'DepthRP_2021_2022.csv'</span>))</span>
+<span id="cb2-8"><a href="#cb2-8"></a>depthWSE <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'hydro'</span>,<span class="st">'DepthWSE_2021_2022.csv'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>separate data column ‘dateread’ into date and dtw read for depthGE, depthRP, depthWSE separate datasets</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#separate the data column and assign numeric class to dtw</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>depthGE <span class="ot">&lt;-</span> depthGE <span class="sc">%&gt;%</span> <span class="fu">separate</span>(dateread, <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"dtw.bgs"</span>),<span class="at">sep =</span> <span class="st">" "</span>) </span>
+<span id="cb3-3"><a href="#cb3-3"></a>depthGE<span class="sc">$</span>dtw.bgs <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(depthGE<span class="sc">$</span>dtw.bgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>depthRP <span class="ot">&lt;-</span> depthRP <span class="sc">%&gt;%</span> <span class="fu">separate</span>(dateread, <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"dtw.rp"</span>),<span class="at">sep =</span> <span class="st">" "</span>) </span>
+<span id="cb4-2"><a href="#cb4-2"></a>depthRP<span class="sc">$</span>dtw.rp<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(depthRP<span class="sc">$</span>dtw.rp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>depthWSE <span class="ot">&lt;-</span> depthWSE <span class="sc">%&gt;%</span> <span class="fu">separate</span>(dateread, <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"wse"</span>),<span class="at">sep =</span> <span class="st">" "</span>) </span>
+<span id="cb5-2"><a href="#cb5-2"></a>depthWSE<span class="sc">$</span>wse <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(depthWSE<span class="sc">$</span>wse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>bind these three together using a full join so that records are not dropped</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#bind columns from rp, ge, and wse. use full join to maintain all records if some dates don't have one or the other.</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>try <span class="ot">&lt;-</span> depthRP <span class="sc">%&gt;%</span> <span class="fu">full_join</span>(depthWSE, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'staid'</span>,<span class="st">'date'</span>)) <span class="sc">%&gt;%</span> <span class="fu">full_join</span>(depthGE, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'staid'</span>,<span class="st">'date'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section><section id="parse-dates" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Parse dates</h1>
+<p>create different date columns separately for year, month, day of month</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># use lubridate package to format the date</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>try<span class="sc">$</span>datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(try<span class="sc">$</span>date)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a>try<span class="ot">&lt;-</span>try <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(datetime),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>                    <span class="at">month =</span> <span class="fu">month</span>(datetime),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>                    <span class="at">day =</span> <span class="fu">mday</span>(datetime),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>                    <span class="at">hour =</span> <span class="fu">hour</span>(datetime),</span>
+<span id="cb7-8"><a href="#cb7-8"></a>                    <span class="at">minute =</span> <span class="fu">minute</span>(datetime),</span>
+<span id="cb7-9"><a href="#cb7-9"></a>                    <span class="co"># second = second(datetime),</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>                    <span class="at">date.y.m.d =</span> <span class="fu">make_date</span>(year, month, day))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>clean up the date with formal date specification</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># rename the columns</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>testwell.up <span class="ot">&lt;-</span> try <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>date, <span class="sc">-</span>datetime) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">date =</span> date.y.m.d) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">"DWP"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="append-updates-to-master-database" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> Append updates to master database</h1>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>testwells.combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(hist,testwell.up) </span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>testwells.combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,048,444 × 11
+   staid date       dtw.rp dtw.bgs   wse  year month   day  hour minute source
+   &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; 
+ 1 F001  1971-11-18    4.8     4      NA  1971    11    18     0      0 DWP   
+ 2 F001  1972-01-13    4.4     3.6    NA  1972     1    13     0      0 DWP   
+ 3 F001  1972-02-11    9.6     8.8    NA  1972     2    11     0      0 DWP   
+ 4 F001  1972-03-17   11      10.2    NA  1972     3    17     0      0 DWP   
+ 5 F001  1972-04-14   12.8    12      NA  1972     4    14     0      0 DWP   
+ 6 F001  1972-05-12   14.3    13.5    NA  1972     5    12     0      0 DWP   
+ 7 F001  1972-06-08   14.7    13.9    NA  1972     6     8     0      0 DWP   
+ 8 F001  1972-07-13   17.2    16.4    NA  1972     7    13     0      0 DWP   
+ 9 F001  1973-01-23   26.7    25.9    NA  1973     1    23     0      0 DWP   
+10 F001  1973-02-16   27.7    26.9    NA  1973     2    16     0      0 DWP   
+# … with 1,048,434 more rows</code></pre>
+</div>
+</div>
+<p>write to disk for internal use</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="do">## UNCOMMENT BELOW LINE TO WRITE UPDATES</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>testwells.combined <span class="sc">%&gt;%</span> <span class="fu">write_csv</span>(<span class="st">'output/Monitoring_Wells_Master_2022.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="end-adventure-for-internal-processing" class="level1" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> End Adventure for internal processing</h1>
+<p>csv is written to disk</p>
+</section><section id="summary-and-qa-qc-checks" class="level1" data-number="7"><h1 data-number="7">
+<span class="header-section-number">7</span> Summary and QA QC checks</h1>
+<ul>
+<li>Plot out some indicator well hydrographs</li>
+<li>find unique staids and dates</li>
+<li>ranges of values.</li>
+<li>Often WSE appears to be accidentally entered in the depth measurements</li>
+</ul>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>testwells.combined <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(staid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,352 × 1
+   staid
+   &lt;chr&gt;
+ 1 F001 
+ 2 F002 
+ 3 F007 
+ 4 F009 
+ 5 F015 
+ 6 F016 
+ 7 F018 
+ 8 F022 
+ 9 F023 
+10 F024 
+# … with 1,342 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>testwells.combined <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(staid, year) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 34,729 × 3
+# Groups:   staid [1,352]
+   staid  year     n
+   &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
+ 1 F001   1971     1
+ 2 F001   1972     7
+ 3 F001   1973     7
+ 4 F001   1974    12
+ 5 F001   1975     8
+ 6 F001   1976    12
+ 7 F001   1977    12
+ 8 F001   1978    11
+ 9 F001   1979    10
+10 F001   1980     5
+# … with 34,719 more rows</code></pre>
+</div>
+</div>
+<section id="laws" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="laws">
+<span class="header-section-number">7.1</span> Laws</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>mo.dtws <span class="ot">&lt;-</span> testwells.combined</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co"># Laws set</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="st">'T107'</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="st">'T434'</span>,</span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="st">'T436'</span>,</span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="st">'T438'</span>,</span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="st">'T490'</span>,</span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="st">'T492'</span>,</span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="st">'T795'</span>,</span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="st">'V001G'</span>,</span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="st">'T574'</span>)</span>
+<span id="cb16-14"><a href="#cb16-14"></a></span>
+<span id="cb16-15"><a href="#cb16-15"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a> <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/lw-iwells-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the Laws wellfield. Well T492 is dry if DTW is below 60 ft, and well T107 is dry if DTW is below 37 feet.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, dtw.bgs <span class="sc">&lt;</span><span class="dv">40</span>, year <span class="sc">&gt;</span><span class="dv">1990</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/lw-iwells90-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of selected monitoring wells in the Laws area 1990 onward.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># xlim()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span> <span class="dv">2000</span>)<span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs,<span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a> <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/lw-iwells02-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of selected monitoring wells in the Laws area 2000 onward.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span> <span class="dv">1985</span>)<span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs,<span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a> <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)<span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>staid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/lw-i85-fac-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of selected monitoring wells in the Laws area 1985 onward faceted by test well.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># west bishop</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="st">'T387'</span>,</span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="st">'T389'</span>,</span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="st">'T390'</span>,</span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="st">'T391'</span>)</span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dtw.bgs<span class="sc">&lt;</span><span class="dv">40</span>,staid <span class="sc">%in%</span> staid.set,year<span class="sc">&gt;</span><span class="dv">1990</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a> <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/bis-iwells-w-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the western Bishop wellfield.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="bishop" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="bishop">
+<span class="header-section-number">7.2</span> Bishop</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># northern bishop</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="st">'T108'</span>,</span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="st">'T384'</span>,</span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="st">'T498'</span>)</span>
+<span id="cb22-6"><a href="#cb22-6"></a></span>
+<span id="cb22-7"><a href="#cb22-7"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dtw.bgs<span class="sc">&lt;</span><span class="dv">40</span>,staid <span class="sc">%in%</span> staid.set,year<span class="sc">&gt;</span><span class="dv">1990</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a> <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/bis-iwells-n-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the northern Bishop wellfield.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># east bishop</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="st">'T485'</span>,</span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="st">'T497'</span>,</span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="st">'T501'</span>)</span>
+<span id="cb23-6"><a href="#cb23-6"></a></span>
+<span id="cb23-7"><a href="#cb23-7"></a></span>
+<span id="cb23-8"><a href="#cb23-8"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dtw.bgs<span class="sc">&lt;</span><span class="dv">40</span>,staid <span class="sc">%in%</span> staid.set,year<span class="sc">&gt;</span><span class="dv">1990</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a> <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/bis-iwells-e-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the eastern Bishop wellfield.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># western bishop</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="st">'T391'</span>,</span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="st">'T108'</span>,</span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="st">'T390'</span>,</span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="st">'T387'</span>,</span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="st">'T389'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8"></a></span>
+<span id="cb24-9"><a href="#cb24-9"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dtw.bgs<span class="sc">&lt;</span><span class="dv">40</span>,staid <span class="sc">%in%</span> staid.set,year<span class="sc">&gt;</span><span class="dv">2009</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a> <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/bis-iwells-w2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Recent hydrographs of indicator wells in the western Bishop wellfield.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="big-pine" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="big-pine">
+<span class="header-section-number">7.3</span> Big Pine</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># BP set</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="st">'T425'</span>,</span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="st">'T426'</span>,</span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="st">'T469'</span>,</span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="st">'T572'</span>,</span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="st">'T798'</span>,</span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="st">'T799'</span>,</span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="st">'T567'</span>,</span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="st">'T800'</span>)</span>
+<span id="cb25-11"><a href="#cb25-11"></a></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co"># T572</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a></span>
+<span id="cb25-14"><a href="#cb25-14"></a></span>
+<span id="cb25-15"><a href="#cb25-15"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, dtw.bgs <span class="sc">&lt;</span><span class="dv">40</span>, year <span class="sc">&gt;</span><span class="dv">1990</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb25-16"><a href="#cb25-16"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb25-17"><a href="#cb25-17"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb25-18"><a href="#cb25-18"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/bp-iwells-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the Big Pine wellfield. Periods of missing data for T572 occurred when the well was plugged and in need of repair..</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># BP set</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="st">'T565'</span>,</span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="st">'V017GC'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5"></a></span>
+<span id="cb26-6"><a href="#cb26-6"></a></span>
+<span id="cb26-7"><a href="#cb26-7"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, dtw.bgs <span class="sc">&lt;</span><span class="dv">40</span>, year <span class="sc">&gt;</span><span class="dv">1990</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/bp-iwells-S-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of monitoring wells in the southern Big Pine wellfield near pumping wells W218 and W219..</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="taboose-aberdeen" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="taboose-aberdeen">
+<span class="header-section-number">7.4</span> Taboose Aberdeen</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># ta set</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="st">'T417'</span>,</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="st">'T418'</span>,</span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="st">'T419'</span>,</span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="st">'T421'</span>)</span>
+<span id="cb27-7"><a href="#cb27-7"></a></span>
+<span id="cb27-8"><a href="#cb27-8"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb27-12"><a href="#cb27-12"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/ta-iwells1-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the Taboose-Aberdeen wellfield. Periods of missing data or flat horizontal line denote when the test well was dry.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="st">'T502'</span>,</span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="st">'T504'</span>,</span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="st">'T505'</span>,</span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="st">'T586'</span>,</span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="st">'T587'</span>)<span class="co"># adjacent to groundwater dependent vegetation near W118 and is used to assess the impacts of recent pumping</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/ta-iwells2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the Taboose-Aberdeen wellfield. Periods of missing data or flat horizontal line denote when the test well was dry.Data from well T587 (a non-indicator well) is included because it is located adjacent to groundwater dependent vegetation near <code>W118</code> and is used to assess the impacts of recent pumping.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="thibaut-sawmill" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="thibaut-sawmill">
+<span class="header-section-number">7.5</span> Thibaut Sawmill</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># BP set</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="st">'T413'</span>,</span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="st">'T414'</span>,</span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="st">'T415'</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="st">'T507'</span>,</span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="st">'T587'</span>)</span>
+<span id="cb29-9"><a href="#cb29-9"></a></span>
+<span id="cb29-10"><a href="#cb29-10"></a></span>
+<span id="cb29-11"><a href="#cb29-11"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb29-13"><a href="#cb29-13"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb29-14"><a href="#cb29-14"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb29-15"><a href="#cb29-15"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/ts-iwells-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="independence-oak" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="independence-oak">
+<span class="header-section-number">7.6</span> Independence Oak</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># IO set</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="st">'T406'</span>,</span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="st">'T407'</span>,</span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="st">'T408'</span>,</span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="st">'T409'</span>)</span>
+<span id="cb30-7"><a href="#cb30-7"></a></span>
+<span id="cb30-8"><a href="#cb30-8"></a></span>
+<span id="cb30-9"><a href="#cb30-9"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb30-13"><a href="#cb30-13"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/io-iwells-center-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells in the center of the wellfield.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The other indicator wells located east and north of Independence (T546 and T809)</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># IO set</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="st">'T412'</span>,</span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="st">'T453'</span>,</span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="st">'T546'</span>,</span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="st">'T809'</span>)</span>
+<span id="cb31-7"><a href="#cb31-7"></a></span>
+<span id="cb31-8"><a href="#cb31-8"></a></span>
+<span id="cb31-9"><a href="#cb31-9"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb31-12"><a href="#cb31-12"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb31-13"><a href="#cb31-13"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/io-iwells-ne-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="symmes-shepherd" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="symmes-shepherd">
+<span class="header-section-number">7.7</span> Symmes Shepherd</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># ss set</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="st">'T402'</span>,</span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="st">'T403'</span>,</span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="st">'T404'</span>,</span>
+<span id="cb32-6"><a href="#cb32-6"></a><span class="st">'T447'</span>)</span>
+<span id="cb32-7"><a href="#cb32-7"></a></span>
+<span id="cb32-8"><a href="#cb32-8"></a></span>
+<span id="cb32-9"><a href="#cb32-9"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb32-11"><a href="#cb32-11"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb32-12"><a href="#cb32-12"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb32-13"><a href="#cb32-13"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/ss-iwells-ne-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># IO set</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="st">'T402'</span>,</span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="st">'T403'</span>,</span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="st">'T404'</span>,</span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="st">'T510'</span>,</span>
+<span id="cb33-7"><a href="#cb33-7"></a><span class="st">'T511'</span>)</span>
+<span id="cb33-8"><a href="#cb33-8"></a></span>
+<span id="cb33-9"><a href="#cb33-9"></a></span>
+<span id="cb33-10"><a href="#cb33-10"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb33-11"><a href="#cb33-11"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb33-12"><a href="#cb33-12"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb33-13"><a href="#cb33-13"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb33-14"><a href="#cb33-14"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/ss-iwells-aq-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># IO set</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="st">'T447'</span>,</span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="st">'V009G'</span>)</span>
+<span id="cb34-5"><a href="#cb34-5"></a></span>
+<span id="cb34-6"><a href="#cb34-6"></a></span>
+<span id="cb34-7"><a href="#cb34-7"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb34-10"><a href="#cb34-10"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb34-11"><a href="#cb34-11"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/ss-iwells-pmp-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="bairs-george" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="bairs-george">
+<span class="header-section-number">7.8</span> Bairs George</h2>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># IO set</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="st">'T398'</span>,<span class="co">#near aq</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="st">'T400'</span>,<span class="co">#east of aq</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="st">'T597'</span>)<span class="co">#near aq</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a></span>
+<span id="cb35-7"><a href="#cb35-7"></a></span>
+<span id="cb35-8"><a href="#cb35-8"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>,dtw.bgs<span class="sc">&lt;</span><span class="dv">60</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb35-10"><a href="#cb35-10"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb35-12"><a href="#cb35-12"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/BG-iwells-aqbuff-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># IO set</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>staid.set <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb36-3"><a href="#cb36-3"></a><span class="st">'T598'</span>,<span class="co">#near pumping</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a><span class="st">'T596'</span>)<span class="co">#near near pumping</span></span>
+<span id="cb36-5"><a href="#cb36-5"></a></span>
+<span id="cb36-6"><a href="#cb36-6"></a></span>
+<span id="cb36-7"><a href="#cb36-7"></a>mo.dtws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(staid <span class="sc">%in%</span> staid.set, year <span class="sc">&gt;</span><span class="dv">1970</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> dtw.bgs, <span class="at">color =</span> staid))<span class="sc">+</span></span>
+<span id="cb36-8"><a href="#cb36-8"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb36-9"><a href="#cb36-9"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb36-10"><a href="#cb36-10"></a>  <span class="fu">xlab</span>(<span class="st">'Date'</span>)<span class="sc">+</span></span>
+<span id="cb36-11"><a href="#cb36-11"></a>  <span class="fu">ylab</span>(<span class="st">'DTW (feet below ground surface)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="index_files/figure-html/BG-iwells-pmp-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Hydrographs of indicator wells.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="ovga-steps" class="level1" data-number="8"><h1 data-number="8">
+<span class="header-section-number">8</span> OVGA Steps</h1>
+<section id="rp-elevations" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="rp-elevations">
+<span class="header-section-number">8.1</span> RP elevations</h2>
+<p>From ICWD Access database 2017 I exported the RP elevations, found the latest RP elevation measurement for each staid and joined this table to the RP DTW updates. For the OVGA update, this table will be joined each year until the RP elevations are updated.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># rpelev &lt;- read_csv('data/rp_elev.csv') %&gt;% </span></span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="co">#   mutate(date = lubridate::mdy(date_c)) %&gt;% </span></span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="co">#   group_by(staid) %&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="co">#   summarise(date = max(date))%&gt;% </span></span>
+<span id="cb37-5"><a href="#cb37-5"></a><span class="co">#   left_join(rpelev_2, by = c("staid","date")) %&gt;% </span></span>
+<span id="cb37-6"><a href="#cb37-6"></a><span class="co">#   mutate(latest_rp_date = date) %&gt;% </span></span>
+<span id="cb37-7"><a href="#cb37-7"></a><span class="co">#   select(-date,-date_c)</span></span>
+<span id="cb37-8"><a href="#cb37-8"></a></span>
+<span id="cb37-9"><a href="#cb37-9"></a><span class="co"># break up function to make it clear</span></span>
+<span id="cb37-10"><a href="#cb37-10"></a></span>
+<span id="cb37-11"><a href="#cb37-11"></a></span>
+<span id="cb37-12"><a href="#cb37-12"></a>rpelev <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'hydro'</span>,<span class="st">'rp_elev.csv'</span>))</span>
+<span id="cb37-13"><a href="#cb37-13"></a></span>
+<span id="cb37-14"><a href="#cb37-14"></a><span class="co"># date conversion</span></span>
+<span id="cb37-15"><a href="#cb37-15"></a>rpelev_2 <span class="ot">&lt;-</span> rpelev <span class="sc">%&gt;%</span> </span>
+<span id="cb37-16"><a href="#cb37-16"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> lubridate<span class="sc">::</span><span class="fu">mdy</span>(date_c))</span>
+<span id="cb37-17"><a href="#cb37-17"></a></span>
+<span id="cb37-18"><a href="#cb37-18"></a><span class="co"># pull the most recent date when rp elevations reported</span></span>
+<span id="cb37-19"><a href="#cb37-19"></a>rpelev_3 <span class="ot">&lt;-</span> rpelev_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb37-20"><a href="#cb37-20"></a>  <span class="fu">group_by</span>(staid) <span class="sc">%&gt;%</span></span>
+<span id="cb37-21"><a href="#cb37-21"></a>  <span class="fu">summarise</span>(<span class="at">date =</span> <span class="fu">max</span>(date))</span>
+<span id="cb37-22"><a href="#cb37-22"></a></span>
+<span id="cb37-23"><a href="#cb37-23"></a>rpelev_4 <span class="ot">&lt;-</span> rpelev_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb37-24"><a href="#cb37-24"></a>  <span class="fu">left_join</span>(rpelev_2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"staid"</span>,<span class="st">"date"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-25"><a href="#cb37-25"></a>  <span class="fu">mutate</span>(<span class="at">latest_rp_date =</span> date) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-26"><a href="#cb37-26"></a>  <span class="fu">select</span>(<span class="sc">-</span>date,<span class="sc">-</span>date_c)</span>
+<span id="cb37-27"><a href="#cb37-27"></a></span>
+<span id="cb37-28"><a href="#cb37-28"></a>rpelev_4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,178 × 3
+   staid rp_elev     latest_rp_date
+   &lt;chr&gt; &lt;chr&gt;       &lt;date&gt;        
+ 1 F001  3808.699951 2017-09-12    
+ 2 F002  3810.600098 2017-09-14    
+ 3 F007  3808.199951 2017-08-07    
+ 4 F009  3804.389893 2016-09-06    
+ 5 F015  3835.929932 1996-12-12    
+ 6 F016  3818.439941 1993-01-08    
+ 7 F018  3805.899902 2017-06-20    
+ 8 F022  3806.699951 2017-08-07    
+ 9 F023  3824.899902 2017-08-07    
+10 F024  3805.199951 2016-08-01    
+# … with 1,168 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>gse_staids <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">'hydro'</span>,<span class="st">'gse_staids.csv'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>read in processed data through the most recent water year updates</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>m <span class="ot">&lt;-</span> testwells.combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>filter the master data table to the years needed for OVGA updates. Now that it is updated through the 2022 water year, follow instruction by changing the filter date to pluck off the update year.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>m1 <span class="ot">&lt;-</span> m  <span class="sc">%&gt;%</span> <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">"2021-09-30"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(staid,date,dtw.rp)</span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="co">#1261 records</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="co"># note: In Dec 2023 when the 2023 water year data is provided, change filter above to "2022-09-30"</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>m1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 133,891 × 3
+   staid date       dtw.rp
+   &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt;
+ 1 T455  2021-10-25   7.5 
+ 2 T455  2022-01-13   7.27
+ 3 T455  2022-04-29   7.15
+ 4 T455  2022-07-18   7.71
+ 5 T508  2021-10-29  13.8 
+ 6 T508  2022-01-14  13.6 
+ 7 T508  2022-04-14  13.3 
+ 8 T508  2022-07-19  13.6 
+ 9 T549  2022-04-29  17.6 
+10 T630  2021-10-25   6.3 
+# … with 133,881 more rows</code></pre>
+</div>
+</div>
+<p>join the rp elevations to the annual updates</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># join latest rp elevation measurements provided by LA</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>dtwrp.rpelev <span class="ot">&lt;-</span> m1 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(rpelev_4, <span class="at">by =</span> <span class="st">'staid'</span>)</span>
+<span id="cb43-3"><a href="#cb43-3"></a></span>
+<span id="cb43-4"><a href="#cb43-4"></a>dtwrp.rpelev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 133,891 × 5
+   staid date       dtw.rp rp_elev     latest_rp_date
+   &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt; &lt;chr&gt;       &lt;date&gt;        
+ 1 T455  2021-10-25   7.5  3823.4      2018-03-30    
+ 2 T455  2022-01-13   7.27 3823.4      2018-03-30    
+ 3 T455  2022-04-29   7.15 3823.4      2018-03-30    
+ 4 T455  2022-07-18   7.71 3823.4      2018-03-30    
+ 5 T508  2021-10-29  13.8  3787.1      2018-03-27    
+ 6 T508  2022-01-14  13.6  3787.1      2018-03-27    
+ 7 T508  2022-04-14  13.3  3787.1      2018-03-27    
+ 8 T508  2022-07-19  13.6  3787.1      2018-03-27    
+ 9 T549  2022-04-29  17.6  3858.800049 2017-04-17    
+10 T630  2021-10-25   6.3  3813.100098 2017-07-26    
+# … with 133,881 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>dtwrpavg.rpelev <span class="ot">&lt;-</span> dtwrp.rpelev <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(staid, date, rp_elev) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">dtw.rp =</span>  <span class="fu">round</span>(<span class="fu">mean</span>(dtw.rp),<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>how many staids in LA database received and how many are missing from the ovga database</p>
+<p>read in ovga points here</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>ovga_points <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"hydro"</span>,<span class="st">"Owens_Monitoring_Points.csv"</span>))</span>
+<span id="cb46-2"><a href="#cb46-2"></a>ovga_points</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,048 × 8
+   mon_pt_id site_id mon_pt_name   mon_pt_lat mon_pt_long coord…¹ county hide_…²
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;
+ 1         1       1 01S32E29D001M       37.8       -118. NAD83   Mono         0
+ 2         2       1 01S32E31J002M       37.8       -118. NAD83   Mono         0
+ 3         3       1 01S32E32E001M       37.8       -118. NAD83   Mono         0
+ 4         4       1 04S33E08M001M       37.6       -118. NAD83   Mono         0
+ 5         5       1 05S33E09X001M       37.5       -118. NAD83   Mono         0
+ 6         6       1 05S33E18D001M       37.5       -118. NAD83   Mono         0
+ 7         7       1 06S31E05H001M       37.5       -119. NAD83   Inyo         0
+ 8         8       1 06S31E17B001M       37.4       -119. NAD83   Inyo         0
+ 9         9       1 06S31E19G001M       37.4       -119. NAD83   Inyo         0
+10        10       1 06S31E20H001M       37.4       -119. NAD83   Inyo         0
+# … with 6,038 more rows, and abbreviated variable names ¹​coord_sys,
+#   ²​hide_from_public</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>LA.staids <span class="ot">&lt;-</span> dtwrpavg.rpelev <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(staid) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">records =</span> <span class="fu">n</span>())</span>
+<span id="cb48-2"><a href="#cb48-2"></a></span>
+<span id="cb48-3"><a href="#cb48-3"></a>LA.staids.in.ovga <span class="ot">&lt;-</span> LA.staids <span class="sc">%&gt;%</span> <span class="fu">semi_join</span>(ovga_points, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"staid"</span><span class="ot">=</span><span class="st">"mon_pt_name"</span>))</span>
+<span id="cb48-4"><a href="#cb48-4"></a></span>
+<span id="cb48-5"><a href="#cb48-5"></a>LA.staids.notin.ovga <span class="ot">&lt;-</span> LA.staids <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(ovga_points, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"staid"</span><span class="ot">=</span><span class="st">"mon_pt_name"</span>))</span>
+<span id="cb48-6"><a href="#cb48-6"></a><span class="co">#1045 staids provided by LA and 822 of these staids present in ovga database. 223 not in ovga database.</span></span>
+<span id="cb48-7"><a href="#cb48-7"></a></span>
+<span id="cb48-8"><a href="#cb48-8"></a><span class="co"># in 2022, 71 staids not in ovga db</span></span>
+<span id="cb48-9"><a href="#cb48-9"></a></span>
+<span id="cb48-10"><a href="#cb48-10"></a>LA.staids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 804 × 2
+   staid records
+   &lt;chr&gt;   &lt;int&gt;
+ 1 F033        9
+ 2 F035        9
+ 3 F037        1
+ 4 F052       12
+ 5 F077       13
+ 6 F082       10
+ 7 F085       12
+ 8 F122        1
+ 9 F124       11
+10 F380        1
+# … with 794 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># LA provided depth data for `r LA.staids` staids in the annual data transfer. </span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="co"># The ovga database matches `r LA.staids.in.ovga` staids and is missing `r LA.staids.notin.ovga` staids.</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a>LA.staids.in.ovga</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 733 × 2
+   staid records
+   &lt;chr&gt;   &lt;int&gt;
+ 1 F033        9
+ 2 F035        9
+ 3 F037        1
+ 4 F052       12
+ 5 F077       13
+ 6 F082       10
+ 7 F085       12
+ 8 F122        1
+ 9 F124       11
+10 T001        2
+# … with 723 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>LA.staids.notin.ovga</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 71 × 2
+   staid records
+   &lt;chr&gt;   &lt;int&gt;
+ 1 F380        1
+ 2 FS3D      365
+ 3 FS3S      365
+ 4 S001        4
+ 5 S002        4
+ 6 S004        4
+ 7 S005        4
+ 8 S006        4
+ 9 S007        4
+10 T313B      12
+# … with 61 more rows</code></pre>
+</div>
+</div>
+<p>monitoring points missing rp elevations after join</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># LA.staids.in.ovga</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a><span class="co"># find how many staids are missing rp elevation</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a>na.rp.elev <span class="ot">&lt;-</span> dtwrpavg.rpelev <span class="sc">%&gt;%</span> </span>
+<span id="cb54-4"><a href="#cb54-4"></a>  <span class="fu">semi_join</span>(LA.staids.in.ovga, <span class="at">by =</span> <span class="st">'staid'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-5"><a href="#cb54-5"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(rp_elev)) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-6"><a href="#cb54-6"></a>  <span class="fu">group_by</span>(staid) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-7"><a href="#cb54-7"></a>  <span class="fu">summarise</span>(<span class="at">count.na =</span> <span class="fu">n</span>())</span>
+<span id="cb54-8"><a href="#cb54-8"></a></span>
+<span id="cb54-9"><a href="#cb54-9"></a><span class="co"># in 2022, 97 with NA, missing rp elevations</span></span>
+<span id="cb54-10"><a href="#cb54-10"></a></span>
+<span id="cb54-11"><a href="#cb54-11"></a><span class="co">#278 staids with NA missing rp elevations. </span></span>
+<span id="cb54-12"><a href="#cb54-12"></a>na.rp.elev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 2
+   staid count.na
+   &lt;chr&gt;    &lt;int&gt;
+ 1 T013U       11
+ 2 TT02         6
+ 3 TT04         6
+ 4 TT05         6
+ 5 TT07         6
+ 6 TT08         6
+ 7 TT09         6
+ 8 TT10         6
+ 9 TT17         6
+10 TT18         6
+11 TT37         6
+12 W059        12
+13 W103         9
+14 W104         1
+15 W371         8
+16 W381         2
+17 W382        11
+18 W389         3</code></pre>
+</div>
+</div>
+<p>278 out of 1045 staids LA provided no rpe</p>
+<p>find staids without GSEs and RPEs in the county data</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>need.gse <span class="ot">&lt;-</span> na.rp.elev <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(gse_staids, <span class="at">by =</span> <span class="st">'staid'</span>)</span>
+<span id="cb56-2"><a href="#cb56-2"></a>need.gse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# … with 2 variables: staid &lt;chr&gt;, count.na &lt;int&gt;</code></pre>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># need.gse %&gt;% write_csv("staids_missingRPEandGSE.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>update 2022 - out of 97 staids without RPE, 15 without rpe, leaving 82 with GSE</p>
+<p>out of 278 staids without RPE in the upload set, 168 staids without rpe or gse in the old access db leaving 110 that can be uploaded with a gse join once i do that. out of this 110, only 26 are currently in the ovga meaning we need to add some points to ovga database.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>have.gse <span class="ot">&lt;-</span> na.rp.elev <span class="sc">%&gt;%</span> <span class="fu">semi_join</span>(gse_staids, <span class="at">by =</span> <span class="st">'staid'</span>)</span>
+<span id="cb59-2"><a href="#cb59-2"></a>have.gse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 2
+   staid count.na
+   &lt;chr&gt;    &lt;int&gt;
+ 1 T013U       11
+ 2 TT02         6
+ 3 TT04         6
+ 4 TT05         6
+ 5 TT07         6
+ 6 TT08         6
+ 7 TT09         6
+ 8 TT10         6
+ 9 TT17         6
+10 TT18         6
+11 TT37         6
+12 W059        12
+13 W103         9
+14 W104         1
+15 W371         8
+16 W381         2
+17 W382        11
+18 W389         3</code></pre>
+</div>
+</div>
+<p>110 staids with gse that can be joined</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>not_in_ovga <span class="ot">&lt;-</span> need.gse <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(ovga_points, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"staid"</span><span class="ot">=</span><span class="st">"mon_pt_name"</span>))</span>
+<span id="cb61-2"><a href="#cb61-2"></a>not_in_ovga</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# … with 2 variables: staid &lt;chr&gt;, count.na &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>out of 168 staids 142 of these not in ovga</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>in_ovga_gse <span class="ot">&lt;-</span> need.gse <span class="sc">%&gt;%</span> <span class="fu">semi_join</span>(ovga_points, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"staid"</span><span class="ot">=</span><span class="st">"mon_pt_name"</span>))</span>
+<span id="cb63-2"><a href="#cb63-2"></a></span>
+<span id="cb63-3"><a href="#cb63-3"></a>in_ovga_gse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# … with 2 variables: staid &lt;chr&gt;, count.na &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>26 in ovga that need gse joins</p>
+<p>total records from monitoring points missing rp elevations</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># total records</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a>na.rp.elev.tot <span class="ot">&lt;-</span> na.rp.elev <span class="sc">%&gt;%</span> </span>
+<span id="cb65-3"><a href="#cb65-3"></a>  <span class="fu">summarise</span>(<span class="at">count.na =</span> <span class="fu">sum</span>(count.na))</span>
+<span id="cb65-4"><a href="#cb65-4"></a></span>
+<span id="cb65-5"><a href="#cb65-5"></a><span class="co"># 453,119 records without rp.elev. with pt data</span></span>
+<span id="cb65-6"><a href="#cb65-6"></a><span class="co"># 36517 aggregated to daily</span></span>
+<span id="cb65-7"><a href="#cb65-7"></a>na.rp.elev.tot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  count.na
+     &lt;int&gt;
+1      117</code></pre>
+</div>
+</div>
+<p>filter records in the set corresponding to monitoring points without rp elevation</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>rpcheck <span class="ot">&lt;-</span> dtwrpavg.rpelev <span class="sc">%&gt;%</span> <span class="fu">semi_join</span>(na.rp.elev, <span class="at">by =</span> <span class="st">"staid"</span>)</span>
+<span id="cb67-2"><a href="#cb67-2"></a>rpcheck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 117 × 4
+# Groups:   staid, date [117]
+   staid date       rp_elev dtw.rp
+   &lt;chr&gt; &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;
+ 1 T013U 2021-10-29 &lt;NA&gt;      5.1 
+ 2 T013U 2021-11-18 &lt;NA&gt;      4.74
+ 3 T013U 2021-12-19 &lt;NA&gt;      4.26
+ 4 T013U 2022-01-20 &lt;NA&gt;      3.58
+ 5 T013U 2022-02-14 &lt;NA&gt;      3.1 
+ 6 T013U 2022-03-28 &lt;NA&gt;      3.01
+ 7 T013U 2022-05-25 &lt;NA&gt;      3.4 
+ 8 T013U 2022-06-09 &lt;NA&gt;      3.97
+ 9 T013U 2022-07-18 &lt;NA&gt;      4.9 
+10 T013U 2022-08-15 &lt;NA&gt;      4.97
+# … with 107 more rows</code></pre>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># 453,119 from 278 staids have no rp elevations</span></span>
+<span id="cb69-2"><a href="#cb69-2"></a><span class="co"># 36,517 aggregated to daily</span></span>
+<span id="cb69-3"><a href="#cb69-3"></a></span>
+<span id="cb69-4"><a href="#cb69-4"></a><span class="co"># we can filter out these staids for now, save the list and when rp elevations are updated we can add</span></span>
+<span id="cb69-5"><a href="#cb69-5"></a><span class="co"># the wells within OVGA area. 278 </span></span>
+<span id="cb69-6"><a href="#cb69-6"></a></span>
+<span id="cb69-7"><a href="#cb69-7"></a><span class="co"># which wells are etape or pressure transducer measured</span></span>
+<span id="cb69-8"><a href="#cb69-8"></a><span class="co"># infer based on number of measurements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Number of records from staids with rp elevations</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="co"># classify method by frequency of measurements. This count only valid for this 4-year set. annual updates would need a daily analysis. per kr, less than </span></span>
+<span id="cb70-2"><a href="#cb70-2"></a><span class="co"># record.number &lt;- dtwrp.rpelev %&gt;% </span></span>
+<span id="cb70-3"><a href="#cb70-3"></a><span class="co">#   filter(!is.na(rp_elev)) %&gt;% </span></span>
+<span id="cb70-4"><a href="#cb70-4"></a><span class="co">#   group_by(staid) %&gt;% </span></span>
+<span id="cb70-5"><a href="#cb70-5"></a><span class="co">#   summarise(count.with.rpe = n()) %&gt;% </span></span>
+<span id="cb70-6"><a href="#cb70-6"></a><span class="co">#   mutate(MMethod = case_when(count.with.rpe &gt;1000 ~ "TR",</span></span>
+<span id="cb70-7"><a href="#cb70-7"></a><span class="co">#                             count.with.rpe &lt;200~ "ES"))</span></span>
+<span id="cb70-8"><a href="#cb70-8"></a></span>
+<span id="cb70-9"><a href="#cb70-9"></a>record.number <span class="ot">&lt;-</span> dtwrp.rpelev <span class="sc">%&gt;%</span> </span>
+<span id="cb70-10"><a href="#cb70-10"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(rp_elev)) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-11"><a href="#cb70-11"></a>  <span class="fu">group_by</span>(staid) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-12"><a href="#cb70-12"></a>  <span class="fu">summarise</span>(<span class="at">count.with.rpe =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-13"><a href="#cb70-13"></a>  <span class="fu">mutate</span>(<span class="at">MMethod =</span> <span class="fu">case_when</span>(count.with.rpe <span class="sc">&gt;=</span> <span class="dv">48</span> <span class="sc">~</span> <span class="st">"TR"</span>,</span>
+<span id="cb70-14"><a href="#cb70-14"></a>                            count.with.rpe <span class="sc">&lt;</span> <span class="dv">48</span><span class="sc">~</span> <span class="st">"ES"</span>))</span>
+<span id="cb70-15"><a href="#cb70-15"></a></span>
+<span id="cb70-16"><a href="#cb70-16"></a></span>
+<span id="cb70-17"><a href="#cb70-17"></a>record.number <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="sc">-</span>count.with.rpe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 756 × 3
+   staid count.with.rpe MMethod
+   &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;  
+ 1 T752            8737 TR     
+ 2 T753            8737 TR     
+ 3 T754            8737 TR     
+ 4 T755            8737 TR     
+ 5 T756            8737 TR     
+ 6 T757            8737 TR     
+ 7 T759            8737 TR     
+ 8 T758            8036 TR     
+ 9 T733            4950 TR     
+10 V251            4117 TR     
+# … with 746 more rows</code></pre>
+</div>
+</div>
+<p>select only data with rp elevations</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="co"># d &lt;- dtwrp.rpelev %&gt;% left_join(dtwrpavg.rpelev, by = 'staid')</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a><span class="co"># anti_join returns all records in x that don't have a match in y</span></span>
+<span id="cb72-3"><a href="#cb72-3"></a>rpselect <span class="ot">&lt;-</span> dtwrpavg.rpelev <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(na.rp.elev, <span class="at">by =</span> <span class="st">"staid"</span>)</span>
+<span id="cb72-4"><a href="#cb72-4"></a><span class="co"># 204,487 records with rp elevations for upload</span></span>
+<span id="cb72-5"><a href="#cb72-5"></a></span>
+<span id="cb72-6"><a href="#cb72-6"></a><span class="co"># names(rpselect)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>use a semi_join filter to retain only monitoring points in the OVGA database.</p>
+<p>6,048 points including monitoring wells, pumping wells, surface water gauging stations.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># semi_join returns records in x with a match in y</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a>rpselect2 <span class="ot">&lt;-</span> rpselect <span class="sc">%&gt;%</span> <span class="fu">semi_join</span>(ovga_points, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"staid"</span><span class="ot">=</span><span class="st">"mon_pt_name"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="co"># methodinfer %&gt;% distinct()</span></span>
+<span id="cb74-2"><a href="#cb74-2"></a>methodinfer <span class="ot">&lt;-</span> record.number <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>count.with.rpe)</span>
+<span id="cb74-3"><a href="#cb74-3"></a><span class="co"># %&gt;% distinct(staid)</span></span>
+<span id="cb74-4"><a href="#cb74-4"></a></span>
+<span id="cb74-5"><a href="#cb74-5"></a>upload <span class="ot">&lt;-</span> rpselect2 <span class="sc">%&gt;%</span> </span>
+<span id="cb74-6"><a href="#cb74-6"></a>  <span class="fu">left_join</span>(methodinfer, <span class="at">by =</span> <span class="st">"staid"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-7"><a href="#cb74-7"></a>  <span class="co"># select(-latest_rp_date) %&gt;% </span></span>
+<span id="cb74-8"><a href="#cb74-8"></a>  <span class="fu">select</span>(<span class="at">WellName =</span> staid, </span>
+<span id="cb74-9"><a href="#cb74-9"></a>         <span class="at">DateMeasured =</span> date, </span>
+<span id="cb74-10"><a href="#cb74-10"></a>         <span class="at">DepthToWater =</span> dtw.rp, </span>
+<span id="cb74-11"><a href="#cb74-11"></a>         <span class="at">ReferencePointElevation =</span> rp_elev,</span>
+<span id="cb74-12"><a href="#cb74-12"></a>         MMethod) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-13"><a href="#cb74-13"></a>  <span class="fu">mutate</span>(<span class="at">ExclusionCondition =</span> <span class="st">""</span> ,</span>
+<span id="cb74-14"><a href="#cb74-14"></a>         <span class="at">QAQCLevel =</span> <span class="st">"High"</span>,</span>
+<span id="cb74-15"><a href="#cb74-15"></a>         <span class="at">MeasMethod =</span> MMethod,<span class="co"># from join above</span></span>
+<span id="cb74-16"><a href="#cb74-16"></a>         <span class="at">NoMeasFlag =</span> <span class="st">""</span>,</span>
+<span id="cb74-17"><a href="#cb74-17"></a>         <span class="at">QuestMeasFlag =</span> <span class="st">""</span>,</span>
+<span id="cb74-18"><a href="#cb74-18"></a>         <span class="at">DataSource =</span> <span class="st">"LADWP"</span>,</span>
+<span id="cb74-19"><a href="#cb74-19"></a>         <span class="at">Notes =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-20"><a href="#cb74-20"></a>  <span class="fu">select</span>(<span class="sc">-</span>MMethod)<span class="sc">%&gt;%</span> </span>
+<span id="cb74-21"><a href="#cb74-21"></a>  <span class="fu">filter</span>(DepthToWater <span class="sc">&lt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DepthToWater) <span class="sc">&amp;</span> DepthToWater <span class="sc">!=</span> <span class="st">'NA'</span> <span class="sc">&amp;</span> DepthToWater <span class="sc">!=</span> <span class="sc">-</span><span class="dv">777</span> <span class="sc">&amp;</span> ReferencePointElevation <span class="sc">!=</span><span class="dv">0</span>)</span>
+<span id="cb74-22"><a href="#cb74-22"></a><span class="co"># need to pull out RPE = 0 and add to the set without measured RPE</span></span>
+<span id="cb74-23"><a href="#cb74-23"></a></span>
+<span id="cb74-24"><a href="#cb74-24"></a><span class="co"># </span></span>
+<span id="cb74-25"><a href="#cb74-25"></a>upload </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15,696 × 11
+# Groups:   WellName, DateMeasured [15,696]
+   WellName DateMeasured Depth…¹ Refer…² Exclu…³ QAQCL…⁴ MeasM…⁵ NoMea…⁶ Quest…⁷
+   &lt;chr&gt;    &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1 F033     2022-01-07      4.55 3833.5  ""      High    ES      ""      ""     
+ 2 F033     2022-02-09      4.57 3833.5  ""      High    ES      ""      ""     
+ 3 F033     2022-03-09      4.57 3833.5  ""      High    ES      ""      ""     
+ 4 F033     2022-04-05      4.57 3833.5  ""      High    ES      ""      ""     
+ 5 F033     2022-05-05      4.57 3833.5  ""      High    ES      ""      ""     
+ 6 F033     2022-06-01      4.57 3833.5  ""      High    ES      ""      ""     
+ 7 F033     2022-07-07      4.57 3833.5  ""      High    ES      ""      ""     
+ 8 F033     2022-08-02      4.57 3833.5  ""      High    ES      ""      ""     
+ 9 F033     2022-09-07      4.57 3833.5  ""      High    ES      ""      ""     
+10 F035     2022-01-07     10.4  3834.6… ""      High    ES      ""      ""     
+# … with 15,686 more rows, 2 more variables: DataSource &lt;chr&gt;, Notes &lt;chr&gt;, and
+#   abbreviated variable names ¹​DepthToWater, ²​ReferencePointElevation,
+#   ³​ExclusionCondition, ⁴​QAQCLevel, ⁵​MeasMethod, ⁶​NoMeasFlag, ⁷​QuestMeasFlag</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="co"># remove 30 rows of NA and -777</span></span>
+<span id="cb76-2"><a href="#cb76-2"></a>upload <span class="sc">%&gt;%</span> <span class="fu">write_csv</span>(<span class="st">"ovga_uploads_mw_with_rpe_102021_092022_zn.csv"</span>)</span>
+<span id="cb76-3"><a href="#cb76-3"></a><span class="co"># upload %&gt;% write_csv("ovga_uploads_mw_with_rpe_102017_092021_zn4.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>F122 has rp of zero. filter out faulty rp data entry errors with 0 for rp zero use GSE, so create elevation bracket filter to exclude erroneous entries and default to using GSE.</p>
+<p>need to split out electronic pressure transducer (TR) vs electric sounder measurement (ES)</p>
+</section></section><section id="gla-data-depth-to-water-import-procedures" class="level1" data-number="9"><h1 data-number="9">
+<span class="header-section-number">9</span> GLA Data Depth to Water Import Procedures</h1>
+<p>A blank template for importing ground water elevation data into the GLA Data Web application can be downloaded from this location:</p>
+<p>https://owens.gladata.com/d2wImportTemplate.xlsx</p>
+<p>Excel Workbook Format</p>
+<p>The uploaded Excel Workbook must be an Excel Workbook file and must contain one and exactly one spreadsheet. That spreadsheet must contain exactly 11 columns with the following names in this exact order:</p>
+<p><strong>Any violation of the above rules causes the entire upload to be rejected.</strong></p>
+<p><em>WellName</em> The WellName column is required and must contain the name of a monitoring point within the basin selected when the file was uploaded.</p>
+<p><em>DateMeasured</em> The DateMeasured column is required. The field must be a date and can not be in the future nor more than 100 years in the past.</p>
+<p><em>DepthToWater</em> This column must be blank or numeric. DepthToWater is the number of feet from the reference point. If blank, ExclusionCondition is required and ReferencePointElevation must also be blank.</p>
+<p>why import if depth to water is blank</p>
+<p><em>ReferencePointElevation</em> This column must be blank or numeric. ReferencePointElevation is the elevation in feet. If blank, ExclusionCondition is required and DepthToWater must also be blank.</p>
+<p><em>ExclusionCondition</em> This column must be blank or contain the text “Dry”, “Pumping” or “See Note”. If blank, DepthToWater and ReferencePointElevation are required. If it contains one of the supported values, DepthToWater and ReferencePointElevation must be blank.</p>
+<p><em>QAQCLevel</em> This field is required and must be one of the following values: High, Medium, Low, Undecided.</p>
+<p><em>MeasMethod</em> This field is required and must be one of the values in the accompanying lookup table.</p>
+<p><em>NoMeasFlag</em> This field must be blank or be one of the values in the accompanying lookup table.</p>
+<p><em>QuestMeasFlag</em> This field must be blank or be one of the values in the accompanying lookup table.</p>
+<p><em>DataSource</em> This field must be blank or be one of the values in the accompanying lookup table.</p>
+<p><em>Procedure</em> If the upload contains any rows that violate these rules, the entire upload fails and the row and reason for the violation are reported to the user. If the upload contains no violations, the user is presented with a preview of all the rows with the calculated ground water elevation that will be added and is prompted to confirm the import.</p>
+
+
+</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>this should work for the next 977 years until Y3K<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@report{nelson2022,
+  author = {Zach Nelson},
+  publisher = {Inyo County Water Department},
+  title = {Steps to Update {ICWD’s} Monitoring Well Database from
+    {LADWP} {Water} {Year} {Data} {Transfer}},
+  volume = {1},
+  date = {2022-12-05},
+  url = {https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-nelson2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Zach Nelson. 2022. <span>“Steps to Update ICWD’s Monitoring Well
+Database from LADWP Water Year Data Transfer.”</span> <em>Open Science
+Notebook</em>. Vol. 1. Inyo County Water Department. <a href="https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/">https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/</a>.
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
