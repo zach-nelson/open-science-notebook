@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.49">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Zach Nelson">
+<meta name="dcterms.date" content="2022-12-05">
+<meta name="description" content="Methods recorded in code to make future improvements accessible">
+<title>Open Science Notebook - Greenbook section III.A.1. Calculation of Vegetation Water Requirement</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<script src="../../site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="../../site_libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="../../site_libs/vis-9.1.0/vis-network.min.js"></script><script src="../../site_libs/visNetwork-binding-2.1.2/visNetwork.js"></script><link href="../../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="../../site_libs/datatables-binding-0.26/datatables.js"></script><script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="../../site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../../site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="../../site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="../../site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="../../site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="../../site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="../../site_libs/selectize-0.12.0/selectize.min.js"></script><link href="../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link rel="stylesheet" href="../../styles.css">
+<meta name="citation_title" content="Greenbook section III.A.1. Calculation of Vegetation Water Requirement">
+<meta name="citation_author" content="Zach Nelson">
+<meta name="citation_publication_date" content="2022-12-05">
+<meta name="citation_cover_date" content="2022-12-05">
+<meta name="citation_year" content="2022">
+<meta name="citation_online_date" content="2022-12-05">
+<meta name="citation_fulltext_html_url" content="https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/">
+<meta name="citation_volume" content="1">
+<meta name="citation_language" content="en">
+<meta name="citation_technical_report_institution" content="Inyo County Water Department">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Open Science Notebook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About this notebook</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/zach-nelson/open-science-notebook" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml" rel="" target=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="toc-section-number">1</span>  Purpose</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">2</span>  Functions</a></li>
+  <li><a href="#data-pipeline" id="toc-data-pipeline" class="nav-link" data-scroll-target="#data-pipeline"><span class="toc-section-number">3</span>  Data Pipeline</a></li>
+  <li><a href="#incoming-data" id="toc-incoming-data" class="nav-link" data-scroll-target="#incoming-data"><span class="toc-section-number">4</span>  Incoming Data</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data"><span class="toc-section-number">5</span>  Tidy Data</a></li>
+  <li><a href="#weighted-average-vwrlai" id="toc-weighted-average-vwrlai" class="nav-link" data-scroll-target="#weighted-average-vwrlai"><span class="toc-section-number">6</span>  Weighted average VWR/LAI</a></li>
+  <li><a href="#species-level-vwr" id="toc-species-level-vwr" class="nav-link" data-scroll-target="#species-level-vwr"><span class="toc-section-number">7</span>  Species level VWR</a></li>
+  <li><a href="#site-level-vwr" id="toc-site-level-vwr" class="nav-link" data-scroll-target="#site-level-vwr"><span class="toc-section-number">8</span>  Site-level VWR</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Greenbook section III.A.1. Calculation of Vegetation Water Requirement</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">On/Off Pumping Management</div>
+    <div class="quarto-category">Green Book</div>
+    <div class="quarto-category">Vegetation Water Requirement</div>
+    <div class="quarto-category">point frame</div>
+    <div class="quarto-category">LAI</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Methods recorded in code to make future improvements accessible</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zach Nelson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 5, 2022</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 17, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header><section id="purpose" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Purpose</h1>
+<p>The Water Agreement and Green Book established procedures to determine which LADWP pumping wells can be operated based vegetation water requirements. As part of the monitoring effort for the Agreement, the Water Department regularly measures soil water content and vegetation leaf area index (with LADWP) to estimate vegetation water needs at 22 permanent sites located in wellfields and eight sites in control areas. Soil water monitoring is conducted monthly and vegetation monitoring is conducted annually in June.</p>
+<p>Each monitoring site is linked to one or more LADWP pumping wells.</p>
+<iframe src="https://www.arcgis.com/apps/dashboards/cc4c1795b7f946df832ee4fa2a87d616" height="500" width="800" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1">
+</iframe>
+<p>https://www.arcgis.com/apps/dashboards/cc4c1795b7f946df832ee4fa2a87d616</p>
+<p>On July 1 and October 1, if the soil water is insufficient to meet the needs of the vegetation at a site, the linked pumping wells cannot be operated. The wells must remain off until the soil water exceeds the amount required by the vegetation at the time the wells went off. This is referred to as the On/Off management strategy. During much of the period since this management was implemented in 1990, LADWP has not operated numerous wells in On status in accordance with subsequent agreements with the County.</p>
+<p>This website documents the code used to calculate the vegetation water requirements from the annual vegetation monitoring at on/off permanent vegetation transects.</p>
+<p>This documentation is written in R Markdown and the analysis is documented using the <code>targets</code> R package (version 0.4.2)[https://docs.ropensci.org/targets/]. The <code>targets</code> package provides tools to construct a dependency aware analysis pipeline allowing automatic tracking of upstream changes to files which informs which processes are out of date and limits updates to only those downstream dependencies. Using targets also has the nice byproduct of forcing a functional programming setup over a potentially redundant imperative style, which should make the code easier to maintain with abstracted functions in a single functions file or declared in the targets file if simple enough.</p>
+<p>Below is an example of the <code>_targets.R</code> file</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># load the function libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(targets)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(tarchetypes)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(DT)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># source the custom functions for the pipeline</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">source</span>(<span class="st">"code/R/functions.R"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">tar_option_set</span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="at">packages =</span> <span class="fu">c</span>(</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="st">"tidyverse"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="st">"stringr"</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  )</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># Here we string together the pipeline in a list</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="fu">list</span>(</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="co"># set the year we are working with</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="fu">tar_target</span>(cYear, <span class="dv">2022</span>),</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  </span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="co"># set the file names to watch for changes </span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="co"># point_frame_`cYear`.csv is a dynamic target and will be updated when the cYear is</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="co"># changed in annual updates</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>  </span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="co"># vwr max lookup table</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  <span class="fu">tar_target</span>(vwrmax_file, <span class="st">"data/vwr_max_lookup.csv"</span>, <span class="at">format =</span> <span class="st">"file"</span>),</span>
+<span id="cb1-27"><a href="#cb1-27"></a>  </span>
+<span id="cb1-28"><a href="#cb1-28"></a>  <span class="co"># site soil conditions influencing water holding capacity</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>  <span class="fu">tar_target</span>(sitesoil_file, <span class="st">"data/vwr_site_soil_designation.csv"</span>, <span class="at">format =</span> <span class="st">"file"</span>),</span>
+<span id="cb1-30"><a href="#cb1-30"></a>  </span>
+<span id="cb1-31"><a href="#cb1-31"></a>  <span class="co"># updated with cYear (current year) parameter and dictates which year is calculated.</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>  <span class="fu">tar_target</span>(pointframe_file, <span class="fu">paste0</span>(<span class="st">"data/point_frame_"</span>,cYear,<span class="st">".csv"</span>), <span class="at">format =</span> <span class="st">"file"</span>),</span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
+<span id="cb1-34"><a href="#cb1-34"></a>  <span class="co"># read the data from files specified above</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>  <span class="co"># if the file has changed since the last tar_make(), read in the updated file</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>  <span class="fu">tar_target</span>(vwrmax_lookt, <span class="fu">read.csv</span>(vwrmax_file)),</span>
+<span id="cb1-37"><a href="#cb1-37"></a>  <span class="fu">tar_target</span>(sitesoil, <span class="fu">read.csv</span>(sitesoil_file)),</span>
+<span id="cb1-38"><a href="#cb1-38"></a>  <span class="fu">tar_target</span>(pointframe_wide, <span class="fu">read.csv</span>(pointframe_file)),</span>
+<span id="cb1-39"><a href="#cb1-39"></a></span>
+<span id="cb1-40"><a href="#cb1-40"></a>  <span class="co"># wrangling - tidy point frame data</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>  <span class="fu">tar_target</span>(pointframe_long, <span class="fu">gather</span>(pointframe_wide, species, all.hits, SPAI<span class="sc">:</span>OTHER)),</span>
+<span id="cb1-42"><a href="#cb1-42"></a>  </span>
+<span id="cb1-43"><a href="#cb1-43"></a>  <span class="co"># calculate LAI from species cover rows - greenbook formula .5 extinction coefficient</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a>  <span class="fu">tar_target</span>(pointframe_lai, <span class="fu">mutate</span>(pointframe_long, <span class="at">lai =</span> all.hits<span class="sc">/</span><span class="dv">334</span> <span class="sc">*</span> <span class="dv">2</span>)),</span>
+<span id="cb1-45"><a href="#cb1-45"></a></span>
+<span id="cb1-46"><a href="#cb1-46"></a>  <span class="co"># Join columns, site soil, lai, vwr max lookup values</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a>  <span class="fu">tar_target</span>(lai_ss, <span class="fu">left_join</span>(sitesoil,pointframe_lai, <span class="at">by =</span> <span class="st">"site"</span>)),</span>
+<span id="cb1-48"><a href="#cb1-48"></a>  <span class="fu">tar_target</span>(lai_ss_vwrmax,<span class="fu">left_join</span>(lai_ss,vwrmax_lookt, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'soil'</span>,<span class="st">'species'</span>))),</span>
+<span id="cb1-49"><a href="#cb1-49"></a></span>
+<span id="cb1-50"><a href="#cb1-50"></a>  <span class="co"># calculate vwr of six primary species</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a>  <span class="fu">tar_target</span>(vwr, <span class="fu">mutate</span>(lai_ss_vwrmax,<span class="at">vwr =</span> lai<span class="sc">*</span>vwr_at_lai_max)),</span>
+<span id="cb1-52"><a href="#cb1-52"></a>  </span>
+<span id="cb1-53"><a href="#cb1-53"></a>  <span class="co"># calculate weighted average of six species VWR/LAI for each site</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a>  <span class="fu">tar_target</span>(weighted.avg., <span class="fu">weighted_avg</span>(vwr)),</span>
+<span id="cb1-55"><a href="#cb1-55"></a></span>
+<span id="cb1-56"><a href="#cb1-56"></a>  <span class="co"># joins the weighted average and calcs vwr for other category</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a>  <span class="co"># creates new column containing both vwr for each species and the other column</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a>  <span class="co"># creates new site column as factor with levels corresponding north to south </span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>  <span class="co"># following VWR excel table.</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a>  <span class="fu">tar_target</span>(vwr.total,<span class="fu">vwr_total</span>(vwr,weighted.avg.)),</span>
+<span id="cb1-61"><a href="#cb1-61"></a></span>
+<span id="cb1-62"><a href="#cb1-62"></a>  <span class="co"># view wider with period (july, oct) as columns following VWR excel table.</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a>  <span class="fu">tar_target</span>(vwr.wide.period, <span class="fu">vwr_site_total_period</span>(vwr.total, cYear))</span>
+<span id="cb1-64"><a href="#cb1-64"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="functions" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Functions</h1>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#' calculate weighted average vwr per lai </span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#' for the non-focal species without T rates</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#'</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#' @param vwr</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#'</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#' @return weighted average vwr per leaf area index dataframe</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>weighted_avg <span class="ot">&lt;-</span> <span class="cf">function</span>(vwr){</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  vwr <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">'OTHER'</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(all.hits <span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">group_by</span>(site,period) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="fu">summarise</span>(<span class="at">w_avg_vwr_per_lai =</span> <span class="fu">sum</span>(vwr)<span class="sc">/</span><span class="fu">sum</span>(lai)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="fu">mutate</span>(<span class="at">species =</span> <span class="st">'OTHER'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a>}</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#' join vwr and weighted avg vwr for 'other species' total and total the two for a </span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#'</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#' @param vwr</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#' @param weighted.avg.</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#'</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#' @return vwr totals in dataframe</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#' @export</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#'</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="co">#' @examples</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>vwr_total <span class="ot">&lt;-</span> <span class="cf">function</span>(vwr, weighted.avg.){</span>
+<span id="cb2-25"><a href="#cb2-25"></a>  vwr <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(weighted.avg., <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'site'</span>, <span class="st">'species'</span>, <span class="st">'period'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>    <span class="fu">mutate</span>(<span class="at">other.vwr =</span> w_avg_vwr_per_lai <span class="sc">*</span> lai,</span>
+<span id="cb2-27"><a href="#cb2-27"></a>           <span class="at">total.vwr =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(vwr)<span class="sc">~</span>vwr,</span>
+<span id="cb2-28"><a href="#cb2-28"></a>                                 <span class="sc">!</span><span class="fu">is.na</span>(other.vwr)<span class="sc">~</span>other.vwr),</span>
+<span id="cb2-29"><a href="#cb2-29"></a>           <span class="at">site.f =</span> <span class="fu">factor</span>(site, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"LW1"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30"></a>                                            <span class="st">"LW2"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31"></a>                                            <span class="st">"LW3"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32"></a>                                            <span class="st">"BC1"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33"></a>                                            <span class="st">"BC2"</span>,</span>
+<span id="cb2-34"><a href="#cb2-34"></a>                                            <span class="st">"BC3"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35"></a>                                            <span class="st">"BP1"</span>,</span>
+<span id="cb2-36"><a href="#cb2-36"></a>                                            <span class="st">"BP2"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37"></a>                                            <span class="st">"BP3"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38"></a>                                            <span class="st">"BP4"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39"></a>                                            <span class="st">"TA3"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40"></a>                                            <span class="st">"TA4"</span>,</span>
+<span id="cb2-41"><a href="#cb2-41"></a>                                            <span class="st">"TA5"</span>,</span>
+<span id="cb2-42"><a href="#cb2-42"></a>                                            <span class="st">"TA6"</span>,</span>
+<span id="cb2-43"><a href="#cb2-43"></a>                                            <span class="st">"TAC"</span>,</span>
+<span id="cb2-44"><a href="#cb2-44"></a>                                            <span class="st">"TS1"</span>,</span>
+<span id="cb2-45"><a href="#cb2-45"></a>                                            <span class="st">"TS2"</span>,</span>
+<span id="cb2-46"><a href="#cb2-46"></a>                                            <span class="st">"TS3"</span>,</span>
+<span id="cb2-47"><a href="#cb2-47"></a>                                            <span class="st">"TS4"</span>,</span>
+<span id="cb2-48"><a href="#cb2-48"></a>                                            <span class="st">"TSC"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49"></a>                                            <span class="st">"IO1"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50"></a>                                            <span class="st">"IO2"</span>,</span>
+<span id="cb2-51"><a href="#cb2-51"></a>                                            <span class="st">"IC1"</span>,</span>
+<span id="cb2-52"><a href="#cb2-52"></a>                                            <span class="st">"IC2"</span>,</span>
+<span id="cb2-53"><a href="#cb2-53"></a>                                            <span class="st">"SS1"</span>,</span>
+<span id="cb2-54"><a href="#cb2-54"></a>                                            <span class="st">"SS2"</span>,</span>
+<span id="cb2-55"><a href="#cb2-55"></a>                                            <span class="st">"SS3"</span>,</span>
+<span id="cb2-56"><a href="#cb2-56"></a>                                            <span class="st">"SS4"</span>,</span>
+<span id="cb2-57"><a href="#cb2-57"></a>                                            <span class="st">"BG2"</span>,</span>
+<span id="cb2-58"><a href="#cb2-58"></a>                                            <span class="st">"BGC"</span>)</span>
+<span id="cb2-59"><a href="#cb2-59"></a>                           )</span>
+<span id="cb2-60"><a href="#cb2-60"></a>    )</span>
+<span id="cb2-61"><a href="#cb2-61"></a></span>
+<span id="cb2-62"><a href="#cb2-62"></a>}</span>
+<span id="cb2-63"><a href="#cb2-63"></a></span>
+<span id="cb2-64"><a href="#cb2-64"></a></span>
+<span id="cb2-65"><a href="#cb2-65"></a><span class="co">#' total VWR from species to site level</span></span>
+<span id="cb2-66"><a href="#cb2-66"></a><span class="co">#' and for each period</span></span>
+<span id="cb2-67"><a href="#cb2-67"></a><span class="co">#' @param vwr.total </span></span>
+<span id="cb2-68"><a href="#cb2-68"></a><span class="co">#' @param cYear </span></span>
+<span id="cb2-69"><a href="#cb2-69"></a><span class="co">#'</span></span>
+<span id="cb2-70"><a href="#cb2-70"></a><span class="co">#' @return wide data frame with period as columns and VWR by site rows</span></span>
+<span id="cb2-71"><a href="#cb2-71"></a><span class="co">#' @export</span></span>
+<span id="cb2-72"><a href="#cb2-72"></a><span class="co">#'</span></span>
+<span id="cb2-73"><a href="#cb2-73"></a><span class="co">#' @examples</span></span>
+<span id="cb2-74"><a href="#cb2-74"></a>vwr_site_total_period <span class="ot">&lt;-</span> <span class="cf">function</span>(vwr.total,cYear){</span>
+<span id="cb2-75"><a href="#cb2-75"></a>  vwr.total <span class="sc">%&gt;%</span> <span class="fu">filter</span>(all.hits <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-76"><a href="#cb2-76"></a>  <span class="fu">select</span>(site.f,period,species,lai,total.vwr) <span class="sc">%&gt;%</span></span>
+<span id="cb2-77"><a href="#cb2-77"></a>  <span class="fu">group_by</span>(site.f,period) <span class="sc">%&gt;%</span></span>
+<span id="cb2-78"><a href="#cb2-78"></a>  <span class="fu">summarise</span>(<span class="at">site.vwr =</span> <span class="fu">sum</span>(total.vwr)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-79"><a href="#cb2-79"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> period, <span class="at">values_from =</span> site.vwr)</span>
+<span id="cb2-80"><a href="#cb2-80"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="data-pipeline" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Data Pipeline</h1>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.1     ✔ purrr   1.0.1
+✔ tibble  3.1.8     ✔ dplyr   1.1.0
+✔ tidyr   1.3.0     ✔ stringr 1.5.0
+✔ readr   2.1.3     ✔ forcats 0.5.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+here() starts at /Users/zac/Documents/projects/open-science-notebook
+Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE
+Loading required package: ggpp
+
+Attaching package: ‘ggpp’
+
+The following object is masked from ‘package:ggplot2’:
+
+    annotate</code></pre>
+</div>
+<div class="cell-output-display">
+
+<div class="visNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-77d3a6abb70cbe312cc2" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-77d3a6abb70cbe312cc2">{"x":{"nodes":{"name":["attributes","attributes_file","attributes_pfix","attributes_reinv","boxplot.w.c","canals_shp","canals_shp_file","cYear","deltas_ttest_att","dtw","dtw_file","dtw_pfix","icwd_file","icwd_ladwp_bind","icwd_ladwp_output_csv","icwd_long","icwd_output_csv","icwd_processed","icwd_wide","laa_shp","laa_shp_file","ladwp_file","ladwp_long","ladwp_output_csv","ladwp_processed","lai_ss","lai_ss_vwrmax","lakes_shp","lakes_shp_file","long_combined_nl_csv","lpt_long_no_lela","lpt_long_no_lela_pfix","lpt_prev_master","lpt_prev_master_file","lpt_updated_master","lpt_updated_master_csv","monsites_shp","monsites_shp_file","n_parcels_all_years","n_parcels_sampled","n_transects_sampled","or_shp","or_shp_file","panel_map_bg","panel_map_bp","panel_map_io","panel_map_lw","panel_map_ss","panel_map_ta","panel_map_ts","parcel_datatable","parcel_datatable_chronic","parcel_datatable_significant","parcel_test_sums","parcel_year_meta","parcel_year_meta_1samp","parcel_year_meta_1samp_results","parcel_year_meta_1samp_results_grass","parcel_year_meta_2samp","parcel_year_meta_2samp_results","parcel_year_meta_2samp_results_grass","parcel_year_meta_combined_results","parcels","parcels_deltas","parcels_deltas_yoy","parcels_shp","parcels_shp_file","parcels_shp_ttest","plot_wellcontrol","pointframe_file","pointframe_lai","pointframe_long","pointframe_wide","pYear","rs","rs_file","rs_pfix","sitesoil","sitesoil_file","species","species_file","streams_shp","streams_shp_file","transects","trends.w.c","vwr","vwr.total","vwr.wide.period","vwrmax_file","vwrmax_lookt","weighted.avg","wellcont_means","wellcont_means_rarefied","wvcom","wvcom_file","wvcom_pfix","plot.perennial.cover","count_transects_cyear","t2samp_grass","plot_1samptest_timeseries","parcel_testadd_sums","wellfield_control_means","count_wellfield_control_parcels","dyBarChart","presAnnotation","compute_trend_well_cont","vwr_site_total_period","wellfield_control_means_rarefied","plot.ppt","dyCrosshair","make_parcel_data_table_significant","mult_to_single_parcel_name","save_master_csv_and_return_path","add_parcel_deltas_yoy","plot.ndvi","plot_wellfield_control","vwr_total","t1samp","count_parcels_all_years","plot.dtw","plot.perennial.grass","make_parcel_data_table_chronic","plot_2samptest_timeseries","summarise_to_transect","boxplot_well_cont","t2samp","make_parcel_data_table","weighted_avg","save_csv_and_return_path","plot_wtbm","grass_map","panel_map","filt_lela","compare_photo_2015_17_21","compare_photo_2015_2021","count_parcels_cyear","join_summaries","nest_transects","t1samp_grass","bindttest_count_sig_runs","add_parcel_deltas","ndvi_dygraph_parcel_plot","add_species_agency_plotid","pivot_longer_icwd","boxplot_wc_pft_year_statcompare","panel_map_view","summarise_to_parcel","two_sample_ttest_grass","monthly_flow_syncplot_staid","monthly_flow_syncplot","monthly_pumping_syncplot","ndvi_dtw_syncplot","lpt_pft_syncplot","ppt_syncplot","dtw_syncplot","ndvi_syncplot","one_sample_ttest","five_row_timeseries","two_sample_ttest","one_sample_ttest_grass"],"type":["stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function","function"],"status":["uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate"],"seconds":[0.003,0,0,0.007,0.073,0.003,0,0.001,0.107,0.048,0,0.001,0,0.003,0.014,0.025,0.017,0.049,0.004,0.01,0,0,0.002,0.064,0.025,0.06,0.026,0.004,0,0.22,0.238,0.232,2.115,0,0.243,0.087,0.037,0,0.033,0.002,0.005,0.007,0.001,0.012,0.011,0.016,0.009,0.025,0.056,0.014,0.106,0.051,0.169,0.012,0.314,0.002,1.914,2.306,0.003,3.291,3.373,0.044,0.14,0.259,0.179,0.05,0.001,0.009,0.008,0,0.024,0.006,0,0,0.088,0,0.001,0.001,0.001,0.007,0,0.003,0,462.353,0.023,0.006,0.021,0.029,0.001,0.003,0.035,0.014,0.056,0.001,0,0.014,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"bytes":[15749,66524,15659,12441,313209,25729,31556,53,19210,552204,1298870,552081,85510,99731,2899401,15992,2354640,64947,12220,11033,12056,65274,13850,544916,35729,1023,1432,84893,111148,74098131,2535456,2533906,2332298,71515440,2537617,74414686,2217,6288,291,49,51,228383,283500,877903,903355,888177,939382,883355,915856,903582,11168,4899,5850,3047,981478,336331,449351,445211,638906,859369,853342,2577652,175037,226587,16204,356298,3029040,394253,72314,561,1005,536,477,53,943862,1925611,943673,238,311,59704,304221,76972,91620,969375,98409,2444,3840,1038,596,325,1034,2737,2649,1832,6536,1826,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"branches":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"label":["attributes","attributes_file","attributes_pfix","attributes_reinv","boxplot.w.c","canals_shp","canals_shp_file","cYear","deltas_ttest_att","dtw","dtw_file","dtw_pfix","icwd_file","icwd_ladwp_bind","icwd_ladwp_output_csv","icwd_long","icwd_output_csv","icwd_processed","icwd_wide","laa_shp","laa_shp_file","ladwp_file","ladwp_long","ladwp_output_csv","ladwp_processed","lai_ss","lai_ss_vwrmax","lakes_shp","lakes_shp_file","long_combined_nl_csv","lpt_long_no_lela","lpt_long_no_lela_pfix","lpt_prev_master","lpt_prev_master_file","lpt_updated_master","lpt_updated_master_csv","monsites_shp","monsites_shp_file","n_parcels_all_years","n_parcels_sampled","n_transects_sampled","or_shp","or_shp_file","panel_map_bg","panel_map_bp","panel_map_io","panel_map_lw","panel_map_ss","panel_map_ta","panel_map_ts","parcel_datatable","parcel_datatable_chronic","parcel_datatable_significant","parcel_test_sums","parcel_year_meta","parcel_year_meta_1samp","parcel_year_meta_1samp_results","parcel_year_meta_1samp_results_grass","parcel_year_meta_2samp","parcel_year_meta_2samp_results","parcel_year_meta_2samp_results_grass","parcel_year_meta_combined_results","parcels","parcels_deltas","parcels_deltas_yoy","parcels_shp","parcels_shp_file","parcels_shp_ttest","plot_wellcontrol","pointframe_file","pointframe_lai","pointframe_long","pointframe_wide","pYear","rs","rs_file","rs_pfix","sitesoil","sitesoil_file","species","species_file","streams_shp","streams_shp_file","transects","trends.w.c","vwr","vwr.total","vwr.wide.period","vwrmax_file","vwrmax_lookt","weighted.avg","wellcont_means","wellcont_means_rarefied","wvcom","wvcom_file","wvcom_pfix","plot.perennial.cover","count_transects_cyear","t2samp_grass","plot_1samptest_timeseries","parcel_testadd_sums","wellfield_control_means","count_wellfield_control_parcels","dyBarChart","presAnnotation","compute_trend_well_cont","vwr_site_total_period","wellfield_control_means_rarefied","plot.ppt","dyCrosshair","make_parcel_data_table_significant","mult_to_single_parcel_name","save_master_csv_and_return_path","add_parcel_deltas_yoy","plot.ndvi","plot_wellfield_control","vwr_total","t1samp","count_parcels_all_years","plot.dtw","plot.perennial.grass","make_parcel_data_table_chronic","plot_2samptest_timeseries","summarise_to_transect","boxplot_well_cont","t2samp","make_parcel_data_table","weighted_avg","save_csv_and_return_path","plot_wtbm","grass_map","panel_map","filt_lela","compare_photo_2015_17_21","compare_photo_2015_2021","count_parcels_cyear","join_summaries","nest_transects","t1samp_grass","bindttest_count_sig_runs","add_parcel_deltas","ndvi_dygraph_parcel_plot","add_species_agency_plotid","pivot_longer_icwd","boxplot_wc_pft_year_statcompare","panel_map_view","summarise_to_parcel","two_sample_ttest_grass","monthly_flow_syncplot_staid","monthly_flow_syncplot","monthly_pumping_syncplot","ndvi_dtw_syncplot","lpt_pft_syncplot","ppt_syncplot","dtw_syncplot","ndvi_syncplot","one_sample_ttest","five_row_timeseries","two_sample_ttest","one_sample_ttest_grass"],"color":["#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823"],"id":["attributes","attributes_file","attributes_pfix","attributes_reinv","boxplot.w.c","canals_shp","canals_shp_file","cYear","deltas_ttest_att","dtw","dtw_file","dtw_pfix","icwd_file","icwd_ladwp_bind","icwd_ladwp_output_csv","icwd_long","icwd_output_csv","icwd_processed","icwd_wide","laa_shp","laa_shp_file","ladwp_file","ladwp_long","ladwp_output_csv","ladwp_processed","lai_ss","lai_ss_vwrmax","lakes_shp","lakes_shp_file","long_combined_nl_csv","lpt_long_no_lela","lpt_long_no_lela_pfix","lpt_prev_master","lpt_prev_master_file","lpt_updated_master","lpt_updated_master_csv","monsites_shp","monsites_shp_file","n_parcels_all_years","n_parcels_sampled","n_transects_sampled","or_shp","or_shp_file","panel_map_bg","panel_map_bp","panel_map_io","panel_map_lw","panel_map_ss","panel_map_ta","panel_map_ts","parcel_datatable","parcel_datatable_chronic","parcel_datatable_significant","parcel_test_sums","parcel_year_meta","parcel_year_meta_1samp","parcel_year_meta_1samp_results","parcel_year_meta_1samp_results_grass","parcel_year_meta_2samp","parcel_year_meta_2samp_results","parcel_year_meta_2samp_results_grass","parcel_year_meta_combined_results","parcels","parcels_deltas","parcels_deltas_yoy","parcels_shp","parcels_shp_file","parcels_shp_ttest","plot_wellcontrol","pointframe_file","pointframe_lai","pointframe_long","pointframe_wide","pYear","rs","rs_file","rs_pfix","sitesoil","sitesoil_file","species","species_file","streams_shp","streams_shp_file","transects","trends.w.c","vwr","vwr.total","vwr.wide.period","vwrmax_file","vwrmax_lookt","weighted.avg","wellcont_means","wellcont_means_rarefied","wvcom","wvcom_file","wvcom_pfix","plot.perennial.cover","count_transects_cyear","t2samp_grass","plot_1samptest_timeseries","parcel_testadd_sums","wellfield_control_means","count_wellfield_control_parcels","dyBarChart","presAnnotation","compute_trend_well_cont","vwr_site_total_period","wellfield_control_means_rarefied","plot.ppt","dyCrosshair","make_parcel_data_table_significant","mult_to_single_parcel_name","save_master_csv_and_return_path","add_parcel_deltas_yoy","plot.ndvi","plot_wellfield_control","vwr_total","t1samp","count_parcels_all_years","plot.dtw","plot.perennial.grass","make_parcel_data_table_chronic","plot_2samptest_timeseries","summarise_to_transect","boxplot_well_cont","t2samp","make_parcel_data_table","weighted_avg","save_csv_and_return_path","plot_wtbm","grass_map","panel_map","filt_lela","compare_photo_2015_17_21","compare_photo_2015_2021","count_parcels_cyear","join_summaries","nest_transects","t1samp_grass","bindttest_count_sig_runs","add_parcel_deltas","ndvi_dygraph_parcel_plot","add_species_agency_plotid","pivot_longer_icwd","boxplot_wc_pft_year_statcompare","panel_map_view","summarise_to_parcel","two_sample_ttest_grass","monthly_flow_syncplot_staid","monthly_flow_syncplot","monthly_pumping_syncplot","ndvi_dtw_syncplot","lpt_pft_syncplot","ppt_syncplot","dtw_syncplot","ndvi_syncplot","one_sample_ttest","five_row_timeseries","two_sample_ttest","one_sample_ttest_grass"],"level":[2,1,3,4,12,2,1,1,16,3,2,4,2,6,7,4,6,5,3,2,1,2,3,5,4,6,7,2,1,10,8,9,3,2,7,8,2,1,8,9,8,2,1,18,18,18,18,18,18,18,17,17,17,15,11,12,13,13,12,13,13,14,11,12,12,2,1,17,14,2,5,4,3,1,3,2,4,2,1,2,1,2,1,10,14,8,10,11,1,2,9,13,13,2,1,3,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,0,0,1,1,1,1,1,1,0,1,1,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2],"shape":["dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle","triangle"]},"edges":{"from":["plot.perennial.cover","t2samp_grass","dyBarChart","dyBarChart","dyBarChart","dyBarChart","dyBarChart","dyBarChart","presAnnotation","presAnnotation","presAnnotation","presAnnotation","presAnnotation","presAnnotation","plot.ppt","dyCrosshair","dyCrosshair","dyCrosshair","dyCrosshair","dyCrosshair","plot.ndvi","t1samp","plot.dtw","plot.perennial.grass","t2samp","t1samp_grass","icwd_ladwp_bind","lpt_prev_master","or_shp_file","add_parcel_deltas","parcels","canals_shp_file","filt_lela","lpt_updated_master","laa_shp_file","add_parcel_deltas_yoy","cYear","parcels","monsites_shp_file","deltas_ttest_att","parcels_shp","ladwp_file","parcels_shp_file","vwrmax_file","parcel_year_meta","pointframe_lai","sitesoil","pYear","wvcom_file","parcel_testadd_sums","parcel_year_meta_combined_results","plot_wellfield_control","wellcont_means_rarefied","cYear","vwr_site_total_period","vwr.total","lpt_long_no_lela","mult_to_single_parcel_name","pYear","lai_ss_vwrmax","icwd_wide","pivot_longer_icwd","cYear","lpt_updated_master","save_master_csv_and_return_path","streams_shp_file","summarise_to_parcel","transects","cYear","lpt_long_no_lela_pfix","save_csv_and_return_path","cYear","attributes_file","pointframe_wide","species","pointframe_file","canals_shp","cYear","laa_shp","lakes_shp","monsites_shp","or_shp","panel_map","parcels_shp_ttest","streams_shp","canals_shp","cYear","laa_shp","lakes_shp","monsites_shp","or_shp","panel_map","parcels_shp_ttest","streams_shp","cYear","deltas_ttest_att","make_parcel_data_table","cYear","icwd_processed","save_csv_and_return_path","attributes_pfix","boxplot_well_cont","cYear","parcels","attributes_pfix","lakes_shp_file","pYear","canals_shp","cYear","laa_shp","lakes_shp","monsites_shp","or_shp","panel_map","parcels_shp_ttest","streams_shp","cYear","deltas_ttest_att","make_parcel_data_table_significant","icwd_file","canals_shp","cYear","laa_shp","lakes_shp","monsites_shp","or_shp","panel_map","parcels_shp_ttest","streams_shp","sitesoil_file","cYear","cYear","deltas_ttest_att","make_parcel_data_table_chronic","attributes_pfix","cYear","join_summaries","parcel_test_sums","parcel_year_meta_combined_results","parcels_deltas","canals_shp","cYear","laa_shp","lakes_shp","monsites_shp","or_shp","panel_map","parcels_shp_ttest","streams_shp","canals_shp","cYear","laa_shp","lakes_shp","monsites_shp","or_shp","panel_map","parcels_shp_ttest","streams_shp","add_species_agency_plotid","cYear","ladwp_long","species","attributes","mult_to_single_parcel_name","vwr","vwr_total","weighted.avg","add_species_agency_plotid","cYear","icwd_long","species","one_sample_ttest","parcel_year_meta_1samp","mult_to_single_parcel_name","wvcom","attributes_reinv","nest_transects","transects","bindttest_count_sig_runs","parcel_year_meta_1samp_results","parcel_year_meta_1samp_results_grass","parcel_year_meta_2samp_results","parcel_year_meta_2samp_results_grass","count_parcels_all_years","lpt_updated_master","cYear","one_sample_ttest_grass","parcel_year_meta_1samp","pointframe_long","dtw_file","compute_trend_well_cont","wellcont_means_rarefied","attributes_pfix","parcels_deltas","wellfield_control_means_rarefied","count_transects_cyear","cYear","lpt_updated_master","species_file","parcel_year_meta_2samp","two_sample_ttest","attributes_pfix","parcels_deltas","wellfield_control_means","vwr","weighted_avg","rs_file","parcel_year_meta_2samp","two_sample_ttest_grass","icwd_processed","ladwp_processed","lpt_long_no_lela_pfix","summarise_to_transect","wvcom_pfix","dtw","mult_to_single_parcel_name","mult_to_single_parcel_name","rs","lpt_prev_master_file","count_parcels_cyear","cYear","n_parcels_all_years","cYear","icwd_ladwp_bind","save_csv_and_return_path","canals_shp","cYear","laa_shp","lakes_shp","monsites_shp","or_shp","panel_map","parcels_shp_ttest","streams_shp","cYear","ladwp_processed","save_csv_and_return_path","lai_ss","vwrmax_lookt","parcel_year_meta"],"to":["five_row_timeseries","two_sample_ttest_grass","monthly_flow_syncplot_staid","monthly_flow_syncplot","ndvi_dtw_syncplot","ppt_syncplot","ndvi_syncplot","monthly_pumping_syncplot","monthly_flow_syncplot_staid","monthly_flow_syncplot","ppt_syncplot","dtw_syncplot","ndvi_syncplot","monthly_pumping_syncplot","five_row_timeseries","ndvi_dtw_syncplot","lpt_pft_syncplot","ppt_syncplot","dtw_syncplot","ndvi_syncplot","five_row_timeseries","one_sample_ttest","five_row_timeseries","five_row_timeseries","two_sample_ttest","one_sample_ttest_grass","lpt_updated_master","lpt_updated_master","or_shp","parcels_deltas","parcels_deltas","canals_shp","lpt_long_no_lela","lpt_long_no_lela","laa_shp","parcels_deltas_yoy","parcels_deltas_yoy","parcels_deltas_yoy","monsites_shp","parcels_shp_ttest","parcels_shp_ttest","ladwp_long","parcels_shp","vwrmax_lookt","parcel_year_meta_2samp","lai_ss","lai_ss","rs_file","wvcom","parcel_test_sums","parcel_test_sums","plot_wellcontrol","plot_wellcontrol","vwr.wide.period","vwr.wide.period","vwr.wide.period","lpt_long_no_lela_pfix","lpt_long_no_lela_pfix","dtw_file","vwr","icwd_long","icwd_long","lpt_updated_master_csv","lpt_updated_master_csv","lpt_updated_master_csv","streams_shp","parcels","parcels","long_combined_nl_csv","long_combined_nl_csv","long_combined_nl_csv","icwd_file","attributes","pointframe_long","pointframe_long","pointframe_wide","panel_map_ta","panel_map_ta","panel_map_ta","panel_map_ta","panel_map_ta","panel_map_ta","panel_map_ta","panel_map_ta","panel_map_ta","panel_map_ss","panel_map_ss","panel_map_ss","panel_map_ss","panel_map_ss","panel_map_ss","panel_map_ss","panel_map_ss","panel_map_ss","parcel_datatable","parcel_datatable","parcel_datatable","icwd_output_csv","icwd_output_csv","icwd_output_csv","boxplot.w.c","boxplot.w.c","boxplot.w.c","boxplot.w.c","attributes_reinv","lakes_shp","lpt_prev_master_file","panel_map_lw","panel_map_lw","panel_map_lw","panel_map_lw","panel_map_lw","panel_map_lw","panel_map_lw","panel_map_lw","panel_map_lw","parcel_datatable_significant","parcel_datatable_significant","parcel_datatable_significant","icwd_wide","panel_map_bg","panel_map_bg","panel_map_bg","panel_map_bg","panel_map_bg","panel_map_bg","panel_map_bg","panel_map_bg","panel_map_bg","sitesoil","pointframe_file","parcel_datatable_chronic","parcel_datatable_chronic","parcel_datatable_chronic","deltas_ttest_att","deltas_ttest_att","deltas_ttest_att","deltas_ttest_att","deltas_ttest_att","deltas_ttest_att","panel_map_ts","panel_map_ts","panel_map_ts","panel_map_ts","panel_map_ts","panel_map_ts","panel_map_ts","panel_map_ts","panel_map_ts","panel_map_bp","panel_map_bp","panel_map_bp","panel_map_bp","panel_map_bp","panel_map_bp","panel_map_bp","panel_map_bp","panel_map_bp","ladwp_processed","ladwp_processed","ladwp_processed","ladwp_processed","attributes_pfix","attributes_pfix","vwr.total","vwr.total","vwr.total","icwd_processed","icwd_processed","icwd_processed","icwd_processed","parcel_year_meta_1samp_results","parcel_year_meta_1samp_results","wvcom_pfix","wvcom_pfix","parcel_year_meta","parcel_year_meta","parcel_year_meta","parcel_year_meta_combined_results","parcel_year_meta_combined_results","parcel_year_meta_combined_results","parcel_year_meta_combined_results","parcel_year_meta_combined_results","n_parcels_all_years","n_parcels_all_years","ladwp_file","parcel_year_meta_1samp_results_grass","parcel_year_meta_1samp_results_grass","pointframe_lai","dtw","trends.w.c","trends.w.c","wellcont_means_rarefied","wellcont_means_rarefied","wellcont_means_rarefied","n_transects_sampled","n_transects_sampled","n_transects_sampled","species","parcel_year_meta_2samp_results","parcel_year_meta_2samp_results","wellcont_means","wellcont_means","wellcont_means","weighted.avg","weighted.avg","rs","parcel_year_meta_2samp_results_grass","parcel_year_meta_2samp_results_grass","icwd_ladwp_bind","icwd_ladwp_bind","transects","transects","transects","dtw_pfix","dtw_pfix","rs_pfix","rs_pfix","lpt_prev_master","n_parcels_sampled","n_parcels_sampled","n_parcels_sampled","icwd_ladwp_output_csv","icwd_ladwp_output_csv","icwd_ladwp_output_csv","panel_map_io","panel_map_io","panel_map_io","panel_map_io","panel_map_io","panel_map_io","panel_map_io","panel_map_io","panel_map_io","ladwp_output_csv","ladwp_output_csv","ladwp_output_csv","lai_ss_vwrmax","lai_ss_vwrmax","parcel_year_meta_1samp"],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"physics":{"stabilization":false},"interaction":{"zoomSpeed":1},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":{"from":1,"to":1},"algorithm":"hierarchical","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"right","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Stem","Function"],"color":["#354823","#899DA4","#899DA4"],"shape":["dot","dot","triangle"]},"nodesToDataframe":true},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>The ‘Stems’ (circles) represent data file input, intermediate and final data wrangling transformations with computations of LAI and VWR. The functions (triangles) take an input stem and output a new stem shown by linkages in the pipeline. Color green indicates the stems and functions are up to date - grey indicates changes have been made since the last <code>tar_make()</code> call.</p>
+<p>Once the targets pipeline is made, the targets are stored in <code>_targets/objects</code> of the working directory where <code>_targets.R</code> script file is made - these targets can be read into rmarkdown documents using tar_read().</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(cYear))</span>
+<span id="cb4-2"><a href="#cb4-2"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(pointframe_wide))</span>
+<span id="cb4-3"><a href="#cb4-3"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(pointframe_long))</span>
+<span id="cb4-4"><a href="#cb4-4"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(sitesoil))</span>
+<span id="cb4-5"><a href="#cb4-5"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(vwrmax_lookt))</span>
+<span id="cb4-6"><a href="#cb4-6"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(weighted.avg ))</span>
+<span id="cb4-7"><a href="#cb4-7"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(vwr))</span>
+<span id="cb4-8"><a href="#cb4-8"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(vwr.total))</span>
+<span id="cb4-9"><a href="#cb4-9"></a>withr<span class="sc">::</span><span class="fu">with_dir</span>(rprojroot<span class="sc">::</span><span class="fu">find_root</span>(<span class="st">'_targets.R'</span>),<span class="fu">tar_load</span>(vwr.wide.period))</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co"># cYear &lt;- tar_read(cYear)# current year</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># for illustrative purposes we can show a step by step evolution in the wrangling and munging.</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co"># pfw &lt;- tar_read(pointframe_wide)# wide point frame data</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co"># pfl &lt;- tar_read(pointframe_long)# long point frame data</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># ss &lt;- tar_read(sitesoil)# site soil texture -sand/silt</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="co"># vwrmax &lt;- tar_read(vwrmax_lookt)#empirical vwr max at LAI = 1</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co"># lai &lt;- tar_read(pointframe_lai)# cover data converted to leaf area index (LAI)</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co"># lai_ss &lt;- tar_read(lai_ss) # LAI joined to site soil texture</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="co"># lai_ss_vwrmax &lt;- tar_read(lai_ss_vwrmax) # LAI-soil text joined to VWR max</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="co"># vwr &lt;- tar_read(vwr)# VWR = LAI*VWR max</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="co"># weighted.avg. &lt;- tar_read(weighted.avg.)# to compute VWR for the 'OTHER' catchall for non-dominant species, total VWR/LAI for six dominant species multiplied by site LAI total for 'OTHER' category</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># vwr.total &lt;- tar_read(vwr.total)# VWR complete for 6 species and OTHER.</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="co"># vwr.wide.period &lt;- tar_read(vwr.wide.period) # pivot wider so that July(half year) and October(full year) VWR are columns.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="incoming-data" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Incoming Data</h1>
+<p>Point frame data is currently entered onto excel spreadsheets on field tablets, and species level totals are transcribed to this wide format spreadsheet with site as rows and species as columns. The number represents number of hits for each species in 3 dimensions every 30 cm for 334 pin drops.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>pointframe_wide <span class="sc">%&gt;%</span> <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">'Point frame data entered in wide format in '</span>,cYear,<span class="st">"."</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-565906bdbfbb28f80208" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-565906bdbfbb28f80208">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"65\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1\" data-max=\"42\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1\" data-max=\"48\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2\" data-max=\"134\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2\" data-max=\"43\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1\" data-max=\"7\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1\" data-max=\"60\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Point frame data entered in wide format in 2022.<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["LW1","LW2","LW3","BC1","BC2","BC3","BP1","BP2","BP3","BP4","TA3","TA4","TA5","TA6","TAC","TS1","TS2","TS3","TS4","TSC","IO1","IO2","IC1","IC2","SS1","SS2","SS3","SS4","BG2","BGC"],[null,7,65,2,0,null,11,null,3,null,12,12,4,9,18,3,6,22,27,4,37,null,null,5,null,null,null,null,null,null],[null,null,1,2,33,14,null,null,null,null,null,4,null,null,42,null,null,19,9,1,null,null,null,1,null,null,null,null,null,null],[null,1,null,48,11,14,null,20,7,1,null,16,1,16,null,null,null,null,7,3,19,null,13,4,null,null,null,null,null,29],[null,2,2,25,null,11,39,23,null,11,15,null,null,38,48,134,2,5,15,null,7,17,32,null,34,8,62,17,8,10],[25,9,null,13,null,null,43,null,36,19,3,null,7,null,null,null,null,null,39,6,null,null,null,2,20,null,null,null,2,null],[null,null,null,null,null,null,null,null,1,null,null,null,7,null,null,null,null,null,1,1,null,null,null,null,null,null,null,null,null,null],[1,null,null,15,7,20,1,1,null,2,22,1,5,1,60,2,35,null,1,4,16,1,6,2,null,2,10,null,7,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>site<\/th>\n      <th>SPAI<\/th>\n      <th>DISP<\/th>\n      <th>CHNA<\/th>\n      <th>ATTO<\/th>\n      <th>SAVE<\/th>\n      <th>ATCO<\/th>\n      <th>OTHER<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":false,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># %&gt;% formatRound(c('july','oct'),2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="tidy-data" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> Tidy Data</h1>
+<p>The wide data is transformed into long format (tidy data). It should be noted here that the incoming wide format is an unnecessary intermediate format - a byproduct of doing column-wise calculations in the VWR excel calculator. Going forward, programmatically extracting the site-species-count rows into long format from the data entry spreadsheet should be a goal of the end to end data pipeline.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>pointframe_long <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(site,species) <span class="sc">%&gt;%</span> <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">'Tidy point-frame data (site-species unique row combos) obtained with pivot_longer() function on wide input data above. Data updated in '</span>,cYear,<span class="st">"."</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="at">pageLength =</span> <span class="dv">7</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1af840b78eb5b0580821" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1af840b78eb5b0580821">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0\" data-max=\"134\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Tidy point-frame data (site-species unique row combos) obtained with pivot_longer() function on wide input data above. Data updated in 2022.<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210"],["BC1","BC1","BC1","BC1","BC1","BC1","BC1","BC2","BC2","BC2","BC2","BC2","BC2","BC2","BC3","BC3","BC3","BC3","BC3","BC3","BC3","BG2","BG2","BG2","BG2","BG2","BG2","BG2","BGC","BGC","BGC","BGC","BGC","BGC","BGC","BP1","BP1","BP1","BP1","BP1","BP1","BP1","BP2","BP2","BP2","BP2","BP2","BP2","BP2","BP3","BP3","BP3","BP3","BP3","BP3","BP3","BP4","BP4","BP4","BP4","BP4","BP4","BP4","IC1","IC1","IC1","IC1","IC1","IC1","IC1","IC2","IC2","IC2","IC2","IC2","IC2","IC2","IO1","IO1","IO1","IO1","IO1","IO1","IO1","IO2","IO2","IO2","IO2","IO2","IO2","IO2","LW1","LW1","LW1","LW1","LW1","LW1","LW1","LW2","LW2","LW2","LW2","LW2","LW2","LW2","LW3","LW3","LW3","LW3","LW3","LW3","LW3","SS1","SS1","SS1","SS1","SS1","SS1","SS1","SS2","SS2","SS2","SS2","SS2","SS2","SS2","SS3","SS3","SS3","SS3","SS3","SS3","SS3","SS4","SS4","SS4","SS4","SS4","SS4","SS4","TA3","TA3","TA3","TA3","TA3","TA3","TA3","TA4","TA4","TA4","TA4","TA4","TA4","TA4","TA5","TA5","TA5","TA5","TA5","TA5","TA5","TA6","TA6","TA6","TA6","TA6","TA6","TA6","TAC","TAC","TAC","TAC","TAC","TAC","TAC","TS1","TS1","TS1","TS1","TS1","TS1","TS1","TS2","TS2","TS2","TS2","TS2","TS2","TS2","TS3","TS3","TS3","TS3","TS3","TS3","TS3","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TSC","TSC","TSC","TSC","TSC","TSC","TSC"],["ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI","ATCO","ATTO","CHNA","DISP","OTHER","SAVE","SPAI"],[null,25,48,2,15,13,2,null,null,11,33,7,null,0,null,11,14,14,20,null,null,null,8,null,null,7,2,null,null,10,29,null,null,null,null,null,39,null,null,1,43,11,null,23,20,null,1,null,null,1,null,7,null,null,36,3,null,11,1,null,2,19,null,null,32,13,null,6,null,null,null,null,4,1,2,2,5,null,7,19,null,16,null,37,null,17,null,null,1,null,null,null,null,null,null,1,25,null,null,2,1,null,null,9,7,null,2,null,1,null,null,65,null,34,null,null,null,20,null,null,8,null,null,2,null,null,null,62,null,null,10,null,null,null,17,null,null,null,null,null,null,15,null,null,22,3,12,null,null,16,4,1,null,12,7,null,1,null,5,7,4,null,38,16,null,1,null,9,null,48,null,42,60,null,18,null,134,null,null,2,null,3,null,2,null,null,35,null,6,null,5,null,19,null,null,22,1,15,7,9,1,39,27,1,null,3,1,4,6,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>site<\/th>\n      <th>species<\/th>\n      <th>all.hits<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"autoWidth":false,"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>sitesoil <span class="sc">%&gt;%</span> <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"Site soil texture designation (silt or sand)."</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># lai_ss_vwrmax &lt;- lai_ss %&gt;% left_join(vwrmax, by = c('soil','species'))</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># datatable(lai_ss_vwrmax)</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>vwrmax_lookt <span class="sc">%&gt;%</span> <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">'Species-level leaf area index (LAI) for July 1, '</span>,cYear,<span class="st">", and VWR max for each period (July or October), site soil texture designation (silt or sand) affecting plant available water."</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>))<span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="st">'lai'</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># vwr &lt;- lai_ss_vwrmax %&gt;% mutate(vwr = lai*vwr_at_lai_max)</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>vwr <span class="sc">%&gt;%</span> <span class="fu">filter</span>(lai<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span>  <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">'Species-level VWR at each site computed from multiplying LAI by VWR max for each period (July or October)'</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>))<span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'lai'</span>,<span class="st">'vwr_at_lai_max'</span>,<span class="st">'vwr'</span>),<span class="dv">2</span>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co"># datatable(vwr)</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co"># 420 rows</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co"># 30 sites, 2 periods, 7 species including other</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co"># rows &lt;- 30*2*7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="weighted-average-vwrlai" class="level1" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> Weighted average VWR/LAI</h1>
+<p>The sum of vwr for six species divided by sum of lai for six co-ocurring species provides estimates for VWRmax for the <code>OTHER</code> category.</p>
+<p>This value is multiplied by the LAI of the <code>OTHER</code> column to obtain VWR for <code>OTHER</code>.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>weighted.avg <span class="sc">%&gt;%</span> <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">'Site-level weighted average VWR/LAI for '</span>,cYear,<span class="st">", used as VWR max for OTHER species category for each period ()."</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>))<span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'w_avg_vwr_per_lai'</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8b8eff0b54828957add1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8b8eff0b54828957add1">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"9.3\" data-max=\"36.775\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Site-level weighted average VWR/LAI for 2022, used as VWR max for OTHER species category for each period ().<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["BC1","BC1","BC2","BC2","BC3","BC3","BG2","BG2","BGC","BGC","BP1","BP1","BP2","BP2","BP3","BP3","BP4","BP4","IC1","IC1","IC2","IC2","IO1","IO1","IO2","IO2","LW1","LW1","LW2","LW2","LW3","LW3","SS1","SS1","SS2","SS2","SS3","SS3","SS4","SS4","TA3","TA3","TA4","TA4","TA5","TA5","TA6","TA6","TAC","TAC","TS1","TS1","TS2","TS2","TS3","TS3","TS4","TS4","TSC","TSC"],["july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct"],[15.434,28.3233333333333,19.65,36.775,16.4794871794872,30.7179487179487,10.88,19.98,16.2153846153846,29.9666666666667,13.801935483871,24.9967741935484,13.6255813953488,25.2604651162791,16.6759574468085,29.663829787234,14.441935483871,25.8516129032258,11.9866666666667,22.2822222222222,17.6,32.6166666666667,16.3215873015873,30.6015873015873,9.3,17.4,17.2,30.3,13.6384210526316,24.4736842105263,9.59470588235294,17.6191176470588,12.2259259259259,22.1777777777778,9.3,17.4,9.3,17.4,9.3,17.4,12.962,24.21,17.98,33.55,12.8484210526316,23.4052631578947,12.6876190476191,23.6634920634921,14.6577777777778,27.5555555555556,9.3063503649635,17.4043795620438,9.5175,17.55,9.93021739130435,18.2804347826087,16.0312244897959,29.3275510204082,16.7013333333333,30.5066666666667],["OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER","OTHER"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>site<\/th>\n      <th>period<\/th>\n      <th>w_avg_vwr_per_lai<\/th>\n      <th>species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":false,"columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+</div>
+</div>
+</section><section id="species-level-vwr" class="level1" data-number="7"><h1 data-number="7">
+<span class="header-section-number">7</span> Species level VWR</h1>
+<p>Here we combine the site VWRs from the six dominant species and from the OTHER column into a single column.</p>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># join weighted avg VWR/LAI to vwr by site, species, period, and combined </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>vwr.total <span class="sc">%&gt;%</span> <span class="fu">filter</span>(all.hits <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(site,period,species,lai,total.vwr) <span class="sc">%&gt;%</span>  <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"Total VWR for six dominant species and other species combined into one column"</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'lai'</span>,<span class="st">'total.vwr'</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-31fa792f6be9ebdfd95a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-31fa792f6be9ebdfd95a">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.005988023952095\" data-max=\"0.802395209580839\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.033532934131736\" data-max=\"13.9616766467066\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Total VWR for six dominant species and other species combined into one column<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212"],["LW1","LW1","LW1","LW1","LW2","LW2","LW2","LW2","LW2","LW2","LW2","LW2","LW3","LW3","LW3","LW3","LW3","LW3","BC1","BC1","BC1","BC1","BC1","BC1","BC1","BC1","BC1","BC1","BC1","BC1","BC2","BC2","BC2","BC2","BC2","BC2","BC3","BC3","BC3","BC3","BC3","BC3","BC3","BC3","BP1","BP1","BP1","BP1","BP1","BP1","BP1","BP1","BP2","BP2","BP2","BP2","BP2","BP2","BP3","BP3","BP3","BP3","BP3","BP3","BP3","BP3","BP4","BP4","BP4","BP4","BP4","BP4","BP4","BP4","TA3","TA3","TA3","TA3","TA3","TA3","TA3","TA3","TA4","TA4","TA4","TA4","TA4","TA4","TA4","TA4","TA5","TA5","TA5","TA5","TA5","TA5","TA5","TA5","TA5","TA5","TA6","TA6","TA6","TA6","TA6","TA6","TA6","TA6","TAC","TAC","TAC","TAC","TAC","TAC","TAC","TAC","TS1","TS1","TS1","TS1","TS1","TS1","TS2","TS2","TS2","TS2","TS2","TS2","TS3","TS3","TS3","TS3","TS3","TS3","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TS4","TSC","TSC","TSC","TSC","TSC","TSC","TSC","TSC","TSC","TSC","TSC","TSC","IO1","IO1","IO1","IO1","IO1","IO1","IO1","IO1","IO2","IO2","IO2","IO2","IC1","IC1","IC1","IC1","IC1","IC1","IC2","IC2","IC2","IC2","IC2","IC2","IC2","IC2","IC2","IC2","SS1","SS1","SS1","SS1","SS2","SS2","SS2","SS2","SS3","SS3","SS3","SS3","SS4","SS4","BG2","BG2","BG2","BG2","BG2","BG2","BGC","BGC","BGC","BGC"],["july","oct","oct","july","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","oct","july","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","oct","july","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","oct","july","july","oct","july","oct","july","oct","oct","july","july","oct","july","oct"],["SAVE","SAVE","OTHER","OTHER","SPAI","SPAI","CHNA","CHNA","ATTO","ATTO","SAVE","SAVE","SPAI","SPAI","DISP","DISP","ATTO","ATTO","SPAI","SPAI","DISP","DISP","CHNA","CHNA","ATTO","ATTO","SAVE","SAVE","OTHER","OTHER","DISP","DISP","CHNA","CHNA","OTHER","OTHER","DISP","DISP","CHNA","CHNA","ATTO","ATTO","OTHER","OTHER","SPAI","SPAI","ATTO","ATTO","SAVE","SAVE","OTHER","OTHER","CHNA","CHNA","ATTO","ATTO","OTHER","OTHER","SPAI","SPAI","CHNA","CHNA","SAVE","SAVE","ATCO","ATCO","CHNA","CHNA","ATTO","ATTO","SAVE","SAVE","OTHER","OTHER","SPAI","SPAI","ATTO","ATTO","SAVE","SAVE","OTHER","OTHER","SPAI","SPAI","DISP","DISP","CHNA","CHNA","OTHER","OTHER","SPAI","SPAI","CHNA","CHNA","SAVE","SAVE","ATCO","ATCO","OTHER","OTHER","SPAI","SPAI","CHNA","CHNA","ATTO","ATTO","OTHER","OTHER","SPAI","SPAI","DISP","DISP","ATTO","ATTO","OTHER","OTHER","SPAI","SPAI","ATTO","ATTO","OTHER","OTHER","SPAI","SPAI","ATTO","ATTO","OTHER","OTHER","SPAI","SPAI","DISP","DISP","ATTO","ATTO","SPAI","SPAI","DISP","DISP","CHNA","CHNA","ATTO","ATTO","SAVE","SAVE","ATCO","ATCO","OTHER","OTHER","SPAI","SPAI","DISP","DISP","CHNA","CHNA","SAVE","SAVE","ATCO","ATCO","OTHER","OTHER","SPAI","SPAI","CHNA","CHNA","ATTO","ATTO","OTHER","OTHER","ATTO","ATTO","OTHER","OTHER","CHNA","CHNA","ATTO","ATTO","OTHER","OTHER","SPAI","SPAI","DISP","DISP","CHNA","CHNA","SAVE","SAVE","OTHER","OTHER","ATTO","ATTO","SAVE","SAVE","ATTO","ATTO","OTHER","OTHER","ATTO","ATTO","OTHER","OTHER","ATTO","ATTO","ATTO","ATTO","SAVE","SAVE","OTHER","OTHER","CHNA","CHNA","ATTO","ATTO"],[0.149700598802395,0.149700598802395,0.00598802395209581,0.00598802395209581,0.0419161676646707,0.0419161676646707,0.00598802395209581,0.00598802395209581,0.0119760479041916,0.0119760479041916,0.0538922155688623,0.0538922155688623,0.389221556886228,0.389221556886228,0.00598802395209581,0.00598802395209581,0.0119760479041916,0.0119760479041916,0.0119760479041916,0.0119760479041916,0.0119760479041916,0.0119760479041916,0.287425149700599,0.287425149700599,0.149700598802395,0.149700598802395,0.0778443113772455,0.0778443113772455,0.0898203592814371,0.0898203592814371,0.197604790419162,0.197604790419162,0.0658682634730539,0.0658682634730539,0.0419161676646707,0.0419161676646707,0.0838323353293413,0.0838323353293413,0.0838323353293413,0.0838323353293413,0.0658682634730539,0.0658682634730539,0.119760479041916,0.119760479041916,0.0658682634730539,0.0658682634730539,0.233532934131737,0.233532934131737,0.25748502994012,0.25748502994012,0.00598802395209581,0.00598802395209581,0.119760479041916,0.119760479041916,0.137724550898204,0.137724550898204,0.00598802395209581,0.00598802395209581,0.0179640718562874,0.0179640718562874,0.0419161676646707,0.0419161676646707,0.215568862275449,0.215568862275449,0.00598802395209581,0.00598802395209581,0.00598802395209581,0.00598802395209581,0.0658682634730539,0.0658682634730539,0.11377245508982,0.11377245508982,0.0119760479041916,0.0119760479041916,0.0718562874251497,0.0718562874251497,0.0898203592814371,0.0898203592814371,0.0179640718562874,0.0179640718562874,0.131736526946108,0.131736526946108,0.0718562874251497,0.0718562874251497,0.0239520958083832,0.0239520958083832,0.0958083832335329,0.0958083832335329,0.00598802395209581,0.00598802395209581,0.0239520958083832,0.0239520958083832,0.00598802395209581,0.00598802395209581,0.0419161676646707,0.0419161676646707,0.0419161676646707,0.0419161676646707,0.029940119760479,0.029940119760479,0.0538922155688623,0.0538922155688623,0.0958083832335329,0.0958083832335329,0.227544910179641,0.227544910179641,0.00598802395209581,0.00598802395209581,0.107784431137725,0.107784431137725,0.251497005988024,0.251497005988024,0.287425149700599,0.287425149700599,0.359281437125749,0.359281437125749,0.0179640718562874,0.0179640718562874,0.802395209580838,0.802395209580838,0.0119760479041916,0.0119760479041916,0.0359281437125748,0.0359281437125748,0.0119760479041916,0.0119760479041916,0.209580838323353,0.209580838323353,0.131736526946108,0.131736526946108,0.11377245508982,0.11377245508982,0.029940119760479,0.029940119760479,0.161676646706587,0.161676646706587,0.0538922155688623,0.0538922155688623,0.0419161676646707,0.0419161676646707,0.0898203592814371,0.0898203592814371,0.233532934131737,0.233532934131737,0.00598802395209581,0.00598802395209581,0.00598802395209581,0.00598802395209581,0.0239520958083832,0.0239520958083832,0.00598802395209581,0.00598802395209581,0.0179640718562874,0.0179640718562874,0.0359281437125748,0.0359281437125748,0.00598802395209581,0.00598802395209581,0.0239520958083832,0.0239520958083832,0.221556886227545,0.221556886227545,0.11377245508982,0.11377245508982,0.0419161676646707,0.0419161676646707,0.0958083832335329,0.0958083832335329,0.101796407185629,0.101796407185629,0.00598802395209581,0.00598802395209581,0.0778443113772455,0.0778443113772455,0.191616766467066,0.191616766467066,0.0359281437125748,0.0359281437125748,0.029940119760479,0.029940119760479,0.00598802395209581,0.00598802395209581,0.0239520958083832,0.0239520958083832,0.0119760479041916,0.0119760479041916,0.0119760479041916,0.0119760479041916,0.203592814371257,0.203592814371257,0.119760479041916,0.119760479041916,0.0479041916167665,0.0479041916167665,0.0119760479041916,0.0119760479041916,0.37125748502994,0.37125748502994,0.0598802395209581,0.0598802395209581,0.101796407185629,0.101796407185629,0.0479041916167665,0.0479041916167665,0.0119760479041916,0.0119760479041916,0.0419161676646707,0.0419161676646707,0.173652694610778,0.173652694610778,0.0598802395209581,0.0598802395209581],[2.5748502994012,4.53592814371257,0.181437125748503,0.102994011976048,0.401976047904192,0.737724550898204,0.111377245508982,0.205389221556886,0.111377245508982,0.208383233532934,0.926946107784431,1.63293413173653,3.73263473053892,6.85029940119761,0.062814371257485,0.115568862275449,0.111377245508982,0.208383233532934,0.114850299401198,0.210778443113772,0.12562874251497,0.231137724550898,5.34610778443114,9.85868263473054,1.39221556886228,2.60479041916168,1.33892215568862,2.35868263473054,2.5440119760479,1.3862874251497,3.95209580838323,7.42994011976048,1.2251497005988,2.25928143712575,1.54146706586826,0.823652694610778,1.67664670658683,3.15209580838323,1.55928143712575,2.87544910179641,0.612574850299401,1.14610778443114,3.67879625364655,1.9735912789805,1.08550898203593,2.05508982035928,2.17185628742515,4.06347305389222,4.42874251497006,7.80179640718563,0.149681282596098,0.0826463202627004,2.22754491017964,4.10778443113772,1.28083832335329,2.39640718562874,0.15126027015736,0.0815903077565799,0.172275449101796,0.316167664670659,0.779640718562874,1.4377245508982,3.70778443113772,6.53173652694611,0.0335329341317365,0.062874251497006,0.111377245508982,0.205389221556886,0.612574850299401,1.14610778443114,1.95688622754491,3.44730538922156,0.30960015452965,0.172957311184083,1.18419161676647,2.24191616766467,0.835329341317365,1.56287425149701,0.308982035928144,0.544311377245509,3.18934131736527,1.70756886227545,1.18419161676647,2.24191616766467,0.479041916167665,0.90059880239521,1.78203592814371,3.28622754491018,0.200898203592814,0.107664670658683,0.394730538922156,0.747305389221557,0.111377245508982,0.205389221556886,0.720958083832335,1.27005988023952,0.234730538922156,0.440119760479042,0.700756381972896,0.38468326504885,0.88814371257485,1.6814371257485,1.78203592814371,3.28622754491018,2.11616766467066,3.95928143712575,0.14169755726642,0.0759737667522099,1.7762874251497,3.36287425149701,5.02994011976048,9.4562874251497,2.67305389221557,5.00119760479042,9.9001996007984,5.26626746506986,0.172275449101796,0.316167664670659,7.4622754491018,13.9616766467066,0.20843568337777,0.111453297783994,0.344550898203593,0.632335329341317,0.111377245508982,0.208383233532934,3.67814371257485,1.99468562874251,1.26335329341317,2.3185628742515,1.19347305389222,2.19580838323353,0.278443113772455,0.520958083832335,2.66443113772455,5.04431137724551,1.07784431137725,2.02634730538922,0.779640718562874,1.4377245508982,0.835329341317365,1.56287425149701,4.01676646706587,7.07604790419162,0.0335329341317365,0.062874251497006,0.175614077966516,0.0959953562263228,0.394730538922156,0.747305389221557,0.119760479041916,0.225149700598802,0.334131736526946,0.616167664670659,0.617964071856287,1.08862275449102,0.0335329341317365,0.062874251497006,0.730698602794411,0.400031936127744,3.65125748502994,6.9125748502994,2.11616766467066,3.90239520958084,0.389820359281437,0.729341317365269,2.93188860374489,1.56374489117004,0.946706586826347,1.77125748502994,0.104191616766467,0.055688622754491,1.44790419161677,2.67005988023952,1.78203592814371,3.33413173652695,0.800558882235529,0.430658682634731,0.493413173652695,0.934131736526946,0.119760479041916,0.225149700598802,0.445508982035928,0.821556886227545,0.205988023952096,0.362874251497006,0.39061876247505,0.210778443113772,1.89341317365269,3.54251497005988,2.05988023952096,3.62874251497006,0.445508982035928,0.833532934131736,0.208383233532934,0.111377245508982,3.45269461077844,6.45988023952096,1.04191616766467,0.55688622754491,0.946706586826347,1.77125748502994,0.445508982035928,0.833532934131736,0.205988023952096,0.362874251497006,0.83748502994012,0.456047904191617,3.22994011976048,5.9562874251497,0.55688622754491,1.04191616766467]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>site<\/th>\n      <th>period<\/th>\n      <th>species<\/th>\n      <th>lai<\/th>\n      <th>total.vwr<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":false,"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[4,5]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+</div>
+</section><section id="site-level-vwr" class="level1" data-number="8"><h1 data-number="8">
+<span class="header-section-number">8</span> Site-level VWR</h1>
+<div class="cell">
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># vwr.total &lt;- vwr.total %&gt;% mutate(site.f = factor(site, levels = ns_order))</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a>vwr.wide.period <span class="sc">%&gt;%</span> <span class="fu">datatable</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">'Vegetation water requirements (cm) July 1 (half year) and Oct 1 (full year), for '</span>,cYear,<span class="st">', calculated according to Greenbook section III.A.1.'</span>),<span class="at">filter =</span> <span class="fu">c</span>(<span class="st">"top"</span>),<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">FALSE</span>),<span class="at">colnames =</span> <span class="fu">c</span>(<span class="st">'Site'</span>,<span class="st">'July'</span>,<span class="st">'October'</span>)) <span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="fu">c</span>(<span class="st">'july'</span>,<span class="st">'oct'</span>),<span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c2d235af11583f5c248e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c2d235af11583f5c248e">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;LW1&quot;,&quot;LW2&quot;,&quot;LW3&quot;,&quot;BC1&quot;,&quot;BC2&quot;,&quot;BC3&quot;,&quot;BP1&quot;,&quot;BP2&quot;,&quot;BP3&quot;,&quot;BP4&quot;,&quot;TA3&quot;,&quot;TA4&quot;,&quot;TA5&quot;,&quot;TA6&quot;,&quot;TAC&quot;,&quot;TS1&quot;,&quot;TS2&quot;,&quot;TS3&quot;,&quot;TS4&quot;,&quot;TSC&quot;,&quot;IO1&quot;,&quot;IO2&quot;,&quot;IC1&quot;,&quot;IC2&quot;,&quot;SS1&quot;,&quot;SS2&quot;,&quot;SS3&quot;,&quot;SS4&quot;,&quot;BG2&quot;,&quot;BGC&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"0.55688622754491\" data-max=\"14.7455489021956\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"1.04191616766467\" data-max=\"27.7205588822355\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Vegetation water requirements (cm) July 1 (half year) and Oct 1 (full year), for 2022, calculated according to Greenbook section III.A.1.<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["LW1","LW2","LW3","BC1","BC2","BC3","BP1","BP2","BP3","BP4","TA3","TA4","TA5","TA6","TAC","TS1","TS2","TS3","TS4","TSC","IO1","IO2","IC1","IC2","SS1","SS2","SS3","SS4","BG2","BGC"],[2.67784431137725,1.55167664670659,3.90682634730539,9.70401197604791,6.00089820359281,5.82209427299248,7.76875410469384,3.58997354128951,4.69323353293413,2.85379563453738,4.03607185628743,3.55293413173653,1.84647967223448,4.86232107214143,14.7455489021956,7.74600419598759,2.45061377245509,2.73526946107784,9.50354026640596,1.90015169660679,7.72099040015208,1.00239520958084,3.66059880239521,1.47544910179641,3.95329341317365,0.55688622754491,4.00958083832335,0.946706586826347,1.10754491017964,3.78682634730539],[4.71736526946108,2.78443113772455,7.17425149700599,17.8080838323353,11.2306886227545,10.8524489482573,14.0700405640332,6.65545188692383,8.34850299401197,5.10840254973923,7.53844311377245,6.62964071856287,3.3636306334699,9.06864366505085,27.7205588822355,14.486279994755,4.5188622754491,5.03532934131737,17.3857937186851,3.47081836327345,14.4761999809904,1.87544910179641,6.804750499002,2.73433133732535,7.17125748502994,1.04191616766467,7.50179640718563,1.77125748502994,2.03389221556886,6.99820359281437]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Site<\/th>\n      <th>July<\/th>\n      <th>October<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":false,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+<details><summary>code</summary><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># %&gt;% htmlwidgets::saveWidget(paste0(cYear,'_jul_oct_vwr.html'))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@report{nelson2022,
+  author = {Zach Nelson},
+  publisher = {Inyo County Water Department},
+  title = {Greenbook Section {III.A.1.} {Calculation} of {Vegetation}
+    {Water} {Requirement}},
+  volume = {1},
+  date = {2022-12-05},
+  url = {https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-nelson2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Zach Nelson. 2022. <span>“Greenbook Section III.A.1. Calculation of
+Vegetation Water Requirement.”</span> <em>Open Science Notebook</em>.
+Vol. 1. Inyo County Water Department. <a href="https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/">https://zach-nelson.github.io/open-science-notebook/posts/monitoring-wells/</a>.
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

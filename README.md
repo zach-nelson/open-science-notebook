@@ -1,23 +1,13 @@
-# open-science-notebook
+# Open Science Notebook
 
-An [Open Science Notebook](https://zach-nelson.github.io/open-science-notebook/) as a research website to distribute data products and answer questions for Inyo Water Department Staff.
+An [Open Science Notebook](https://zach-nelson.github.io/open-science-notebook/) as shared as a research website to distribute data products and answer questions for Inyo Water Department Staff.
 
-I created this repository to make it easy and fast to share data analyses with coworkers at the Inyo County Water Department, to make it easy on my future self to remember what I've done, and in general to promote some key practices leading to reproducible research, and open science. those include
+I created this repository to make it easy and fast to share data analyses with coworkers at the Inyo County Water Department, to make it easy on my future self to remember what I've done, and in general to promote some key practices leading to reproducible research, and open science. Those include:
 
 -   an Interactive development environment ([Rstudio IDE](https://posit.co/products/open-source/rstudio/))
-
-```{=html}
-<!-- -->
-```
 -   reproducible analysis ([targets R package](https://books.ropensci.org/targets/))
-
 -   reproducible and parameterized reports ([Quarto](https://quarto.org/))
-
 -   quick and easy sharing of results through ([Github Pages](https://pages.github.com/)) and
-
-```{=html}
-<!-- -->
-```
 -   collaboration through the Github ([Version Control](https://happygitwithr.com/index.html)) system.
 
 This is public github repository which allows the free hosting of this website on the github pages web hosting platform - associated with every github repository.

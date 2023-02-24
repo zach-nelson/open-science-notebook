@@ -2,10 +2,12 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/sentinel2-flood-mapping/index.html",
       "/posts/ndvi-stats/index.html",
       "/posts/laws-reveg/index.html",
       "/posts/lpt-stats/index.html",
       "/posts/flow-monthly/index.html",
+      "/posts/vegetation-water-requirement/index.html",
       "/posts/monitoring-wells/index.html"
     ]
   }
